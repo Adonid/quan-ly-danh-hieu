@@ -41,34 +41,40 @@ export default function Navbar(props) {
                 <IndexDropdown />
               </li>
               <li className="flex items-center">
-                <a
-                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="/admin/dashboard"
-                  title="Chức năng"
-                >
-                  <i className="text-xl text-blueGray-700 fas fa-tachometer-alt text-lg leading-lg"/>
-                  <span className="lg:hidden inline-block ml-2">Chức năng</span>
-                </a>
+                <Link href="/admin/dashboard">
+                  <a
+                    className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    href="#"
+                    title="Chức năng"
+                  >
+                    <i className="text-xl text-blueGray-700 fas fa-tachometer-alt text-lg leading-lg"/>
+                    <span className="lg:hidden inline-block ml-2">Chức năng</span>
+                  </a>
+                </Link>
               </li>
               <li className="flex items-center">
-                <a
-                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="#"
-                  title="Thêm người dùng mới"
-                >
-                  <i className="text-xl text-emerald-500 fas fa-user-plus text-lg leading-lg"/>
-                  <span className="lg:hidden inline-block ml-2">Thêm người dùng mới</span>
-                </a>
+                <Link href="/admin/add-user">
+                  <a
+                    className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    href="#"
+                    title="Thêm người dùng mới"
+                  >
+                    <i className="text-xl text-emerald-500 fas fa-user-plus text-lg leading-lg"/>
+                    <span className="lg:hidden inline-block ml-2">Thêm người dùng mới</span>
+                  </a>
+                </Link>
               </li>
               <li className="flex items-center">
-                <a
-                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="/admin/edit-user"
-                  title="Sửa người dùng"
-                >
-                  <i className="text-xl text-blueGray-700 fas fa-user-edit text-lg leading-lg"/>
-                  <span className="lg:hidden inline-block ml-2">Sửa người dùng</span>
-                </a>
+                <Link href="/admin/edit-user">
+                  <a
+                    className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    href="/admin/edit-user"
+                    title="Sửa người dùng"
+                  >
+                    <i className="text-xl text-blueGray-700 fas fa-user-edit text-lg leading-lg"/>
+                    <span className="lg:hidden inline-block ml-2">Sửa người dùng</span>
+                  </a>
+                </Link>
               </li>
             </ul>
             <ul className="flex-col md:flex-row list-none items-center">
