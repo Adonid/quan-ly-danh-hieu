@@ -21,11 +21,12 @@ export default function CardSettings() {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
+                    htmlFor="fullName"
                   >
                     Họ & tên
                   </label>
                   <input
+                    id="fullName"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="lucky.jesse"
@@ -36,11 +37,12 @@ export default function CardSettings() {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
+                    htmlFor="datetime"
                   >
                     Ngày làm việc
                   </label>
                   <input
+                    id="datetime"
                     type="date"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     // defaultValue="jesse@example.com"
@@ -51,11 +53,12 @@ export default function CardSettings() {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
+                    htmlFor="position"
                   >
                     Chức danh
                   </label>
                   <input
+                    id="position"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="Lucky"
@@ -66,11 +69,12 @@ export default function CardSettings() {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
+                    htmlFor="work_unit"
                   >
                     Nơi làm việc
                   </label>
                   <input
+                    id="work_unit"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="Jesse"
@@ -181,11 +185,12 @@ export default function CardSettings() {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
+                    htmlFor="description"
                   >
                     Tóm tắt bản thân
                   </label>
                   <textarea
+                    id="description"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     rows="4"
