@@ -1,8 +1,8 @@
 {
-  "name": "notus-nextjs",
+  "name": "quan-ly-danh-hieu",
   "homepage": "https://demos.creative-tim.com/notus-nextjs",
-  "version": "1.1.0",
-  "description": "Notus NextJS - A free Tailwind CSS, NextJS and React Ui Kit and Admin by Creative Tim.",
+  "version": "1.2.0",
+  "description": "Đề tài quản lý danh hiệu người dùng",
   "repository": "https://github.com/creativetimofficial/notus-nextjs",
   "license": "MIT",
   "dependencies": {
