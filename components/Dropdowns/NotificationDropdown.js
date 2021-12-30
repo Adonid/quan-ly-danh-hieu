@@ -18,15 +18,20 @@ const NotificationDropdown = () => {
   return (
     <>
       <a
-        className="text-blueGray-500 block py-1 px-3"
+        className="text-blueGray-700 block px-3 py-4 lg:py-2"
         href="#pablo"
         ref={btnDropdownRef}
         onClick={(e) => {
           e.preventDefault();
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
+        title="Thông báo"
       >
-        <i className="fas fa-bell"></i>
+        <i className="text-xl far fa-bell"></i>
+        <sup className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-100 bg-red-500 last:mr-0 mr-1">
+          12
+        </sup>
+        <span className="lg:hidden inline-block ml-2">Thông báo</span>
       </a>
       <div
         ref={popoverDropdownRef}
