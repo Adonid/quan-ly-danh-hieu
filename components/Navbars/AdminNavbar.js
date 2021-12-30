@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
-export default function Navbar() {
+const alias = [
+  {name: "dashboard", alias: "Quản lý chung"},
+  {name: "add-user", alias: "Thêm người dùng"},
+  {name: "edit-user", alias: "Chỉnh sửa người dùng"},
+  {name: "", alias: ""},
+]
+
+export default function Navbar({pathName}) {
+  const [namePage, setNamePage] = useState("")
+  useEffect(() => {
+    const name = pathName.split("/")[2]
+    const nameP = alias.filter(item => item.name===name)[0]
+    setNamePage(nameP.alias)
+  }, [pathName])
   return (
     <>
       {/* Navbar */}
@@ -14,7 +27,7 @@ export default function Navbar() {
             href="#pablo"
             onClick={(e) => e.preventDefault()}
           >
-            Dashboard
+            {namePage}
           </a>
           {/* Form */}
           <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
