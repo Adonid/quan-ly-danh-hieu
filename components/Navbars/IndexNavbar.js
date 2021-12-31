@@ -36,6 +36,9 @@ export default function Navbar(props) {
             }
             id="example-navbar-warning"
           >
+            <ul className="flex flex-col lg:flex-row list-none mr-auto">
+              <NotificationDropdown />
+            </ul>
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">
                 <IndexDropdown />
@@ -76,9 +79,6 @@ export default function Navbar(props) {
                   </a>
                 </Link>
               </li>
-            </ul>
-            <ul className="flex-col md:flex-row list-none items-center">
-              <NotificationDropdown />
             </ul>
             <ul className="flex-col md:flex-row list-none items-center">
               <UserDropdown />
