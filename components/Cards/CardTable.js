@@ -1,8 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { createPopper } from '@popperjs/core';
 
 // components
 export default function CardTable({ color }) {
+  // dropdown props
+  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
+  const btnDropdownRef = React.createRef();
+  const popoverDropdownRef = React.createRef();
+  const openDropdownPopover = () => {
+    createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
+      placement: "bottom-start"
+    });
+    setDropdownPopoverShow(true);
+  };
+  const closeDropdownPopover = () => {
+    setDropdownPopoverShow(false);
+  }
+  // Filter
+  const actionFilter = e => {
+    e.preventDefault()
+    dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover()
+  }
   return (
     <>
       <div
@@ -12,8 +31,8 @@ export default function CardTable({ color }) {
         }
       >
         <div className="rounded-t mb-0 px-4 py-3 border-0">
-          <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+          <div className="flex">
+            <div className="relative px-4 max-w-full">
               <h3
                 className={
                   "font-semibold text-lg " +
@@ -21,8 +40,106 @@ export default function CardTable({ color }) {
                 }
               >
                 <i className="fas fa-users text-blueGray-500 mr-2"></i>
-                Danh sách người dùng
+                DS người dùng
               </h3>
+            </div>
+            <div className="relative px-4 max-w-full flex-grow flex-1">
+              <div className="w-full sm:w-6/12 md:w-4/12">
+                  <div className="relative inline-flex align-middle w-full">
+                    <button
+                      className="text-blueGray-400 font-bold text-xs px-3 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 bg-blueGray-200 active:bg-blueGray-300 ease-linear transition-all duration-150"
+                      type="button"
+                      ref={btnDropdownRef}
+                      onClick={() => {
+                        dropdownPopoverShow
+                          ? closeDropdownPopover()
+                          : openDropdownPopover()
+                      }}
+                    >
+                      <i className="fas fa-filter text-blueGray-400 mr-1"></i>
+                      Lọc
+                    </button>
+                    <div
+                      ref={popoverDropdownRef}
+                      className={
+                        (dropdownPopoverShow ? "block " : "hidden ") +
+                        "bg-blueGray-200 text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1 min-w-48"
+                      }
+                    >
+                      <a
+                        href="#p"
+                        className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-blueGray-500"
+                        onClick={actionFilter}
+                      >
+                        Đã nhận DH
+                      </a>
+                      <a
+                        href="#p"
+                        className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-blueGray-500"
+                        onClick={actionFilter}
+                      >
+                        Đã nhận TA 2
+                      </a>
+                      <a
+                        href="#p"
+                        className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-blueGray-500"
+                        onClick={actionFilter}
+                      >
+                        Đã nhận TA 3
+                      </a>
+                      <a
+                        href="#p"
+                        className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-blueGray-500"
+                        onClick={actionFilter}
+                      >
+                        Đã nhận TA 4
+                      </a>
+                      <a
+                        href="#p"
+                        className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-blueGray-500"
+                        onClick={actionFilter}
+                      >
+                        Đã nhận TA 5
+                      </a>
+                      <div className="h-0 my-2 border border-solid border-t-0 border-blueGray-800 opacity-25" />
+                      <a
+                        href="#p"
+                        className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-blueGray-500"
+                        onClick={actionFilter}
+                      >
+                        Chưa nhận DH nào
+                      </a>
+                      <a
+                        href="#p"
+                        className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-blueGray-500"
+                        onClick={actionFilter}
+                      >
+                        Chưa nhận TA 2
+                      </a>
+                      <a
+                        href="#p"
+                        className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-blueGray-500"
+                        onClick={actionFilter}
+                      >
+                        Chưa nhận TA 3
+                      </a>
+                      <a
+                        href="#p"
+                        className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-blueGray-500"
+                        onClick={actionFilter}
+                      >
+                        Chưa nhận TA 4
+                      </a>
+                      <a
+                        href="#p"
+                        className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-blueGray-500"
+                        onClick={actionFilter}
+                      >
+                        Chưa nhận TA 5
+                      </a>
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
