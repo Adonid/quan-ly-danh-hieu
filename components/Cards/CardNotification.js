@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef, useState } from "react";
 import PropTypes from "prop-types";
 import { createPopper } from '@popperjs/core';
 
@@ -22,6 +22,18 @@ export default function CardTable({ color }) {
   const actionFilter = e => {
     e.preventDefault()
     dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover()
+  }
+  // Scroll table
+  const [countLoading, setCountLoading] = useState(0)
+  const myRef = createRef()
+  const indexLoad = 207
+  const onScroll = () => {
+    const scrollT = myRef.current.scrollTop
+    const countToBottom = scrollT / indexLoad
+    if(scrollT % indexLoad === 0 && scrollT !== 0 && countToBottom > countLoading){
+      console.log("Trigger event Loading data", "Number Loading: " + (countToBottom+1))
+      setCountLoading(countToBottom)
+    }
   }
   return (
     <>
@@ -87,7 +99,12 @@ export default function CardTable({ color }) {
             </div>
           </div>
         </div>
-        <div className="block w-full overflow-x-auto">
+        <div 
+          className="block w-full overflow-x-auto"
+          style={{maxHeight: "555px"}}
+          ref={myRef}
+          onScroll={onScroll}
+        >
           {/* Projects table */}
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
