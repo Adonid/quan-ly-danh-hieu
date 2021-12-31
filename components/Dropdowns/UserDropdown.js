@@ -1,11 +1,11 @@
-import React from "react";
+import React, { createRef, useState } from "react";
 import { createPopper } from "@popperjs/core";
 
 const UserDropdown = () => {
   // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
+  const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
+  const btnDropdownRef = createRef();
+  const popoverDropdownRef = createRef();
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: "bottom-start",
@@ -14,7 +14,12 @@ const UserDropdown = () => {
   };
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
-  };
+  }
+  // Click
+  const actionClick = e => {
+    e.preventDefault()
+    dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover()
+  }
   return (
     <>
       <a
@@ -23,7 +28,7 @@ const UserDropdown = () => {
         ref={btnDropdownRef}
         onClick={(e) => {
           e.preventDefault();
-          dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
+          dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover()
         }}
       >
         <div className="items-center flex">
@@ -48,37 +53,28 @@ const UserDropdown = () => {
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
-          onClick={(e) => e.preventDefault()}
+          onClick={actionClick}
         >
-          Action
+          Đặng An Nhiên
         </a>
         <a
           href="#pablo"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
-          onClick={(e) => e.preventDefault()}
+          onClick={actionClick}
         >
-          Another action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Something else here
+          Đổi mật khẩu
         </a>
         <div className="h-0 my-2 border border-solid border-blueGray-100" />
         <a
           href="#pablo"
           className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-red-500"
           }
-          onClick={(e) => e.preventDefault()}
+          onClick={actionClick}
         >
-          Seprated link
+          Đăng xuất
         </a>
       </div>
     </>
