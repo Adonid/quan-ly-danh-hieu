@@ -3,6 +3,31 @@ import React from "react";
 // components
 
 export default function CardSettings() {
+  // Luu thong tin tai khoan
+  const saveInfo = e => {
+    e.preventDefault()
+    const fullName = e.target["fullName"].value
+    const datetime = e.target["datetime"].value
+    const position = e.target["position"].value
+    const work_unit = e.target["work_unit"].value
+    console.log(fullName, datetime, position, work_unit)
+  }
+  // Luu thong tin lien he
+  const saveContact = e => {
+    e.preventDefault()
+    const address = e.target["address"].value
+    const commune = e.target["commune"].value
+    const district = e.target["district"].value
+    const province = e.target["province"].value
+    console.log(address, commune, district, province)
+  }
+  // Luu thong tin lien he
+  const saveDescription = e => {
+    e.preventDefault()
+    const description = e.target["description"].value
+    console.log(description)
+  }
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
@@ -12,7 +37,7 @@ export default function CardSettings() {
           </div>
         </div>
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-          <form>
+          <form onSubmit={saveInfo}>
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Tài khoản
             </h6>
@@ -27,6 +52,7 @@ export default function CardSettings() {
                   </label>
                   <input
                     id="fullName"
+                    required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="lucky.jesse"
@@ -43,6 +69,7 @@ export default function CardSettings() {
                   </label>
                   <input
                     id="datetime"
+                    required
                     type="date"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     // defaultValue="jesse@example.com"
@@ -59,6 +86,7 @@ export default function CardSettings() {
                   </label>
                   <input
                     id="position"
+                    required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="Lucky"
@@ -75,6 +103,7 @@ export default function CardSettings() {
                   </label>
                   <input
                     id="work_unit"
+                    required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="Jesse"
@@ -85,16 +114,16 @@ export default function CardSettings() {
                 <div className="relative w-full">
                   <button
                     className="bg-blueGray-600 active:bg-blueGray-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                    type="button"
+                    type="submit"
                   >
                     Lưu lại
                   </button>
                 </div>
               </div>
             </div>
-
+          </form>
             <hr className="mt-6 border-b-1 border-blueGray-300" />
-
+          <form onSubmit={saveContact}>
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Thông tin liên hệ
             </h6>
@@ -109,6 +138,7 @@ export default function CardSettings() {
                   </label>
                   <input
                     id="address"
+                    required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
@@ -121,10 +151,11 @@ export default function CardSettings() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="commune"
                   >
-                    Tỉnh/Tp
+                    Xã/phường
                   </label>
                   <input
                     id="commune"
+                    required
                     type="province"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="New York"
@@ -141,6 +172,7 @@ export default function CardSettings() {
                   </label>
                   <input
                     id="district"
+                    required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="United States"
@@ -153,10 +185,11 @@ export default function CardSettings() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="province"
                   >
-                    Xã/phường
+                    Tỉnh/Tp
                   </label>
                   <input
                     id="province"
+                    required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="Postal Code"
@@ -167,16 +200,16 @@ export default function CardSettings() {
                 <div className="relative w-full">
                   <button
                     className="bg-blueGray-600 active:bg-blueGray-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                    type="button"
+                    type="submit"
                   >
                     Lưu lại
                   </button>
                 </div>
               </div>
             </div>
-
+          </form>
             <hr className="mt-6 border-b-1 border-blueGray-300" />
-
+          <form onSubmit={saveDescription}>
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Thông tin khác
             </h6>
@@ -191,6 +224,7 @@ export default function CardSettings() {
                   </label>
                   <textarea
                     id="description"
+                    required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     rows="4"
@@ -201,7 +235,7 @@ export default function CardSettings() {
                     <div className="relative w-full">
                       <button
                         className="bg-blueGray-600 active:bg-blueGray-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                        type="button"
+                        type="submit"
                       >
                         Lưu lại
                       </button>
