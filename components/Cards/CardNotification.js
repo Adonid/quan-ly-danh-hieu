@@ -1,8 +1,16 @@
 import React, { createRef, useState } from "react";
 import PropTypes from "prop-types";
 import { createPopper } from '@popperjs/core';
-
 // components
+import BasicSelect from "components/Selects/BasicSelect";
+// Const
+const selectNotifies  = [
+  {label: "Tất cả", value: 1},
+  {label: "Mới nhất", value: 2},
+  {label: "Cũ nhất", value: 3},
+  {label: "Đang thông báo", value: 4},
+  {label: "Đang tắt thông báo", value: 5},
+]
 
 export default function CardTable({ color }) {
   // dropdown props
@@ -35,6 +43,9 @@ export default function CardTable({ color }) {
       setCountLoading(countToBottom)
     }
   }
+  // Loc
+  const changeSelect = e => console.log(e)
+
   return (
     <>
       <div
@@ -58,43 +69,7 @@ export default function CardTable({ color }) {
             </div>
             <div className="relative px-4 max-w-full flex-grow flex-1">
               <div className="w-full sm:w-6/12 md:w-4/12">
-                  <div className="relative inline-flex align-middle w-full">
-                    <button
-                      className="text-blueGray-400 font-bold text-xs px-3 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 bg-blueGray-200 active:bg-blueGray-300 ease-linear transition-all duration-150"
-                      type="button"
-                      ref={btnDropdownRef}
-                      onClick={() => {
-                        dropdownPopoverShow
-                          ? closeDropdownPopover()
-                          : openDropdownPopover()
-                      }}
-                    >
-                      <i className="fas fa-filter text-blueGray-400 mr-1"></i>
-                      Lọc
-                    </button>
-                    <div
-                      ref={popoverDropdownRef}
-                      className={
-                        (dropdownPopoverShow ? "block " : "hidden ") +
-                        "bg-blueGray-200 text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1 min-w-48"
-                      }
-                    >
-                      <a
-                        href="#p"
-                        className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-blueGray-500"
-                        onClick={actionFilter}
-                      >
-                        Mới nhất
-                      </a>
-                      <a
-                        href="#p"
-                        className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-blueGray-500"
-                        onClick={actionFilter}
-                      >
-                        Cũ nhất
-                      </a>
-                    </div>
-                  </div>
+                  <BasicSelect color="dark" items={selectNotifies } onChange={changeSelect} />
                 </div>
             </div>
           </div>
