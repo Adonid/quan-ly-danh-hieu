@@ -35,9 +35,9 @@ export default function CardTable({ color }) {
           (color === "light" ? "bg-white" : "bg-blueGray-700 text-white")
         }
       >
-        <div className="rounded-t mb-0 px-4 py-5 border-0">
+        <div className="rounded-t mb-0 px-4 py-4 border-0">
           <div className="flex flex-wrap">
-            <div className="relative px-4 max-w-full">
+            <div className="relative px-4 py-3 max-w-full">
               <h3
                 className={
                   "font-semibold text-lg " +
