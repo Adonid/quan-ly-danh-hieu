@@ -14,36 +14,28 @@ export default function Index() {
           <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
             <div className="pt-32 sm:pt-0">
               <h2 className="font-semibold text-4xl text-blueGray-600">
-                Notus NextJS - A beautiful extension for Tailwind CSS.
+                Ứng dụng quản lý danh hiệu cho người dùng - Mở đầu thuyết trình
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                Notus NextJS is Free and Open Source. It does not change any of
-                the CSS from{" "}
+                Cách nhìn trực quan ngay từ đầu
+                <br/>
                 <a
-                  href="https://tailwindcss.com/?ref=creativetim"
+                  href="/#"
                   className="text-blueGray-600"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Tailwind CSS
+                  ExpressJs NextJs
                 </a>
-                . It features multiple HTML elements and it comes with dynamic
-                components for ReactJS, Vue and Angular.
+                . Công nghệ tối tân được áp dụng giúp ứng dụng của bạn trở nên tối ưu & mượt mà hơn
               </p>
               <div className="mt-12">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-index"
-                  target="_blank"
-                  className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-400 active:bg-blueGray-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                >
-                  Get started
-                </a>
                 <a
                   href="https://github.com/creativetimofficial/notus-nextjs?ref=nnjs-index"
                   className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
                   target="_blank"
                 >
-                  Github Star
+                  Let's Go
                 </a>
               </div>
             </div>
@@ -98,13 +90,10 @@ export default function Index() {
                     ></polygon>
                   </svg>
                   <h4 className="text-xl font-bold text-white">
-                    Great for your awesome project
+                    Quản lý và lưu trữ thông tin người dùng
                   </h4>
                   <p className="text-md font-light mt-2 text-white">
-                    Putting together a page has never been easier than matching
-                    together pre-made components. From landing pages
-                    presentation to login areas, you can easily customise and
-                    built your pages.
+                    {/* Thông báo cần thiết kh */}
                   </p>
                 </blockquote>
               </div>
@@ -119,25 +108,23 @@ export default function Index() {
                         <i className="fas fa-sitemap"></i>
                       </div>
                       <h6 className="text-xl mb-1 font-semibold">
-                        CSS Components
+                        Bộ lọc nhanh dữ liệu
                       </h6>
                       <p className="mb-4 text-blueGray-500">
-                        Notus NextJS comes with a huge number of Fully Coded CSS
-                        components.
+                        Lấy người dùng theo cách đầy đủ và nhanh nhất nhờ công nghệ ReactJs - Facebook
                       </p>
                     </div>
                   </div>
                   <div className="relative flex flex-col min-w-0">
                     <div className="px-4 py-5 flex-auto">
                       <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                        <i className="fas fa-drafting-compass"></i>
+                        <i className="fas fa-newspaper"></i>
                       </div>
                       <h6 className="text-xl mb-1 font-semibold">
-                        JavaScript Components
+                        Phân chia danh hiệu
                       </h6>
                       <p className="mb-4 text-blueGray-500">
-                        We also feature many dynamic components for React,
-                        NextJS, Vue and Angular.
+                        Khớp dữ liệu người dùng và danh hiệu một cách thuận tiện
                       </p>
                     </div>
                   </div>
@@ -146,12 +133,11 @@ export default function Index() {
                   <div className="relative flex flex-col min-w-0 mt-4">
                     <div className="px-4 py-5 flex-auto">
                       <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                        <i className="fas fa-newspaper"></i>
+                        <i className="fas fa-drafting-compass"></i>
                       </div>
-                      <h6 className="text-xl mb-1 font-semibold">Pages</h6>
+                      <h6 className="text-xl mb-1 font-semibold">Giao diện trực quan</h6>
                       <p className="mb-4 text-blueGray-500">
-                        This extension also comes with 3 sample pages. They are
-                        fully coded so you can start working instantly.
+                        Trực quan với đầy đủ chức năng của ứng dụng
                       </p>
                     </div>
                   </div>
@@ -161,11 +147,10 @@ export default function Index() {
                         <i className="fas fa-file-alt"></i>
                       </div>
                       <h6 className="text-xl mb-1 font-semibold">
-                        Documentation
+                        Dễ dàng sử dụng và bảo trì
                       </h6>
                       <p className="mb-4 text-blueGray-500">
-                        Built by developers for developers. You will love how
-                        easy is to to work with Notus NextJS.
+                        Once Click - Ứng của bạn sẽ lên mây !
                       </p>
                     </div>
                   </div>
@@ -182,7 +167,7 @@ export default function Index() {
                 <i className="fas fa-sitemap text-xl"></i>
               </div>
               <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                CSS Components
+                Bộ lọc nhanh dữ liệu
               </h3>
               <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
                 Every element that you need in a product comes built in as a
@@ -366,7 +351,7 @@ export default function Index() {
                 <i className="fas fa-drafting-compass text-xl"></i>
               </div>
               <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                Javascript Components
+                Phân chia danh hiệu
               </h3>
               <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
                 In order to create a great User Experience some components
@@ -423,7 +408,7 @@ export default function Index() {
                   <i className="fas fa-file-alt text-xl"></i>
                 </div>
                 <h3 className="text-3xl font-semibold">
-                  Complex Documentation
+                  Trực quan với đầy đủ chức năng của ứng dụng
                 </h3>
                 <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
                   This extension comes a lot of fully coded examples that help
@@ -492,71 +477,6 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="justify-center text-center flex flex-wrap mt-24">
-          <div className="w-full md:w-6/12 px-12 md:px-4">
-            <h2 className="font-semibold text-4xl">Beautiful Example Pages</h2>
-            <p className="text-lg leading-relaxed mt-4 mb-4 text-blueGray-500">
-              Notus NextJS is a completly new product built using our past
-              experience in web templates. Take the examples we made for you and
-              start playing with them.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="block relative z-1 bg-blueGray-600">
-        <div className="container mx-auto">
-          <div className="justify-center flex flex-wrap">
-            <div className="w-full lg:w-12/12 px-4  -mt-24">
-              <div className="flex flex-wrap">
-                <div className="w-full lg:w-4/12 px-4">
-                  <h5 className="text-xl font-semibold pb-4 text-center">
-                    Login Page
-                  </h5>
-                  <Link href="/auth/login">
-                    <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                      <img
-                        alt="..."
-                        className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src="/img/login.jpg"
-                      />
-                    </div>
-                  </Link>
-                </div>
-
-                <div className="w-full lg:w-4/12 px-4">
-                  <h5 className="text-xl font-semibold pb-4 text-center">
-                    Profile Page
-                  </h5>
-                  <Link href="/profile">
-                    <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                      <img
-                        alt="..."
-                        className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src="/img/profile.jpg"
-                      />
-                    </div>
-                  </Link>
-                </div>
-
-                <div className="w-full lg:w-4/12 px-4">
-                  <h5 className="text-xl font-semibold pb-4 text-center">
-                    Landing Page
-                  </h5>
-                  <Link href="/landing">
-                    <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                      <img
-                        alt="..."
-                        className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src="/img/landing.jpg"
-                      />
-                    </div>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       <section className="py-20 bg-blueGray-600 overflow-hidden">
@@ -567,7 +487,7 @@ export default function Index() {
                 <i className="fas fa-code-branch text-xl"></i>
               </div>
               <h3 className="text-3xl mb-2 font-semibold leading-normal text-white">
-                Open Source
+                Dễ dàng sử dụng và bảo trì
               </h3>
               <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-400">
                 Since{" "}
@@ -621,44 +541,6 @@ export default function Index() {
               points="2560 0 2560 100 0 100"
             ></polygon>
           </svg>
-        </div>
-
-        <div className="container mx-auto">
-          <div className="flex flex-wrap justify-center bg-white shadow-xl rounded-lg -mt-64 py-16 px-12 relative z-10">
-            <div className="w-full text-center lg:w-8/12">
-              <p className="text-4xl text-center">
-                <span role="img" aria-label="love">
-                  😍
-                </span>
-              </p>
-              <h3 className="font-semibold text-3xl">
-                Do you love this Starter Kit?
-              </h3>
-              <p className="text-blueGray-500 text-lg leading-relaxed mt-4 mb-4">
-                Cause if you do, it can be yours now. Hit the buttons below to
-                navigate to get the Free version for your next project. Build a
-                new web app or give an old project a new look!
-              </p>
-              <div className="sm:block flex flex-col mt-10">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-index"
-                  target="_blank"
-                  className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-2 bg-blueGray-400 active:bg-blueGray-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                >
-                  Get started
-                </a>
-                <a
-                  href="https://github.com/creativetimofficial/notus-nextjs?ref=nnjs-index"
-                  target="_blank"
-                  className="github-star sm:ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
-                >
-                  <i className="fab fa-github text-lg mr-1"></i>
-                  <span>Help With a Star</span>
-                </a>
-              </div>
-              <div className="text-center mt-16"></div>
-            </div>
-          </div>
         </div>
       </section>
       <Footer />
