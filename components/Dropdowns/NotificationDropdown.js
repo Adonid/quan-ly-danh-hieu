@@ -43,7 +43,7 @@ const NotificationDropdown = () => {
                           <div className="text-sm pt-0.5">
                             <span className="text-blueGray-700 font-medium">Tinh anh 2</span>
                           </div>
-                          <footer className="flex items-center justify-between text-xs text-blueGray-500">
+                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
                             <cite className="pb-2">5 giờ trước</cite>
                             <div>
                               <button 
@@ -80,7 +80,7 @@ const NotificationDropdown = () => {
                           <div className="text-sm pt-0.5">
                             <span className="text-blueGray-700 font-medium">Tinh anh 3</span>
                           </div>
-                          <footer className="flex items-center justify-between text-xs text-blueGray-500">
+                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
                             <cite className="pb-2">1 giờ trước</cite>
                             <div>
                               <button 
@@ -117,7 +117,7 @@ const NotificationDropdown = () => {
                           <div className="text-sm pt-0.5">
                             <span className="text-blueGray-700 font-medium">Tinh anh 5</span>
                           </div>
-                          <footer className="flex items-center justify-between text-xs text-blueGray-500">
+                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
                             <cite className="pb-2">4 giờ trước</cite>
                             <div>
                               <button 
@@ -154,7 +154,7 @@ const NotificationDropdown = () => {
                           <div className="text-sm pt-0.5">
                             <span className="text-blueGray-700 font-medium">Tinh anh 2</span>
                           </div>
-                          <footer className="flex items-center justify-between text-xs text-blueGray-500">
+                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
                             <cite className="pb-2">7 giờ trước</cite>
                             <div>
                               <button 
@@ -191,7 +191,7 @@ const NotificationDropdown = () => {
                           <div className="text-sm pt-0.5">
                             <span className="text-blueGray-700 font-medium">Tinh anh 3</span>
                           </div>
-                          <footer className="flex items-center justify-between text-xs text-blueGray-500">
+                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
                             <cite className="pb-2">3 giờ trước</cite>
                             <div>
                               <button 
@@ -228,7 +228,7 @@ const NotificationDropdown = () => {
                           <div className="text-sm pt-0.5">
                             <span className="text-blueGray-700 font-medium">Tinh anh 5</span>
                           </div>
-                          <footer className="flex items-center justify-between text-xs text-blueGray-500">
+                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
                             <cite className="pb-2">21 phút trước</cite>
                             <div>
                               <button 
@@ -265,7 +265,7 @@ const NotificationDropdown = () => {
                           <div className="text-sm pt-0.5">
                             <span className="text-blueGray-700 font-medium">Tinh anh 2</span>
                           </div>
-                          <footer className="flex items-center justify-between text-xs text-blueGray-500">
+                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
                             <cite className="pb-2">6 giờ trước</cite>
                             <div>
                               <button 
@@ -302,7 +302,7 @@ const NotificationDropdown = () => {
                           <div className="text-sm pt-0.5">
                             <span className="text-blueGray-700 font-medium">Tinh anh 3</span>
                           </div>
-                          <footer className="flex items-center justify-between text-xs text-blueGray-500">
+                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
                             <cite className="pb-2">39 giây trước</cite>
                             <div>
                               <button 
@@ -339,7 +339,7 @@ const NotificationDropdown = () => {
                           <div className="text-sm pt-0.5">
                             <span className="text-blueGray-700 font-medium">Tinh anh 5</span>
                           </div>
-                          <footer className="flex items-center justify-between text-xs text-blueGray-500">
+                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
                             <cite className="pb-2">2 ngày trước</cite>
                             <div>
                               <button 
