@@ -1,5 +1,5 @@
 import axios from "axios"
-const END_POINT_AUTH = process.env.NEXT_PUBLIC_END_POINT_AUTH
+const END_POINT_AUTH = process.env.NEXT_PUBLIC_END_POINT
 const TIME_OUT = process.env.NEXT_PUBLIC_TIME_OUT
 
 class BasicAxios{
@@ -12,7 +12,6 @@ class BasicAxios{
         })
         this.instance = instance
     }
-
     // Su dung phuong thuc GET. String uri, Object data
     get(uri, params={}){
         return this.instance.get(uri, {params}).catch(err => err.response)

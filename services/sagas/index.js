@@ -1,10 +1,8 @@
 import { fork, all } from "@redux-saga/core/effects"
-import auth from './auth'
-import common from './common'
+import action from './action'
 
 export default function* rootSaga() {
     yield all([
-        fork(auth),
-        fork(common),
+        fork(action),
     ])
 }

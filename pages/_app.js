@@ -5,7 +5,16 @@ import Head from "next/head";
 import Router from "next/router";
 
 import PageChange from "components/PageChange/PageChange.js";
-
+// Provider
+import {ReactReduxContext} from 'react-redux'
+// Store
+import { wrapper } from '../services/store'
+import withReduxSaga from 'next-redux-saga'
+// Persist Storage
+import { PersistGate } from 'redux-persist/integration/react'
+// Toast
+import { ToastProvider } from 'react-toast-notifications'
+// css
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "styles/tailwind.css";
 
@@ -26,7 +35,7 @@ Router.events.on("routeChangeError", () => {
   document.body.classList.remove("body-page-transition");
 });
 
-export default class MyApp extends App {
+class MyApp extends App {
   componentDidMount() {
     let comment = document.createComment(`
 
@@ -64,19 +73,32 @@ export default class MyApp extends App {
     const Layout = Component.layout || (({ children }) => <>{children}</>);
 
     return (
-      <React.Fragment>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
-          <title>Quản lý danh hiệu</title>
-          <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-        </Head>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </React.Fragment>
+      <ReactReduxContext.Consumer>
+        {
+          ({ store }) => (
+          <>
+            <Head>
+              <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1, shrink-to-fit=no"
+              />
+              <title>Quản lý danh hiệu</title>
+              <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+            </Head>
+            <ToastProvider>
+              <PersistGate persistor={store.__persistor} loading={<PageChange/>}>
+                  <Layout>
+                    <Component {...pageProps} />
+                  </Layout>
+              </PersistGate>
+            </ToastProvider>
+          </>
+          )
+        }
+        
+      </ReactReduxContext.Consumer>
     );
   }
 }
+
+export default wrapper.withRedux(withReduxSaga(MyApp))
