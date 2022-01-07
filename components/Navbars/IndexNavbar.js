@@ -5,6 +5,8 @@ import Link from "next/link";
 import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown";
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown";
+import DialogConfirm from "components/ModalDialog/DialogConfirm.js";
+
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -63,6 +65,9 @@ export default function Navbar(props) {
                     <span className="lg:hidden inline-block ml-2">Thêm người dùng mới</span>
                   </a>
                 </Link>
+              </li>
+              <li className="flex items-center">
+              <DialogConfirm />
               </li>
               <li className="flex items-center">
                 <Link href="/admin/edit-user">
