@@ -58,7 +58,7 @@ export default function DialogAddAUser() {
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
                     <div className="inline-block align-bottom rounded-lg text-left overflow-hidden shadow-lg transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                        <div className="px-4 py-4 sm:px-6 sm:py-6 bg-gray-100 sm:p-6 sm:pb-4">
+                        <div className="px-4 py-4 sm:px-6 sm:py-6 bg-gray-200">
                             <div className="sm:flex sm:items-start sm:text-left">
                                 <div className="mt-3 sm:mt-0 sm:ml-4">
                                     <div className="flex-shrink-0 sm:mx-0 sm:h-10 sm:w-10">
@@ -79,7 +79,7 @@ export default function DialogAddAUser() {
                         </div>
                         <div className="sm:flex sm:items-start sm:text-left">
                             <form onSubmit={saveInfo}>
-                                <div className="px-4 py-4 sm:px-6 sm:py-6 bg-white sm:p-6 sm:pb-4">
+                                <div className="px-4 py-4 sm:px-6 sm:py-6 bg-gray-100">
                                     <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                                     Tài khoản
                                     </h6>
@@ -154,7 +154,7 @@ export default function DialogAddAUser() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="px-4 py-4 sm:px-6 sm:py-7 bg-gray-100 sm:flex sm:flex-row-reverse">
+                                <div className="px-4 py-4 sm:px-6 sm:py-7 bg-gray-200 sm:flex sm:flex-row-reverse">
                                     <button
                                         type="submit"
                                         className="bg-lightBlue-600 mx-4 inline-flex justify-start rounded-md border border-transparent shadow-sm px-4 py-2 text-blueGray-100 font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
