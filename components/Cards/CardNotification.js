@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { createPopper } from '@popperjs/core';
 // components
 import BasicSelect from "components/Selects/BasicSelect";
+import DialogConfirm from "components/ModalDialog/DialogConfirm.js";
+
 // Convert link
 import { toImageUrl } from "general/convert/convertmageUrl";
 // Const
@@ -140,7 +142,7 @@ export default function CardTable({ color, notification, wins }) {
             <tbody>
               {
                 notifies.map((item, key) => (
-                  <tr>
+                  <tr key={key}>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
                       <img
                         src={toImageUrl(item.avatar)}
@@ -171,15 +173,16 @@ export default function CardTable({ color, notification, wins }) {
                         type="button"
                         title="Ẩn thông báo người dùng này"
                       >
-                        <i className="fas fa-eye text-blueGray-200 text-sm"></i>
+                        <i className="fas fa-eye text-blueGray-300 text-sm"></i>
                       </button>
-                      <button 
-                        className="bg-blueGray-300 active:bg-blueGray-200 px-2 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                        type="button"
-                        title="Trao tặng"
-                      >
-                        <i className="fas fa-angle-double-up text-blueGray-200 text-sm"></i>
-                      </button>
+                      <DialogConfirm 
+                        type="success"
+                        action={console.log("Action!")}
+                        iconClass="fas fa-angle-double-up text-blueGray-300 text-sm"
+                        title="Trao tặng danh hiệu"
+                        des="Bạn có muốn tặng danh hiệu đã tới niên hạn nhận cho người dùng này?"
+                        classButton="bg-blueGray-300 active:bg-blueGray-200 px-2 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mb-1 ease-linear transition-all duration-150"
+                      />
                     </td>
                   </tr>
                 ))

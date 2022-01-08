@@ -3,7 +3,7 @@ import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 // import { ExclamationIcon } from '@heroicons/react/outline'
 
-export default function Example({type, action, title, des, label}) {
+export default function Example({type, button, classButton, colorButton, iconClass, action, title, des, label}) {
   const [open, setOpen] = useState(false)
   const cancelButtonRef = useRef(null)
   // Action callback
@@ -37,14 +37,23 @@ export default function Example({type, action, title, des, label}) {
       }
   return (
       <>
-        <a
-            className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-            onClick={() => setOpen(true)}
-            href='javascript:void(0);'
-        >
-            <i className="text-xl text-emerald-500 fas fa-user-plus text-lg leading-lg"/>
-            {label&&<span className="lg:hidden inline-block ml-2">{label}</span>}
-        </a>
+        {    
+        button?
+            <a
+                className={"cursor-pointer font-normal "+colorButton}
+                onClick={() => setOpen(true)}
+            >
+                {label}
+            </a>
+            :
+            <a
+                className={"cursor-pointer "+classButton}
+                onClick={() => setOpen(true)}
+            >
+                <i className={iconClass}/>
+                {label&&<span className="lg:hidden inline-block ml-2">{label}</span>}
+            </a>
+        }
         <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="fixed left-1/4 top-0 z-50 mt-24 overflow-y-auto" initialFocus={cancelButtonRef} onClose={setOpen}>
                 <div className="flex items-end justify-center min-h-fit max-w-fit py-4 px-4 text-center sm:block sm:p-0">
@@ -57,7 +66,7 @@ export default function Example({type, action, title, des, label}) {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <Dialog.Overlay className="fixed bg-gray-100 bg-opacity-75 transition-opacity" />
+                    <Dialog.Overlay className="fixed bg-gray-200 bg-opacity-75 transition-opacity" />
                 </Transition.Child>
 
                 {/* This element is to trick the browser into centering the modal contents. */}
@@ -73,13 +82,13 @@ export default function Example({type, action, title, des, label}) {
                     leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
-                    <div className="inline-block align-bottom bg-gray-100 rounded-lg px-6 py-6 text-left overflow-hidden shadow-lg transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div className="inline-block align-bottom bg-gray-100 rounded-lg px-4 py-4 sm:px-6 sm:py-6 text-left overflow-hidden shadow-lg transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                     <div className="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div className="sm:flex sm:items-start sm:text-left">
                         <div className="mt-3 sm:mt-0 sm:ml-4">
                             <div className="flex-shrink-0 sm:mx-0 sm:h-10 sm:w-10">
                                 <div className={colors.backgroundColor+" rounded-full sm:mx-0 sm:h-10 sm:w-10 h-12 w-12 flex-shrink-0 inline-flex items-center justify-center"}>
-                                    <i class={"text-xl "+colors.textColor+" "+colors.icon}></i>
+                                    <i className={"text-xl "+colors.textColor+" "+colors.icon}></i>
                                 </div>
                                 <Dialog.Title as="h3" className="text-2xl ml-3 leading-6 font-medium text-gray-900 inline-block">
                                     {title}

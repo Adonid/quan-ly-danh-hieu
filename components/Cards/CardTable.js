@@ -166,12 +166,12 @@ export default function CardTable({ color, users, wins }) {
                         - Hạng {wins.filter(i => i.id===(item.win.id+1))[0].level}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                      <Link href={"/admin/edit-user/"+item.id}>
+                      <Link href={"/admin/edit-user/"}>
                         <a
-                          className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                          className="px-3 py-4 lg:py-2 flex items-center text-xs uppercase"
                           title="Chi tiết | Chỉnh sửa"
                         >
-                          <i className="fas fa-user-cog text-blueGray-500 text-sm"></i>
+                          <i className="fas fa-user-cog text-blueGray-400 hover:text-blueGray-500 text-sm"></i>
                         </a>
                       </Link>
                     </td>

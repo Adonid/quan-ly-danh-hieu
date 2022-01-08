@@ -1,6 +1,7 @@
 import React from "react";
 
 // components
+import DialogConfirm from "components/ModalDialog/DialogConfirm.js";
 
 export default function CardProfile() {
   return (
@@ -73,8 +74,17 @@ export default function CardProfile() {
                   className="font-normal text-red-500"
                   onClick={(e) => e.preventDefault()}
                 >
-                  Xóa người dùng này
+                  
                 </a>
+                <DialogConfirm 
+                  type="danger"
+                  action={console.log("Action!")}
+                  title="Xóa người dùng"
+                  des="Bạn có muốn xóa tất cả dữ liệu của người này?"
+                  label="Xóa người dùng này"
+                  button={true}
+                  colorButton="text-red-500"
+                />
               </div>
             </div>
           </div>

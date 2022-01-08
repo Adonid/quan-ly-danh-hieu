@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
 // components
-
-import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown";
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown";
 import DialogConfirm from "components/ModalDialog/DialogConfirm.js";
@@ -58,25 +56,15 @@ export default function Navbar(props) {
                 <DialogConfirm 
                   type="success"
                   action={console.log("Action!")}
-                  title="Xóa người dùng"
+                  iconClass="fas fa-user-plus text-emerald-500 text-lg leading-lg"
+                  title="Xóa người dùng này"
                   des="Xóa tất cả dữ liệu của người dùng này?"
-                  label="Xóa"
+                  label="Thêm mới"
+                  classButton="px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                 />
               </li>
-              <li className="flex items-center">
-                <Link href="/admin/edit-user">
-                  <a
-                    className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                    href="/admin/edit-user"
-                    title="Sửa người dùng"
-                  >
-                    <i className="text-xl text-blueGray-700 fas fa-user-edit text-lg leading-lg"/>
-                    <span className="md:hidden inline-block ml-2">Sửa người dùng</span>
-                  </a>
-                </Link>
-              </li>
             </ul>
-            <ul className="flex-col md:flex-row list-none items-center">
+            <ul className="flex-col md:flex-row list-none">
               <UserDropdown />
             </ul>
           </div>
