@@ -4,15 +4,12 @@ import Link from "next/link";
 import UserDropdown from "components/Dropdowns/UserDropdown";
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown";
 import DialogAddAUser from "components/ModalDialog/DialogAddAUser";
-// Redux
-import { connect } from "react-redux";
-import { bindActionCreators, compose } from "redux";
-import { addAUserAction } from "services/actions";
 
-function Navbar({addAUserCreators}) {
+
+export default function Navbar({addAUser}) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   // Add New A User
-  const addNewAUser = data => addAUserCreators(data)
+  const addNewAUser = data => addAUser(data)
   return (
     <>
       <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
@@ -70,19 +67,3 @@ function Navbar({addAUserCreators}) {
     </>
   );
 }
-
-const mapStateToProps = state => {
-  return {
-    toaster: state.common.toaster
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    addAUserCreators: bindActionCreators(addAUserAction, dispatch)
-  }
-}
-
-const withConnect = connect(mapStateToProps, mapDispatchToProps)
-
-export default compose(withConnect)(Navbar)

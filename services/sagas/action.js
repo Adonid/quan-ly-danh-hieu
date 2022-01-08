@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import {
-    refreshMenu,
+    alertSuccess,
 } from '../actions'
 import { LOGIN, ADD_USER } from '../constans'
 import {
@@ -15,11 +15,10 @@ function* addNewAUserSaga({payload}) {
       const {data, statusText} = delta
       // RESPONSE TRUE
       if(data && !data.error){
-        console.log(data.datas)
         // Cap nhat du lieu menu
         // yield put(refreshMenu(data.datas))
         // Show thong bao thanh cong tren DASHBOARD
-        // yield put(alertSuccess(data.msg))
+        yield put(alertSuccess(data.msg))
       }
       // LOI REQUEST
       else{
