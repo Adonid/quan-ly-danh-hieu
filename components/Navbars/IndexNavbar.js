@@ -3,7 +3,7 @@ import Link from "next/link";
 // components
 import UserDropdown from "components/Dropdowns/UserDropdown";
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown";
-import DialogConfirm from "components/ModalDialog/DialogConfirm.js";
+import DialogAddAUser from "components/ModalDialog/DialogAddAUser";
 
 
 export default function Navbar(props) {
@@ -53,15 +53,7 @@ export default function Navbar(props) {
                 </Link>
               </li>
               <li className="flex items-center">
-                <DialogConfirm 
-                  type="success"
-                  action={console.log("Action!")}
-                  iconClass="fas fa-user-plus text-emerald-500 text-lg leading-lg"
-                  title="Xóa người dùng này"
-                  des="Xóa tất cả dữ liệu của người dùng này?"
-                  label="Thêm mới"
-                  classButton="px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                />
+                <DialogAddAUser />
               </li>
             </ul>
             <ul className="flex-col md:flex-row list-none">
