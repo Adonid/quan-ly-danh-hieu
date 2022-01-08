@@ -15,6 +15,9 @@ export const alertTypes = {
     WARNING: "WARNING",
     FAILURE: "FAILURE",
 }
+
+export const ADD_USER = "ADD_USER"
+
 export const LOGIN = config.host
 export const LOGGED = 'LOGGED'
 export const LOGOUT = 'LOGOUT'

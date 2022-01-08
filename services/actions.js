@@ -1,5 +1,15 @@
 import * as constans from "./constans"
 
+/** THEM MOI NGUOI DUNG */
+export function addAUserAction(payload){
+  return{
+    type: constans.ADD_USER,
+    payload
+  }
+}
+
+
+
 /** CAP NHAT THANH MEMU */
 export function getMenuAction(){
     return{

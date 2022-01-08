@@ -2,22 +2,18 @@
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-export default function DialogAddAUser() {
+export default function DialogAddAUser({callbackValues}) {
   const [open, setOpen] = useState(false)
   const cancelButtonRef = useRef(null)
-  // Action callback
-  const excute = () => {
-    console.log("Add new User!")
-    setOpen(false)
-  }
   // Luu thong tin tai khoan
   const saveInfo = e => {
     e.preventDefault()
-    const fullName = e.target["fullName"].value
-    const datetime = e.target["datetime"].value
+    const name = e.target["name"].value
+    const birthday = e.target["birthday"].value
     const position = e.target["position"].value
     const work_unit = e.target["work_unit"].value
-    console.log(fullName, datetime, position, work_unit)
+    callbackValues({name, birthday, position, work_unit})
+    setOpen(false)
   }
   return (
       <>
@@ -88,12 +84,12 @@ export default function DialogAddAUser() {
                                             <div className="relative w-full mb-3">
                                             <label
                                                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                                htmlFor="fullName"
+                                                htmlFor="name"
                                             >
                                                 Họ & tên
                                             </label>
                                             <input
-                                                id="fullName"
+                                                id="name"
                                                 required
                                                 type="text"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -105,12 +101,12 @@ export default function DialogAddAUser() {
                                             <div className="relative w-full mb-3">
                                             <label
                                                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                                htmlFor="datetime"
+                                                htmlFor="birthday"
                                             >
                                                 Ngày làm việc
                                             </label>
                                             <input
-                                                id="datetime"
+                                                id="birthday"
                                                 required
                                                 type="date"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"

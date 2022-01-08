@@ -2,21 +2,22 @@ import { all, call, put, takeLatest } from 'redux-saga/effects'
 import {
     refreshMenu,
 } from '../actions'
-import { LOGIN, GET_MENU, LOAD_DISTRICTS, LOAD_COMMUNES } from '../constans'
+import { LOGIN, ADD_USER } from '../constans'
 import {
   addAUserApi,
 } from 'apis/Auth'
 
 // Lay menu
-function* getMenuSaga() {
+function* addNewAUserSaga({payload}) {
   try {
       // goi API addAUserApi
-      const delta = yield call(addAUserApi)
+      const delta = yield call(addAUserApi, payload)
       const {data, statusText} = delta
       // RESPONSE TRUE
       if(data && !data.error){
+        console.log(data.datas)
         // Cap nhat du lieu menu
-        yield put(refreshMenu(data.datas))
+        // yield put(refreshMenu(data.datas))
         // Show thong bao thanh cong tren DASHBOARD
         // yield put(alertSuccess(data.msg))
       }
@@ -42,7 +43,7 @@ function* getMenuSaga() {
 
 function* rootSaga() {
     yield all([
-      takeLatest(GET_MENU, getMenuSaga)
+      takeLatest(ADD_USER, addNewAUserSaga)
     ])
   }
   
