@@ -24,7 +24,7 @@ export default function Navbar(props) {
               </a>
             </Link>
             <button
-              className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block md:hidden outline-none focus:outline-none"
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
@@ -50,24 +50,18 @@ export default function Navbar(props) {
                     title="Chức năng"
                   >
                     <i className="text-xl text-blueGray-700 fas fa-tachometer-alt text-lg leading-lg"/>
-                    <span className="lg:hidden inline-block ml-2">Chức năng</span>
+                    <span className="md:hidden inline-block ml-2">Chức năng</span>
                   </a>
                 </Link>
               </li>
               <li className="flex items-center">
-                <Link href="/admin/add-user">
-                  <a
-                    className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                    href="#"
-                    title="Thêm người dùng mới"
-                  >
-                    <i className="text-xl text-emerald-500 fas fa-user-plus text-lg leading-lg"/>
-                    <span className="lg:hidden inline-block ml-2">Thêm người dùng mới</span>
-                  </a>
-                </Link>
-              </li>
-              <li className="flex items-center">
-              <DialogConfirm />
+                <DialogConfirm 
+                  type="success"
+                  action={console.log("Action!")}
+                  title="Xóa người dùng"
+                  des="Xóa tất cả dữ liệu của người dùng này?"
+                  label="Xóa"
+                />
               </li>
               <li className="flex items-center">
                 <Link href="/admin/edit-user">
@@ -77,7 +71,7 @@ export default function Navbar(props) {
                     title="Sửa người dùng"
                   >
                     <i className="text-xl text-blueGray-700 fas fa-user-edit text-lg leading-lg"/>
-                    <span className="lg:hidden inline-block ml-2">Sửa người dùng</span>
+                    <span className="md:hidden inline-block ml-2">Sửa người dùng</span>
                   </a>
                 </Link>
               </li>
