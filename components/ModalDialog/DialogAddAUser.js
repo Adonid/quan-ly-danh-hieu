@@ -93,7 +93,7 @@ export default function DialogAddAUser({callbackValues}) {
                                                 required
                                                 type="text"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                defaultValue="lucky.jesse"
+                                                placeholder="Cao Mạnh Hùng"
                                             />
                                             </div>
                                         </div>
@@ -127,7 +127,7 @@ export default function DialogAddAUser({callbackValues}) {
                                                 required
                                                 type="text"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                defaultValue="Lucky"
+                                                placeholder="Tổ trưởng tổ cơ điện 3"
                                             />
                                             </div>
                                         </div>
@@ -144,7 +144,7 @@ export default function DialogAddAUser({callbackValues}) {
                                                 required
                                                 type="text"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                defaultValue="Jesse"
+                                                placeholder="Phòng cơ điện, CTy AB"
                                             />
                                             </div>
                                         </div>
