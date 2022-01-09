@@ -4,9 +4,10 @@ import { createPopper } from '@popperjs/core';
 // components
 import BasicSelect from "components/Selects/BasicSelect";
 import DialogConfirm from "components/ModalDialog/DialogConfirm.js";
-
+import ToolTip from "components/ToolTip/ToolTip";
 // Convert link
 import { toImageUrl } from "general/convert/convertmageUrl";
+import { outOfDateRelative, outOfDateDetail } from "general/convert/convertTime";
 // Const
 const selectNotifies  = [
   {label: "Tất cả", value: 1},
@@ -19,9 +20,9 @@ const selectNotifies  = [
 export default function CardTable({ color, notification, wins }) {
   const [notifies, setNotifies] = useState(notification)
   // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
+  const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
+  const btnDropdownRef = createRef();
+  const popoverDropdownRef = createRef();
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: "bottom-start"
@@ -163,9 +164,23 @@ export default function CardTable({ color, notification, wins }) {
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                       <i className={"fas fa-star mr-2 " + wins.filter(i => i.id===(item.win.id+1))[0].color||"text-blueGray-500"}></i> {wins.filter(i => i.id===(item.win.id+1))[0].name+" "||"Đã nhận tối đa"}
-                        - Hạng {wins.filter(i => i.id===(item.win.id+1))[0].level}                    </td>
+                        - Hạng {wins.filter(i => i.id===(item.win.id+1))[0].level}
+                    </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      Đã quá hạn 3 tuần
+                      <ToolTip 
+                        content={
+                          <span className="cursor-pointer">
+                            {outOfDateRelative(item.birthday, wins.filter(i => i.id===(item.win.id+1))[0].quota)}
+                          </span>
+                        }
+                        contentToolTip={
+                          <div
+                            className="bg-blueGray-600 border-0 mr-3 block z-50 font-normal leading-normal text-xs max-w-xs text-left no-underline break-words rounded-lg text-white text-xs opacity-75 p-3 rounded-t-lg"
+                          >
+                            {outOfDateDetail(item.birthday, wins.filter(i => i.id===(item.win.id+1))[0].quota)?"Từ "+outOfDateDetail(item.birthday, wins.filter(i => i.id===(item.win.id+1))[0].quota)+" đến hôm nay":"Chưa đủ thời gian nhận"}
+                          </div>
+                        }
+                      />
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
                       <button 

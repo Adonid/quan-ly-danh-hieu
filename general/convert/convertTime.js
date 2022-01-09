@@ -1,62 +1,58 @@
-// Moment js
-import moment from "moment"
+// Dayjs
+import dayjs from "dayjs"
+require ('dayjs/locale/vi')
 
-/**
- * FORMAT DATE TO VIETNAMESE
+/** Lay thoi gian tre tuong doi
+ * 
+ * @param {date} DATE
+ * 
+ * @returns {string} Day, date mouth year hour:minutes
  */
- const formatToVietNamese =  str => str.replace("Sunday", "Chủ Nhật").replace("Monday", "Thứ Hai").replace("Tuesday", "Thứ Ba").replace("Wednesday", "Thứ Tư").replace("Thursday", "Thứ Năm").replace("Friday", "Thứ Sáu").replace("Saturday", "Thứ Bảy").replace("January", "Tháng 1").replace("February", "Tháng 2").replace("March", "Tháng 3").replace("April", "Tháng 4").replace("May", "Tháng 5").replace("June", "Tháng 6").replace("July", "Tháng 7").replace("August", "Tháng 8").replace("September", "Tháng 9").replace("October", "Tháng 10").replace("November", "Tháng 11").replace("December", "Tháng 12")
-
- /** RELATIVE TIME -> THOI GIAN TUONG DOI */
- const diffTime = time => {
-    // Years
-    if(time.indexOf('year') !== -1)
-        return time.indexOf('years') !== -1 ? time.replace("years ago", "năm") : "1 năm"
-    // Months
-    if(time.indexOf('month') !== -1)
-        return time.indexOf('months') !== -1 ? time.replace("months ago", "tháng") : "1 tháng"
-    // Days
-    if(time.indexOf('day') !== -1)
-        return time.indexOf('days') !== -1 ? time.replace("days ago", "ngày") : "1 ngày"
-    // Hours
-    if(time.indexOf('hour') !== -1)
-        return time.indexOf('hours') !== -1 ? time.replace("hours ago", "giờ") : "1 giờ"
-    // Minutes
-    if(time.indexOf('minute') !== -1)
-        return time.indexOf('minutes') !== -1 ? time.replace("minutes ago", "phút") : "1 phút"
-    // Seconds
+export const outOfDateRelative = (dateWorked, toQuota) => {
+    dayjs.locale('vi')
+    const dateQuota = dayjs(dateWorked).add(toQuota, 'year')
+    const outOfYear = dayjs().diff(dateQuota, 'year', true)
+    const outOfYearRound = dayjs().diff(dateQuota, 'year', false)
+    if(outOfYear>=1){
+        return "Quá hạn khoảng "+outOfYearRound+" năm"
+    }
+    if(outOfYear<0){
+        return "Chưa đủ thời gian nhận"
+    }
+    const outOfMouth = dayjs().diff(dateQuota, 'month', true)
+    const outOfMouthRound = dayjs().diff(dateQuota, 'month', false)
+    if(outOfMouth>=1){
+        return "Quá hạn khoảng "+outOfMouthRound+" tháng"
+    }
+    const outOfDay = dayjs().diff(dateQuota, 'day', true)
+    const outOfDayRound = dayjs().diff(dateQuota, 'day', false)
+    if(outOfDay>=1){
+        return "Quá hạn khoảng "+outOfDayRound+" ngày"
+    }
+    const outOfHour = dayjs().diff(dateQuota, 'hour', true)
+    const outOfHourRound = dayjs().diff(dateQuota, 'hour', false)
+    if(outOfHour>=1){
+        return "Khoảng "+outOfHourRound+" giờ trước"
+    }
+    const outOfMinute = dayjs().diff(dateQuota, 'minute', true)
+    const outOfMinuteRound = dayjs().diff(dateQuota, 'minute', false)
+    if(outOfMinute>=1){
+        return "Khoảng "+outOfMinuteRound+" phút trước"
+    }
     return "Vừa mới"
- }
+}
 
-
-/**
+/** Lay thoi gian tre chi tiet
  * 
  * @param {date} DATE
  * 
  * @returns {string} Day, date mouth year hour:minutes
  */
-export const detailTime = date => {
-    const momentTime = moment(date, moment.DATETIME_LOCAL_SECONDS).add(+0, 'h')
-    return formatToVietNamese(momentTime.format("dddd, HH:mm D MMMM, YYYY"))
-}
-
-/**
- * 
- * @param {date} DATE
- * 
- * @returns {string} Date mouth, year
- */
- export const detailSortTime = date => {
-    const momentTime = moment(date, moment.DATETIME_LOCAL_SECONDS).add(+0, 'h')
-    return formatToVietNamese(momentTime.format("D MMMM, YYYY"))
-}
-
-/**
- * 
- * @param {date} DATE
- * 
- * @returns {string} Day, date mouth year hour:minutes
- */
-export const relativeTime = date => {
-    const momentTime = moment(date, moment.DATETIME_LOCAL_MS).add(+0, 'h')
-    return diffTime(momentTime.fromNow())
+export const outOfDateDetail = (dateWorked, toQuota) => {
+    dayjs.locale('vi')
+    const dateQuota = dayjs(dateWorked).add(toQuota, 'year')
+    if(dayjs().diff(dateQuota, 'year', true)>0)
+        return dateQuota.format('dddd, D MMMM, YYYY')
+    else
+        return false
 }
