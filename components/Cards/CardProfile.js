@@ -3,6 +3,7 @@ import React from "react";
 import { toImageUrl } from "general/convert/convertmageUrl";
 // components
 import DialogConfirm from "components/ModalDialog/DialogConfirm.js";
+import ToolTip from "components/ToolTip/ToolTip";
 
 export default function CardProfile({user}) {
   return (
@@ -28,10 +29,21 @@ export default function CardProfile({user}) {
                   <span className="text-sm text-blueGray-400">DH đã nhận</span>
                 </div>
                 <div className="mr-4 p-3 text-center">
-                  <span className="font-bold block uppercase tracking-wide">
-                    <i className="fas fa-star mr-2 text-2xl text-emerald-500"></i>
-                  </span>
-                  <span className="text-sm text-blueGray-400">DH nhận tiếp theo</span>
+                  <ToolTip
+                    content={
+                      <span className="font-bold uppercase tracking-wide">
+                        <i className={"fas fa-star mr-2 text-2xl " + user.win.color}></i>
+                      </span>
+                    }
+                    contentToolTip={
+                      <div
+                        className="bg-blueGray-600 border-0 mr-3 z-50 font-normal leading-normal text-xs max-w-xs text-left no-underline break-words rounded-lg text-white text-xs opacity-75 p-3 rounded-t-lg"
+                      >
+                        {user.win.name+(user.win.level?" - "+user.win.level:"")}
+                      </div>
+                    }
+                  />
+                  <span className="text-sm text-blueGray-400">DH hiện tại</span>
                 </div>
               </div>
             </div>
@@ -40,12 +52,12 @@ export default function CardProfile({user}) {
             <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
               {user.name}
             </h3>
-            <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-normal">
+            <div className="text-sm text-left leading-normal mt-0 mb-2 text-blueGray-400 font-normal">
               <i className="fas fa-star mr-2 text-lg text-blueGray-400"></i>{" "}
                 Còn <b> xy ngày</b> nữa sẽ nhận danh hiệu
                 <cite> Tinh anh 1</cite>
             </div>
-            <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-normal">
+            <div className="text-sm text-left leading-normal mt-0 mb-2 text-blueGray-400 font-normal">
               <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
               {
                 user.address?user.address+", ":"-"
@@ -60,16 +72,20 @@ export default function CardProfile({user}) {
                 user.province?user.province+".":"-"
               }
             </div>
-            <div className="mb-2 text-blueGray-600 mt-10">
+            <div className="text-sm text-left leading-normal mt-0 mb-1 text-blueGray-400 font-normal">
+              <i className="fas fa-phone-alt mr-2 text-lg text-blueGray-400"></i>{" "}
+              <a href={"tel:"+user.phone}>{user.phone}</a>
+            </div>
+            <div className="mb-2 text-left text-blueGray-600 mt-10">
               <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
               {user.position}
             </div>
-            <div className="mb-2 text-blueGray-600">
+            <div className="mb-2 text-left text-blueGray-600">
               <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
               {user.work_unit}
             </div>
           </div>
-          <div className="mt-10 py-5 border-t border-blueGray-200 text-center">
+          <div className="text-left mt-10 py-5 border-t border-blueGray-200">
             <div className="flex flex-wrap justify-center">
               <div className="w-full lg:w-9/12 px-4">
                 <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
