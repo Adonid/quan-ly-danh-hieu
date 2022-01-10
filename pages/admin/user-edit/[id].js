@@ -18,6 +18,9 @@ function Settings({user, currentUser, updateAccountCreators, updateOrtherInfoCre
   useEffect(() => {
       setUserData(currentUser)
   }, [currentUser])
+  useEffect(() => {
+      setUserData(user)
+  }, [user])
   return (
     <>
       <div className="flex flex-wrap">

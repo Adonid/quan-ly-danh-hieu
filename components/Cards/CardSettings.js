@@ -56,6 +56,8 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    pattern="[A-Za-z0-9_ - , . ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ]{3,128}$"
+                    title="Tên từ 2 đến 64 ký tự và không chứ một số ký tự đặc biệt!"
                     defaultValue={user.name}
                     placeholder="Nguyễn Xuân Quỳnh"
                   />
@@ -91,6 +93,8 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    pattern="[A-Za-z0-9_ - , . ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ]{3,128}$"
+                    title="Chức danh 2 đến 64 ký tự và không chứ một số ký tự đặc biệt!"
                     defaultValue={user.position}
                     placeholder="Quản lý kho A"
                   />
@@ -109,6 +113,8 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    pattern="[A-Za-z0-9_ - , . ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ]{3,128}$"
+                    title="Địa chỉ làm việc 2 đến 64 ký tự và không chứ một số ký tự đặc biệt!"
                     defaultValue={user.work_unit}
                     placeholder="Phòng vật tư"
                   />
@@ -145,6 +151,8 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                     required
                     type="tel"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    pattern="[0-9]{4}[0-9]{3}[0-9]{3}"
+                    title="Hãy nhập đúng định dạng số điện thoại"
                     defaultValue={user.phone}
                     placeholder="0932888899"
                   />
@@ -163,6 +171,8 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    pattern="[A-Za-z0-9_ - , . ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ]{3,128}$"
+                    title="Tối thiểu 3 tối đa 128 ký tự!"
                     defaultValue={user.address}
                     placeholder="89 Kim Mã"
                   />
@@ -181,6 +191,8 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    pattern="[A-Za-z0-9_ - , . ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ]{3,64}$"
+                    title="Tối thiểu 3 tối đa 64 ký tự!"
                     defaultValue={user.commune}
                     placeholder="Phường Thanh Xuân"
                   />
@@ -199,6 +211,8 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    pattern="[A-Za-z0-9_ - , . ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ]{3,64}$"
+                    title="Tối thiểu 3 tối đa 64 ký tự!"
                     defaultValue={user.district}
                     placeholder="Quận Ba Đình"
                   />
@@ -217,6 +231,8 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    pattern="[A-Za-z0-9_ - , . ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ]{3,64}$"
+                    title="Tối thiểu 3 tối đa 64 ký tự!"
                     defaultValue={user.province}
                     placeholder="TP. Hà Nội"
                   />

@@ -74,7 +74,7 @@ export default function CardProfile({user}) {
             </div>
             <div className="text-sm text-left leading-normal mt-0 mb-1 text-blueGray-400 font-normal">
               <i className="fas fa-phone-alt mr-2 text-lg text-blueGray-400"></i>{" "}
-              <a href={"tel:"+user.phone}>{user.phone}</a>
+              {user.phone?<a href={"tel:"+user.phone}>{user.phone}</a>:"--"}
             </div>
             <div className="mb-2 text-left text-blueGray-600 mt-10">
               <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
