@@ -19,13 +19,13 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
     const commune = e.target["commune"].value
     const district = e.target["district"].value
     const province = e.target["province"].value
-    updateOrtherinfo({id: user.id, address, commune, district, province})
+    updateOrtherinfo({user: {id: user.id}, dataUpdate: {address, commune, district, province}})
   }
   // Luu thong tin lien he
   const saveDescription = e => {
     e.preventDefault()
     const description = e.target["description"].value
-    updateOrtherinfo({id: user.id, description})
+    updateOrtherinfo({user: {id: user.id}, dataUpdate: {description}})
   }
 
   return (
@@ -144,7 +144,8 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                    defaultValue={user.address}
+                    placeholder="89 Kim Mã"
                   />
                 </div>
               </div>
@@ -159,9 +160,10 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                   <input
                     id="commune"
                     required
-                    type="province"
+                    type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="New York"
+                    defaultValue={user.commune}
+                    placeholder="Phường Thanh Xuân"
                   />
                 </div>
               </div>
@@ -178,7 +180,8 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="United States"
+                    defaultValue={user.district}
+                    placeholder="Quận Ba Đình"
                   />
                 </div>
               </div>
@@ -195,7 +198,8 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="Postal Code"
+                    defaultValue={user.province}
+                    placeholder="TP. Hà Nội"
                   />
                 </div>
               </div>
@@ -230,9 +234,9 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    rows="4"
-                    defaultValue="A beautiful UI Kit and Admin for NextJS & Tailwind CSS. It is Free
-                    and Open Source."
+                    rows="3"
+                    defaultValue={user.description}
+                    placeholder="Aa..."
                   ></textarea>
                   <div className="w-full lg:w-6/12 my-4">
                     <div className="relative w-full">
