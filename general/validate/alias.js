@@ -179,10 +179,10 @@ const alias = [
 
     // VALIDATE USER PAGE
     {
-        name: "postId", 
-        alias: "ID bài viêt",
-        empty: "ID bài viết không được rỗng",
-        notFormat: "Bài viết đang tìm không tồn tại!",
+        name: "userId", 
+        alias: "ID người dùng",
+        empty: "ID người dùng không được rỗng",
+        notFormat: "Người dùng đang tìm không tồn tại!",
     },
     {
         name: "authorId", 
