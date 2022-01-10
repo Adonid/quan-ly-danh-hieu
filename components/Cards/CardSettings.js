@@ -10,7 +10,7 @@ export default function CardSettings({user, updateAccount}) {
     const birthday = e.target["birthday"].value
     const position = e.target["position"].value
     const work_unit = e.target["work_unit"].value
-    updateAccount({id: user.id, win: user.win, name, birthday, position, work_unit})
+    updateAccount({id: user.id, name, birthday, position, work_unit})
   }
   // Luu thong tin lien he
   const saveContact = e => {
