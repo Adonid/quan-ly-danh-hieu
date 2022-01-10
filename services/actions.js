@@ -14,6 +14,13 @@ export function updateAccountAction(payload){
     payload
   }
 }
+/** SUA THONG TIN KHAC CUA TAI KHOAN */
+export function updateOrtherInfoAction(payload){
+  return{
+    type: constans.UPDATE_ORTHER_INFO,
+    payload
+  }
+}
 
 
 

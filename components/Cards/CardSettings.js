@@ -2,7 +2,7 @@ import React from "react";
 // DayJS
 import dayjs from "dayjs";
 
-export default function CardSettings({user, updateAccount}) {
+export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
   // Luu thong tin tai khoan
   const saveInfo = e => {
     e.preventDefault()
@@ -19,13 +19,13 @@ export default function CardSettings({user, updateAccount}) {
     const commune = e.target["commune"].value
     const district = e.target["district"].value
     const province = e.target["province"].value
-    console.log(address, commune, district, province)
+    updateOrtherinfo({id: user.id, address, commune, district, province})
   }
   // Luu thong tin lien he
   const saveDescription = e => {
     e.preventDefault()
     const description = e.target["description"].value
-    console.log(description)
+    updateOrtherinfo({id: user.id, description})
   }
 
   return (

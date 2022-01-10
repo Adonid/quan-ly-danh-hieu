@@ -4,7 +4,7 @@ import fetch from "node-fetch"
 // Redux
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
-import { updateAccountAction } from "services/actions";
+import { updateAccountAction, updateOrtherInfoAction } from "services/actions";
 // components
 import CardSettings from "components/Cards/CardSettings.js";
 import CardProfile from "components/Cards/CardProfile.js";
@@ -13,13 +13,13 @@ import Admin from "layouts/Admin.js";
 // Validate
 import {isNumber} from "general/validate/commonValiate"
 
-function Settings({user, updateAccountCreators}) {
+function Settings({user, updateAccountCreators, updateOrtherInfoCreators}) {
 
   return (
     <>
       <div className="flex flex-wrap">
         <div className="w-full lg:w-8/12 px-4">
-          <CardSettings user={user} updateAccount={updateAccountCreators} />
+          <CardSettings user={user} updateAccount={updateAccountCreators} updateOrtherinfo={updateOrtherInfoCreators} />
         </div>
         <div className="w-full lg:w-4/12 px-4">
           <CardProfile user={user} />
@@ -39,7 +39,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateAccountCreators: bindActionCreators(updateAccountAction, dispatch)
+    updateAccountCreators: bindActionCreators(updateAccountAction, dispatch),
+    updateOrtherInfoCreators: bindActionCreators(updateOrtherInfoAction, dispatch)
   }
 }
 const withConnect = connect(mapStateToProps, mapDispatchToProps)
