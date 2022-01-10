@@ -15,11 +15,12 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
   // Luu thong tin lien he
   const saveContact = e => {
     e.preventDefault()
+    const phone = e.target["phone"].value
     const address = e.target["address"].value
     const commune = e.target["commune"].value
     const district = e.target["district"].value
     const province = e.target["province"].value
-    updateOrtherinfo({user: {id: user.id}, dataUpdate: {address, commune, district, province}})
+    updateOrtherinfo({user: {id: user.id}, dataUpdate: {phone, address, commune, district, province}})
   }
   // Luu thong tin lien he
   const saveDescription = e => {
@@ -131,7 +132,25 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
               Thông tin liên hệ
             </h6>
             <div className="flex flex-wrap">
-              <div className="w-full lg:w-12/12 px-4">
+              <div className="w-full lg:w-4/12 px-4">
+                <div className="relative w-full mb-3">
+                  <label
+                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="phone"
+                  >
+                    Số điện thoại
+                  </label>
+                  <input
+                    id="phone"
+                    required
+                    type="text"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    defaultValue={user.phone}
+                    placeholder="0932888899"
+                  />
+                </div>
+              </div>
+              <div className="w-full lg:w-8/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"

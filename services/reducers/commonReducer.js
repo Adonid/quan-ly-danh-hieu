@@ -1,12 +1,14 @@
 import { 
-  alertTypes
+  alertTypes,
+  userTypes
   } from "../constans"
 
 const initialState = {
   toaster: {
     type: "info",
     alert: "Vui lòng đăng nhập!"
-  }
+  },
+  currentUser: {}
 }
 
 function commonReducer(state = initialState, action) {
@@ -44,7 +46,13 @@ function commonReducer(state = initialState, action) {
           alert: action.payload.alert
         }
       }
-
+    /** NAP LAI THONG TIN CUA USER DANG THAO TAC */
+    case userTypes.RELOAD_DATA:
+      return{
+        ...state,
+        currentUser: action.payload
+      }
+    
     default:
       return state
   }

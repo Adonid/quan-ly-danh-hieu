@@ -21,6 +21,13 @@ export function updateOrtherInfoAction(payload){
     payload
   }
 }
+/** LAM TUOI THONG TIN USER DANG THAO TAC TRUC TIEP */
+export function refreshDataUser(payload){
+  return{
+    type: constans.userTypes.RELOAD_DATA,
+    payload
+  }
+}
 
 
 

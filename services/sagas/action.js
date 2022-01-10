@@ -1,6 +1,7 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import {
     alertSuccess,
+    refreshDataUser
 } from '../actions'
 import { LOGIN, ADD_USER, UPDATE_ACCOUNT, UPDATE_ORTHER_INFO } from '../constans'
 import {
@@ -49,8 +50,8 @@ function* updateAUserSaga({payload}) {
       const {data, statusText} = delta
       // RESPONSE TRUE
       if(data && !data.error){
-        // Cap nhat du lieu menu
-        // yield put(refreshMenu(data.datas))
+        // Cap nhat du lieu
+        yield put(refreshDataUser(data.datas))
         // Show thong bao thanh cong tren DASHBOARD
         yield put(alertSuccess(data.msg))
       }
@@ -80,9 +81,9 @@ function* updateOrtherInfoSaga({payload}) {
       const {data, statusText} = delta
       // RESPONSE TRUE
       if(data && !data.error){
-        // Cap nhat du lieu menu
-        // yield put(refreshMenu(data.datas))
-        // Show thong bao thanh cong tren DASHBOARD
+        // Cap nhat du lieu
+        yield put(refreshDataUser(data.datas))
+        // Show thong bao thanh cong tren ADMIN LAYOUT
         yield put(alertSuccess(data.msg))
       }
       // LOI REQUEST

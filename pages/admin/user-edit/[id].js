@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // Fetch
 import fetch from "node-fetch"
 // Redux
@@ -13,8 +13,11 @@ import Admin from "layouts/Admin.js";
 // Validate
 import {isNumber} from "general/validate/commonValiate"
 
-function Settings({user, updateAccountCreators, updateOrtherInfoCreators}) {
-
+function Settings({user, currentUser, updateAccountCreators, updateOrtherInfoCreators}) {
+  const [userData, setUserData] = useState(user)
+  useEffect(() => {
+      setUserData(currentUser)
+  }, [currentUser])
   return (
     <>
       <div className="flex flex-wrap">
@@ -22,7 +25,7 @@ function Settings({user, updateAccountCreators, updateOrtherInfoCreators}) {
           <CardSettings user={user} updateAccount={updateAccountCreators} updateOrtherinfo={updateOrtherInfoCreators} />
         </div>
         <div className="w-full lg:w-4/12 px-4">
-          <CardProfile user={user} />
+          <CardProfile user={userData} />
         </div>
       </div>
     </>
@@ -33,7 +36,7 @@ Settings.layout = Admin;
 
 const mapStateToProps = state => {
   return {
-    toaster: state.common.toaster
+    currentUser: state.common.currentUser
   }
 }
 

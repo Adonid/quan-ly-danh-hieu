@@ -15,6 +15,9 @@ export const alertTypes = {
     WARNING: "WARNING",
     FAILURE: "FAILURE",
 }
+export const userTypes = {
+    RELOAD_DATA: "RELOAD_DATA",
+}
 
 export const ADD_USER = "ADD_USER"
 export const UPDATE_ACCOUNT = "UPDATE_ACCOUNT"
