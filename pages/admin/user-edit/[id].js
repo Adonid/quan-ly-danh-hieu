@@ -10,7 +10,6 @@ import Admin from "layouts/Admin.js";
 import {isNumber} from "general/validate/commonValiate"
 
 export default function Settings({user}) {
-  console.log(user)
   return (
     <>
       <div className="flex flex-wrap">
@@ -18,7 +17,7 @@ export default function Settings({user}) {
           <CardSettings />
         </div>
         <div className="w-full lg:w-4/12 px-4">
-          <CardProfile />
+          <CardProfile user={user} />
         </div>
       </div>
     </>
