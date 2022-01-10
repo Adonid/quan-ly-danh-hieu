@@ -5,6 +5,7 @@ import Axios from "./Axios"
 
 // THAO TAC THONG TIN USER
 export const addAUserApi = params => Axios.post('add', params)
+export const updateAccountUserApi = params => Axios.post('update-account', params)
 export const updateAUserApi = params => Axios.post('update', params)
 export const deleteAUserApi = params => Axios.post('delete', params)
 export const getDetailAUserApi = params => Axios.get('detail', params)

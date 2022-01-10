@@ -17,6 +17,7 @@ export const alertTypes = {
 }
 
 export const ADD_USER = "ADD_USER"
+export const UPDATE_ACCOUNT = "UPDATE_ACCOUNT"
 
 export const LOGIN = config.host
 export const LOGGED = 'LOGGED'

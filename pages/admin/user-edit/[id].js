@@ -1,6 +1,10 @@
 import React from "react";
 // Fetch
 import fetch from "node-fetch"
+// Redux
+import { connect } from "react-redux";
+import { bindActionCreators, compose } from "redux";
+import { updateAccountAction } from "services/actions";
 // components
 import CardSettings from "components/Cards/CardSettings.js";
 import CardProfile from "components/Cards/CardProfile.js";
@@ -9,12 +13,13 @@ import Admin from "layouts/Admin.js";
 // Validate
 import {isNumber} from "general/validate/commonValiate"
 
-export default function Settings({user}) {
+function Settings({user, updateAccountCreators}) {
+
   return (
     <>
       <div className="flex flex-wrap">
         <div className="w-full lg:w-8/12 px-4">
-          <CardSettings />
+          <CardSettings user={user} updateAccount={updateAccountCreators} />
         </div>
         <div className="w-full lg:w-4/12 px-4">
           <CardProfile user={user} />
@@ -25,6 +30,21 @@ export default function Settings({user}) {
 }
 
 Settings.layout = Admin;
+
+const mapStateToProps = state => {
+  return {
+    toaster: state.common.toaster
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateAccountCreators: bindActionCreators(updateAccountAction, dispatch)
+  }
+}
+const withConnect = connect(mapStateToProps, mapDispatchToProps)
+
+export default compose(withConnect)(Settings)
 
 // This function gets called at build time on server-side.
 // It won't be called on client-side, so you can even do

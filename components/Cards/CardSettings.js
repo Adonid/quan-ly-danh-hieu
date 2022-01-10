@@ -1,16 +1,16 @@
 import React from "react";
+// DayJS
+import dayjs from "dayjs";
 
-// components
-
-export default function CardSettings() {
+export default function CardSettings({user, updateAccount}) {
   // Luu thong tin tai khoan
   const saveInfo = e => {
     e.preventDefault()
-    const fullName = e.target["fullName"].value
-    const datetime = e.target["datetime"].value
+    const name = e.target["name"].value
+    const birthday = e.target["birthday"].value
     const position = e.target["position"].value
     const work_unit = e.target["work_unit"].value
-    console.log(fullName, datetime, position, work_unit)
+    updateAccount({id: user.id, win: user.win, name, birthday, position, work_unit})
   }
   // Luu thong tin lien he
   const saveContact = e => {
@@ -46,16 +46,17 @@ export default function CardSettings() {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="fullName"
+                    htmlFor="name"
                   >
                     Họ & tên
                   </label>
                   <input
-                    id="fullName"
+                    id="name"
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="lucky.jesse"
+                    defaultValue={user.name}
+                    placeholder="Nguyễn Xuân Quỳnh"
                   />
                 </div>
               </div>
@@ -63,16 +64,16 @@ export default function CardSettings() {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="datetime"
+                    htmlFor="birthday"
                   >
                     Ngày làm việc
                   </label>
                   <input
-                    id="datetime"
+                    id="birthday"
                     required
                     type="date"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    // defaultValue="jesse@example.com"
+                    defaultValue={dayjs(user.birthday).format("YYYY-MM-DD")}
                   />
                 </div>
               </div>
@@ -89,7 +90,8 @@ export default function CardSettings() {
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="Lucky"
+                    defaultValue={user.position}
+                    placeholder="Quản lý kho A"
                   />
                 </div>
               </div>
@@ -106,7 +108,8 @@ export default function CardSettings() {
                     required
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="Jesse"
+                    defaultValue={user.work_unit}
+                    placeholder="Phòng vật tư"
                   />
                 </div>
               </div>

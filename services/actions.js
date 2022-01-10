@@ -7,6 +7,13 @@ export function addAUserAction(payload){
     payload
   }
 }
+/** SUA THONG TIN TAI KHOAN */
+export function updateAccountAction(payload){
+  return{
+    type: constans.UPDATE_ACCOUNT,
+    payload
+  }
+}
 
 
 
