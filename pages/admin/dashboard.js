@@ -12,7 +12,7 @@ import { toggerReportAction } from "services/actions";
 import Admin from "layouts/Admin.js";
 
 function Dashboard({notification, users, wins, toggerReportCreators}) {
-  const promotionUser = id => console.log(id)
+  const promotionUser = data => console.log(data)
   const toggerAlert = data => toggerReportCreators(data)
   return (
     <>
