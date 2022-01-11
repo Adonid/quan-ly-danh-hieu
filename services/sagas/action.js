@@ -4,12 +4,13 @@ import {
     alertInfo,
     refreshDataUser
 } from '../actions'
-import { LOGIN, ADD_USER, UPDATE_ACCOUNT, UPDATE_ORTHER_INFO, TOGGER_REPORT } from '../constans'
+import { LOGIN, ADD_USER, UPDATE_ACCOUNT, UPDATE_ORTHER_INFO, TOGGER_REPORT, PROMOTION_WIN } from '../constans'
 import {
   addAUserApi,
   updateAccountUserApi,
   updateAUserApi,
   toggerReportApi,
+  promotionWinApi
 } from 'apis/Auth'
 
 // THEM MOI USER
@@ -137,6 +138,37 @@ function* toggerReportSaga({payload}) {
     //   yield put(alertWarning(err.message||statusText))
   }
 }
+// NANG CAP DAN HIEU
+function* promotionWinSaga({payload}) {
+  try {
+      // goi API promotionWinApi
+      const delta = yield call(promotionWinApi, payload)
+      const {data, statusText} = delta
+      // RESPONSE TRUE
+      if(data && !data.error){
+        // Cap nhat du lieu - CAN DUA LEN REDUCER DE CAP NHAT LAI TRANG THAI THANH THONG BAO
+        yield put(refreshDataUser(data.datas))
+        // Show thong bao thanh cong tren ADMIN LAYOUT
+        yield put(alertSuccess(data.msg))
+      }
+      // LOI REQUEST
+      else{
+        // LOI HET PHIEN DANG NHAP
+        if(statusText==="Unauthorized"){
+          yield window.location.replace(LOGIN)
+        }
+        // CAC LOI KHAC KHONG RO NGUON GOC
+        else{
+            // Show TB loi
+            // yield put(alertWarning(data.error||statusText))
+        }
+      }
+    } catch (err) {
+      yield console.log(err)
+      // Show TB loi
+    //   yield put(alertWarning(err.message||statusText))
+  }
+}
 
 
 function* rootSaga() {
@@ -144,7 +176,8 @@ function* rootSaga() {
       takeLatest(ADD_USER, addNewAUserSaga),
       takeLatest(UPDATE_ACCOUNT, updateAUserSaga),
       takeLatest(UPDATE_ORTHER_INFO, updateOrtherInfoSaga),
-      takeLatest(TOGGER_REPORT, toggerReportSaga)
+      takeLatest(TOGGER_REPORT, toggerReportSaga),
+      takeLatest(PROMOTION_WIN, promotionWinSaga),
     ])
   }
   

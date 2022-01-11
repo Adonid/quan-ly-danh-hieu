@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // Fetch
 import fetch from "node-fetch"
 // components
@@ -7,23 +7,40 @@ import CardNotification from "components/Cards/CardNotification.js";
 // Redux
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
-import { toggerReportAction } from "services/actions";
+import { toggerReportAction, promotionWinAction } from "services/actions";
 // layout for page
 import Admin from "layouts/Admin.js";
 
-function Dashboard({notification, users, wins, toggerReportCreators}) {
-  const promotionUser = data => console.log(data)
+function Dashboard({users, wins, currentUser, toggerReportCreators, promotionWinCreators}) {
+  const [currentPeople, setCurrentPeople] = useState(users)
+  // Thay doi danh sach khi SSR thay doi
+  useEffect(() => {
+    setCurrentPeople(users)
+  }, [users])
+  // Thay doi USER khi co cap nhat moi tu CSR
+  useEffect(() => {
+     const newUsers = [...users].map(item => {
+        if(item.id === currentUser.id)
+          return currentUser
+        return item
+     })
+     setCurrentPeople(newUsers)
+  }, [currentUser])
+
+  // Cac thao tac
+  const promotionUser = data => promotionWinCreators(data)
   const toggerAlert = data => toggerReportCreators(data)
+
   return (
     <>
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
-          <CardTable users={users} wins={wins} />
+          <CardTable users={currentPeople} wins={wins} />
         </div>
         <div className="w-full mb-12 px-4">
           <CardNotification 
             color="dark" 
-            notification={notification} 
+            notification={currentPeople.filter(item => item.to_quota||false)} 
             wins={wins}
             promotion={promotionUser}
             toggerAlertUser={toggerAlert}
@@ -45,6 +62,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     toggerReportCreators: bindActionCreators(toggerReportAction, dispatch),
+    promotionWinCreators: bindActionCreators(promotionWinAction, dispatch),
   }
 }
 const withConnect = connect(mapStateToProps, mapDispatchToProps)
@@ -69,7 +87,6 @@ export async function getStaticProps() {
     if(datasSSR && !datasSSR.error)
       return {
         props: {
-          notification: datasSSR.datas.notification,
           users: datasSSR.datas.load_users,
           wins: datasSSR.datas.wins,
         },

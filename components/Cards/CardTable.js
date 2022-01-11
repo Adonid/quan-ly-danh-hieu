@@ -17,9 +17,9 @@ export default function CardTable({ color, users, wins }) {
   const [userDisplay, setUserDisplay] = useState(users)
 
   // Khi thay doi du lieu load trang nay
-  // useEffect(() => {
-  //   setUserDisplay(users)
-  // }, [users])
+  useEffect(() => {
+    setUserDisplay(users)
+  }, [users])
   // Scroll table
   const [countLoading, setCountLoading] = useState(0)
   const myRef = createRef()

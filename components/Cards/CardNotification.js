@@ -1,4 +1,4 @@
-import React, { createRef, useState } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { createPopper } from '@popperjs/core';
 // components
@@ -19,6 +19,9 @@ const selectNotifies  = [
 
 export default function CardTable({ color, notification, wins, promotion, toggerAlertUser }) {
   const [notifies, setNotifies] = useState(notification)
+  useEffect(() => {
+    setNotifies(notification)
+  }, [notification])
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
   const btnDropdownRef = createRef();

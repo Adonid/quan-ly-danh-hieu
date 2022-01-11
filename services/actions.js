@@ -36,6 +36,13 @@ export function toggerReportAction(payload){
     payload
   }
 }
+/** NANG CAP DANH HIEU */
+export function promotionWinAction(payload){
+  return{
+    type: constans.PROMOTION_WIN,
+    payload
+  }
+}
 
 
 
