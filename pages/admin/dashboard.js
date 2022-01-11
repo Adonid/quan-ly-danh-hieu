@@ -11,20 +11,29 @@ import { toggerReportAction, promotionWinAction } from "services/actions";
 // layout for page
 import Admin from "layouts/Admin.js";
 
-function Dashboard({users, wins, currentUser, toggerReportCreators, promotionWinCreators}) {
+function Dashboard({notifyUser, users, wins, currentUser, toggerReportCreators, promotionWinCreators}) {
   const [currentPeople, setCurrentPeople] = useState(users)
+  const [notifications, setNotifications] = useState(notifyUser)
   // Thay doi danh sach khi SSR thay doi
   useEffect(() => {
     setCurrentPeople(users)
   }, [users])
   // Thay doi USER khi co cap nhat moi tu CSR
   useEffect(() => {
+    // Cap nhat cho bang users
      const newUsers = [...users].map(item => {
         if(item.id === currentUser.id)
           return currentUser
         return item
      })
      setCurrentPeople(newUsers)
+     // Cap nhat cho bang notifies
+     const newNotifies = [...notifications].map(item => {
+          if(item.id === currentUser.id)
+            return currentUser
+          return item
+      }).filter(i => i.to_quota)
+      setNotifications(newNotifies)
   }, [currentUser])
 
   // Cac thao tac
@@ -40,7 +49,7 @@ function Dashboard({users, wins, currentUser, toggerReportCreators, promotionWin
         <div className="w-full mb-12 px-4">
           <CardNotification 
             color="dark" 
-            notification={currentPeople.filter(item => item.to_quota||false)} 
+            notification={notifications} 
             wins={wins}
             promotion={promotionUser}
             toggerAlertUser={toggerAlert}
@@ -88,6 +97,7 @@ export async function getStaticProps() {
       return {
         props: {
           users: datasSSR.datas.load_users,
+          notifyUser: datasSSR.datas.notifyUser,
           wins: datasSSR.datas.wins,
         },
       }

@@ -179,21 +179,21 @@ export default function CardTable({ color, notification, wins, promotion, togger
                       <i className={"fas fa-star mr-2 " + item.win.color}></i> {item.win.name + (item.win.level?" - Hạng "+item.win.level:"")}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <i className={"fas fa-star mr-2 " + wins.filter(i => i.id===(item.win.id+1))[0].color||"text-blueGray-500"}></i> {wins.filter(i => i.id===(item.win.id+1))[0].name+" "||"Đã nhận tối đa"}
-                        - Hạng {wins.filter(i => i.id===(item.win.id+1))[0].level}
+                      <i className={"fas fa-star mr-2 " + ([...wins].filter(i => i.quota > item.win.quota)[0].color||"text-blueGray-500")}></i> {[...wins].filter(i => i.quota > item.win.quota)[0].name+" "||"Đã nhận tối đa"}
+                        {[...wins].filter(i => i.quota > (item.win.quota))[0]? "- Hạng "+[...wins].filter(i => i.quota > (item.win.quota))[0].level:""}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                       <ToolTip 
                         content={
                           <span className="cursor-pointer">
-                            {outOfDateRelative(item.birthday, wins.filter(i => i.id===(item.win.id+1))[0].quota)}
+                            {outOfDateRelative(item.birthday, [...wins].filter(i => i.quota > (item.win.quota))[0]?[...wins].filter(i => i.quota > (item.win.quota))[0].quota:0)}
                           </span>
                         }
                         contentToolTip={
                           <div
                             className="bg-blueGray-600 border-0 mr-3 block z-50 font-normal leading-normal text-xs max-w-xs text-left no-underline break-words rounded-lg text-white text-xs opacity-75 p-3 rounded-t-lg"
                           >
-                            {outOfDateDetail(item.birthday, wins.filter(i => i.id===(item.win.id+1))[0].quota)?"Từ "+outOfDateDetail(item.birthday, wins.filter(i => i.id===(item.win.id+1))[0].quota)+" đến hôm nay":"Chưa đủ thời gian nhận"}
+                            {outOfDateDetail(item.birthday, [...wins].filter(i => i.quota > (item.win.quota))[0]?[...wins].filter(i => i.quota > (item.win.quota))[0].quota:0)?"Từ "+outOfDateDetail(item.birthday, [...wins].filter(i => i.quota > (item.win.quota))[0]?[...wins].filter(i => i.quota > (item.win.quota))[0].quota:0)+" đến hôm nay":"Chưa đủ thời gian nhận"}
                           </div>
                         }
                       />

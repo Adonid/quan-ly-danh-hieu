@@ -15,7 +15,7 @@ const selectUsers = [
 
 export default function CardTable({ color, users, wins }) {
   const [userDisplay, setUserDisplay] = useState(users)
-
+  console.log(userDisplay, wins);
   // Khi thay doi du lieu load trang nay
   useEffect(() => {
     setUserDisplay(users)
@@ -162,8 +162,8 @@ export default function CardTable({ color, users, wins }) {
                       <i className={"fas fa-star mr-2 " + item.win.color}></i> {item.win.name + (item.win.level?" - Hạng "+item.win.level:"")}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <i className={"fas fa-star mr-2 " + wins.filter(i => i.id===(item.win.id+1))[0].color||"text-blueGray-500"}></i> {wins.filter(i => i.id===(item.win.id+1))[0].name+" "||"Đã nhận tối đa"}
-                        - Hạng {wins.filter(i => i.id===(item.win.id+1))[0].level}
+                      <i className={"fas fa-star mr-2 " + ([...wins].filter(i => i.quota > item.win.quota)[0]?[...wins].filter(i => i.quota > item.win.quota)[0].color:"text-blueGray-500")}></i> {[...wins].filter(i => i.quota > item.win.quota)[0]?[...wins].filter(i => i.quota > item.win.quota)[0].name+" ":"Đã nhận tối đa"}
+                        {[...wins].filter(i => i.quota > item.win.quota)[0]? "- Hạng "+[...wins].filter(i => i.quota > item.win.quota)[0].level:""}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
                       <Link href={"/admin/user-edit/"+item.id}>
