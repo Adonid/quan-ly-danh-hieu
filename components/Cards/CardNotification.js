@@ -206,7 +206,7 @@ export default function CardTable({ color, notification, wins, promotion, togger
                       </button>
                       <DialogConfirm 
                         type="success"
-                        action={() => promotionLevel({id: item.id, win_id: item.win_id})}
+                        action={() => promotionLevel({id: item.id, win_id: item.win_id, birthday: item.birthday})}
                         iconClass="fas fa-angle-double-up text-blueGray-300 text-sm"
                         title="Trao tặng danh hiệu"
                         des="Bạn có muốn tặng danh hiệu đã tới niên hạn nhận cho người dùng này?"
