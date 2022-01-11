@@ -190,9 +190,9 @@ export default function CardTable({ color, notification, wins, promotion, togger
                         className="bg-blueGray-300 active:bg-blueGray-200 px-2 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
                         type="button"
                         title="Ẩn thông báo người dùng này"
-                        onClick={() => toggerAlert(item.id)}
+                        onClick={() => toggerAlert({id:item.id, show_report: !item.show_report})}
                       >
-                        <i className="fas fa-eye text-blueGray-300 text-sm"></i>
+                        <i className={"fas fa-eye hover:text-blueGray-300 text-sm "+(item.show_report?"text-blueGray-300 ":"text-blueGray-500")}></i>
                       </button>
                       <DialogConfirm 
                         type="success"

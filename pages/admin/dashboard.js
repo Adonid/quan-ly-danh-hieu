@@ -4,9 +4,11 @@ import fetch from "node-fetch"
 // components
 import CardTable from "components/Cards/CardTable.js";
 import CardNotification from "components/Cards/CardNotification.js";
-
+// Redux
+import { connect } from "react-redux";
+import { bindActionCreators, compose } from "redux";
+import { updateAccountAction, updateOrtherInfoAction } from "services/actions";
 // layout for page
-
 import Admin from "layouts/Admin.js";
 
 export default function Dashboard({notification, users, wins}) {
@@ -33,6 +35,22 @@ export default function Dashboard({notification, users, wins}) {
 }
 
 Dashboard.layout = Admin;
+
+const mapStateToProps = state => {
+  return {
+    currentUser: state.common.currentUser
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateAccountCreators: bindActionCreators(updateAccountAction, dispatch),
+    updateOrtherInfoCreators: bindActionCreators(updateOrtherInfoAction, dispatch)
+  }
+}
+const withConnect = connect(mapStateToProps, mapDispatchToProps)
+
+export default compose(withConnect)(Dashboard)
 
 // This function gets called at build time on server-side.
 // It won't be called on client-side, so you can even do
