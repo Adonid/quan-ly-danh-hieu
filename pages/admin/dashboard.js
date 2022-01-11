@@ -3,57 +3,21 @@ import React, { useEffect, useState } from "react";
 import fetch from "node-fetch"
 // components
 import CardTable from "components/Cards/CardTable.js";
-import CardNotification from "components/Cards/CardNotification.js";
-// Redux
-import { connect } from "react-redux";
-import { bindActionCreators, compose } from "redux";
-import { toggerReportAction, promotionWinAction } from "services/actions";
 // layout for page
 import Admin from "layouts/Admin.js";
 
-function Dashboard({notifyUser, users, wins, currentUser, toggerReportCreators, promotionWinCreators}) {
+function Dashboard({users, wins}) {
   const [currentPeople, setCurrentPeople] = useState(users)
-  const [notifications, setNotifications] = useState(notifyUser)
   // Thay doi danh sach khi SSR thay doi
   useEffect(() => {
     setCurrentPeople(users)
   }, [users])
-  // Thay doi USER khi co cap nhat moi tu CSR
-  useEffect(() => {
-    // Cap nhat cho bang users
-     const newUsers = [...users].map(item => {
-        if(item.id === currentUser.id)
-          return currentUser
-        return item
-     })
-     setCurrentPeople(newUsers)
-     // Cap nhat cho bang notifies
-     const newNotifies = [...notifications].map(item => {
-          if(item.id === currentUser.id)
-            return currentUser
-          return item
-      }).filter(i => i.to_quota)
-      setNotifications(newNotifies)
-  }, [currentUser])
-
-  // Cac thao tac
-  const promotionUser = data => promotionWinCreators(data)
-  const toggerAlert = data => toggerReportCreators(data)
 
   return (
     <>
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
           <CardTable users={currentPeople} wins={wins} />
-        </div>
-        <div className="w-full mb-12 px-4">
-          <CardNotification 
-            color="dark" 
-            notification={notifications} 
-            wins={wins}
-            promotion={promotionUser}
-            toggerAlertUser={toggerAlert}
-          />
         </div>
       </div>
     </>
@@ -62,21 +26,7 @@ function Dashboard({notifyUser, users, wins, currentUser, toggerReportCreators, 
 
 Dashboard.layout = Admin;
 
-const mapStateToProps = state => {
-  return {
-    currentUser: state.common.currentUser
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    toggerReportCreators: bindActionCreators(toggerReportAction, dispatch),
-    promotionWinCreators: bindActionCreators(promotionWinAction, dispatch),
-  }
-}
-const withConnect = connect(mapStateToProps, mapDispatchToProps)
-
-export default compose(withConnect)(Dashboard)
+export default Dashboard
 
 // This function gets called at build time on server-side.
 // It won't be called on client-side, so you can even do
@@ -97,7 +47,6 @@ export async function getStaticProps() {
       return {
         props: {
           users: datasSSR.datas.load_users,
-          notifyUser: datasSSR.datas.notifyUser,
           wins: datasSSR.datas.wins,
         },
       }
