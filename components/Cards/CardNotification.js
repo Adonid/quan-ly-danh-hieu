@@ -54,7 +54,17 @@ export default function CardTable({ color, notification, wins, promotion, togger
   // Action Promotion
   const promotionLevel = data => promotion(data)
   // Action Promotion
-  const toggerAlert = data => toggerAlertUser(data)
+  const toggerAlert = data => {
+    // To Action!
+    toggerAlertUser(data)
+    // Doi trang thai giao dien
+    const newNotifies = notifies.map(item => {
+      if(item.id === data.id)
+        return {...item, show_report: data.show_report}
+      return item
+    })
+    setNotifies(newNotifies)
+  }
   return (
     <>
       <div
@@ -189,7 +199,7 @@ export default function CardTable({ color, notification, wins, promotion, togger
                       <button 
                         className="bg-blueGray-300 active:bg-blueGray-200 px-2 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
                         type="button"
-                        title="Ẩn thông báo người dùng này"
+                        title={item.show_report?"Ẩn thông báo người dùng này":"Hiển thị thông báo người dùng này"}
                         onClick={() => toggerAlert({id:item.id, show_report: !item.show_report})}
                       >
                         <i className={"fas fa-eye hover:text-blueGray-300 text-sm "+(item.show_report?"text-blueGray-300 ":"text-blueGray-500")}></i>
