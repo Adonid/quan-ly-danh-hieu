@@ -39,7 +39,7 @@ export default function CardProfile({user}) {
                       <div
                         className="bg-blueGray-600 border-0 mr-3 z-50 font-normal leading-normal text-xs max-w-xs text-left no-underline break-words rounded-lg text-white text-xs opacity-75 p-3 rounded-t-lg"
                       >
-                        {user.win.name+(user.win.level?" - "+user.win.level:"")}
+                        {user.win.name+(user.win.level?" - Hạng "+user.win.level:"")}
                       </div>
                     }
                   />
