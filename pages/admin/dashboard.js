@@ -11,7 +11,7 @@ import { updateAccountAction, updateOrtherInfoAction } from "services/actions";
 // layout for page
 import Admin from "layouts/Admin.js";
 
-export default function Dashboard({notification, users, wins}) {
+function Dashboard({notification, users, wins}) {
   const promotionUser = id => console.log(id)
   const toggerAlert = id => console.log(id)
   return (
