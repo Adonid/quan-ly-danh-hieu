@@ -7,7 +7,10 @@ export default function Example({type, button, classButton, colorButton, iconCla
   const [open, setOpen] = useState(false)
   const cancelButtonRef = useRef(null)
   // Action callback
-  const excute = () => action()
+  const excute = () => {
+    action()
+    setOpen(false)
+  }
   // Switch TYPE
   let colors={textColor:"text-blueGray-500", backgroundColor:" bg-blueGray-200", icon:"far fa-question-circle", buttonColor:"bg-blueGray-500"}
       switch (type) {

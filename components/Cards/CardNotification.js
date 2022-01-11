@@ -17,7 +17,7 @@ const selectNotifies  = [
   {label: "Đang tắt thông báo", value: 5},
 ]
 
-export default function CardTable({ color, notification, wins }) {
+export default function CardTable({ color, notification, wins, promotion, toggerAlertUser }) {
   const [notifies, setNotifies] = useState(notification)
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
@@ -51,7 +51,10 @@ export default function CardTable({ color, notification, wins }) {
   }
   // Loc
   const changeSelect = e => console.log(e)
-
+  // Action Promotion
+  const promotionLevel = data => promotion(data)
+  // Action Promotion
+  const toggerAlert = data => toggerAlertUser(data)
   return (
     <>
       <div
@@ -187,12 +190,13 @@ export default function CardTable({ color, notification, wins }) {
                         className="bg-blueGray-300 active:bg-blueGray-200 px-2 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
                         type="button"
                         title="Ẩn thông báo người dùng này"
+                        onClick={() => toggerAlert(item.id)}
                       >
                         <i className="fas fa-eye text-blueGray-300 text-sm"></i>
                       </button>
                       <DialogConfirm 
                         type="success"
-                        action={console.log("Action!")}
+                        action={() => promotionLevel(item.id)}
                         iconClass="fas fa-angle-double-up text-blueGray-300 text-sm"
                         title="Trao tặng danh hiệu"
                         des="Bạn có muốn tặng danh hiệu đã tới niên hạn nhận cho người dùng này?"

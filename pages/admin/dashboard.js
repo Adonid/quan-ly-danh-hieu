@@ -10,6 +10,8 @@ import CardNotification from "components/Cards/CardNotification.js";
 import Admin from "layouts/Admin.js";
 
 export default function Dashboard({notification, users, wins}) {
+  const promotionUser = id => console.log(id)
+  const toggerAlert = id => console.log(id)
   return (
     <>
       <div className="flex flex-wrap mt-4">
@@ -17,7 +19,13 @@ export default function Dashboard({notification, users, wins}) {
           <CardTable users={users} wins={wins} />
         </div>
         <div className="w-full mb-12 px-4">
-          <CardNotification color="dark" notification={notification} wins={wins}/>
+          <CardNotification 
+            color="dark" 
+            notification={notification} 
+            wins={wins}
+            promotion={promotionUser}
+            toggerAlertUser={toggerAlert}
+          />
         </div>
       </div>
     </>
