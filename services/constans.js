@@ -22,6 +22,7 @@ export const userTypes = {
 export const ADD_USER = "ADD_USER"
 export const UPDATE_ACCOUNT = "UPDATE_ACCOUNT"
 export const UPDATE_ORTHER_INFO = "UPDATE_ORTHER_INFO"
+export const TOGGER_REPORT = "TOGGER_REPORT"
 
 export const LOGIN = config.host
 export const LOGGED = 'LOGGED'

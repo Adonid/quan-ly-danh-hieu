@@ -29,6 +29,14 @@ export function refreshDataUser(payload){
   }
 }
 
+/** TOGGER REPORT  CHO USER */
+export function toggerReportAction(payload){
+  return{
+    type: constans.TOGGER_REPORT,
+    payload
+  }
+}
+
 
 
 /** CAP NHAT THANH MEMU */

@@ -7,13 +7,13 @@ import CardNotification from "components/Cards/CardNotification.js";
 // Redux
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
-import { updateAccountAction, updateOrtherInfoAction } from "services/actions";
+import { toggerReportAction } from "services/actions";
 // layout for page
 import Admin from "layouts/Admin.js";
 
-function Dashboard({notification, users, wins}) {
+function Dashboard({notification, users, wins, toggerReportCreators}) {
   const promotionUser = id => console.log(id)
-  const toggerAlert = id => console.log(id)
+  const toggerAlert = data => toggerReportCreators(data)
   return (
     <>
       <div className="flex flex-wrap mt-4">
@@ -44,8 +44,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateAccountCreators: bindActionCreators(updateAccountAction, dispatch),
-    updateOrtherInfoCreators: bindActionCreators(updateOrtherInfoAction, dispatch)
+    toggerReportCreators: bindActionCreators(toggerReportAction, dispatch),
   }
 }
 const withConnect = connect(mapStateToProps, mapDispatchToProps)
