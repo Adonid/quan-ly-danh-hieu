@@ -5,12 +5,12 @@ import Link from "next/link";
 
 import Auth from "layouts/Auth.js";
 
-export default function Login() {
-  const login = e => {
+export default function ResetPassword() {
+  const resetPassword = e => {
     e.preventDefault()
-    const email = e.target["email"].value
     const password = e.target["password"].value
-    console.log(email, password)
+    const codeVerify = e.target["codeVerify"].value
+    console.log(password, codeVerify)
   }
   return (
     <>
@@ -21,32 +21,13 @@ export default function Login() {
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
                   <h6 className="text-blueGray-500 text-xl font-bold">
-                    Đăng nhập tài khoản
+                    Thay đổi mật khẩu
                   </h6>
                 </div>
                 <hr className="mt-6 border-b-1 border-blueGray-300" />
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <div className="text-blueGray-400 text-center mb-3 font-bold">
-                  <small>Sử dụng email và mật khẩu</small>
-                </div>
-                <form onSubmit={login}>
-                  <div className="relative w-full mb-4">
-                    <label
-                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="email"
-                    >
-                      Email
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      required
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="example@gmail.com"
-                    />
-                  </div>
-
+                <form onSubmit={resetPassword}>
                   <div className="relative w-full mb-4">
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -59,28 +40,37 @@ export default function Login() {
                       type="password"
                       required
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder=""
+                      placeholder="vd: AaBbCc@123"
+                      pattern="[A-Za-z0-9_ ! @ # $ % ^ *]{6,32}$"
+                      title="Mật khẩu từ 6-32 ký tự và một số ký tự đặc biệt như ! @ # $ % ^ * "
                     />
                   </div>
-                  <div>
-                    <label className="inline-flex items-center cursor-pointer">
-                      <input
-                        id="check"
-                        type="checkbox"
-                        className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                      />
-                      <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                        Nhớ lần đăng nhập tới
-                      </span>
+                  <div className="relative w-full mb-4">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="codeVerify"
+                    >
+                      Mã xác minh
                     </label>
+                    <input
+                      id="codeVerify"
+                      type="text"
+                      required
+                      pattern="[0-9]{6}"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="vd: 123456"
+                      title="Mã xác minh gồm 6 chữ số!"
+                    />
                   </div>
-
+                  <div className="text-blueGray-400 text-left my-3 font-normal text-sm">
+                    <small>Dùng mã xác minh gồm 6 chữ số nhận được trong email để thay đổi mật khẩu.</small>
+                  </div>
                   <div className="text-center mt-6">
                     <button
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="submit"
                     >
-                      Đăng nhập
+                      Đổi mật khẩu
                     </button>
                   </div>
                 </form>
@@ -88,12 +78,12 @@ export default function Login() {
             </div>
             <div className="flex flex-wrap mt-6 relative">
               <div className="w-1/2">
-                <Link href="/auth/forget-password" >
+                <Link href="/auth/login" >
                   <a
                     href="#"
                     className="text-blueGray-200"
                   >
-                    <small>Quên mật khẩu?</small>
+                    <small>Đăng nhập</small>
                   </a>
                 </Link>
               </div>
@@ -105,4 +95,4 @@ export default function Login() {
   );
 }
 
-Login.layout = Auth;
+ResetPassword.layout = Auth;
