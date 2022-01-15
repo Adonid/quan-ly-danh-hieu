@@ -16,3 +16,4 @@ export const getUsersApi = params => Axios.post('get', params)
 
 // ADMIN
 export const loginApi = params => Admin.post('login', params)
+export const forgetPasswordApi = params => Admin.post('forgot-password', params)

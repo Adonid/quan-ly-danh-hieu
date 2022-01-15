@@ -9,8 +9,8 @@ export default function ResetPassword() {
   const resetPassword = e => {
     e.preventDefault()
     const password = e.target["password"].value
-    const codeVerify = e.target["codeVerify"].value
-    console.log(password, codeVerify)
+    const code_verify = e.target["code_verify"].value
+    console.log(password, code_verify)
   }
   return (
     <>
@@ -33,7 +33,7 @@ export default function ResetPassword() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="password"
                     >
-                      Mật khẩu
+                      Mật khẩu mới
                     </label>
                     <input
                       id="password"
@@ -48,12 +48,12 @@ export default function ResetPassword() {
                   <div className="relative w-full mb-4">
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="codeVerify"
+                      htmlFor="code_verify"
                     >
                       Mã xác minh
                     </label>
                     <input
-                      id="codeVerify"
+                      id="code_verify"
                       type="text"
                       required
                       pattern="[0-9]{6}"

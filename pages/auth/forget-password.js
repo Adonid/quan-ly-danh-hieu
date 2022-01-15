@@ -1,15 +1,17 @@
 import React from "react";
 import Link from "next/link";
-
+// Redux
+import { connect } from "react-redux";
+import { bindActionCreators, compose } from "redux";
+import { forgetPasswordAction } from "services/actions";
 // layout for page
-
 import Auth from "layouts/Auth.js";
 
-export default function ForgetPassword() {
+function ForgetPassword({forgerPasswordCreators}) {
   const forgetPassword = e => {
     e.preventDefault()
     const email = e.target["email"].value
-    console.log(email)
+    forgerPasswordCreators({email})
   }
   return (
     <>
@@ -76,3 +78,18 @@ export default function ForgetPassword() {
 }
 
 ForgetPassword.layout = Auth;
+
+const mapStateToProps = state => {
+  return {
+    // currentUser: state.common.currentUser
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    forgerPasswordCreators: bindActionCreators(forgetPasswordAction, dispatch),
+  }
+}
+const withConnect = connect(mapStateToProps, mapDispatchToProps)
+
+export default compose(withConnect)(ForgetPassword)

@@ -7,9 +7,10 @@ import {
     logged,
     logout,
 } from '../actions'
-import { uriPage, LOGIN, LOGOUT } from '../constans'
+import { uriPage, LOGIN, LOGOUT, FORGET_PASSWORD } from '../constans'
 import {
     loginApi,
+    forgetPasswordApi
 } from 'apis/Auth'
 
 
@@ -57,10 +58,33 @@ function* logoutSaga() {
   yield window.location.replace(uriPage.welcome)
 }
 
+// Quen mat khau
+function* forgetPasswordSaga({payload}) {
+  try {
+      // goi API forgetPasswordApi
+      const delta = yield call(forgetPasswordApi, payload)
+      const {data, statusText} = delta
+      // RESPONSE TRUE
+      if(data && !data.error){
+        // Toi trang reset pasdword
+        yield window.location.replace(uriPage.resetpassword)
+      }
+      // LOI REQUEST
+      else{
+        yield put(alertFailure(data.error||statusText))
+      }
+    } catch (err) {
+      yield console.log(err)
+      // Show TB loi
+      yield put(alertFailure(err.message||statusText))
+  }
+}
+
 function* rootSaga() {
   yield all([
     takeLatest(LOGIN, loginSaga),
     takeLatest(LOGOUT, logoutSaga),
+    takeLatest(FORGET_PASSWORD, forgetPasswordSaga),
   ])
 }
 

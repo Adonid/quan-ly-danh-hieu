@@ -3,9 +3,9 @@ import config from "config/config.json"
 /**  URI FOR REDIRECT PAGE */
 export const uriPage = {
     login: '/auth/login',
-    forgetpassword: '/forget-password',
-    resetpassword: '/reset-password',
-    register: '/register',
+    forgetpassword: '/auth/forget-password',
+    resetpassword: '/auth/reset-password',
+    register: '/auth/register',
     home: '/admin/dashboard',
     welcome: '/',
 }
@@ -29,12 +29,12 @@ export const LOGIN = config.host
 export const LOGGED = 'LOGGED'
 export const REMOVE_TOKEN = 'REMOVE_TOKEN'
 export const LOGOUT = 'LOGOUT'
+export const FORGET_PASSWORD = 'FORGET_PASSWORD'
+export const RESET_PASSWORD = 'RESET_PASSWORD'
 
 export const GET_MENU = 'GET_MENU'
 export const REFRESH_MENU = 'REFRESH_MENU'
 export const REGISTER = 'REGISTER'
-export const FORGET_PASSWORD = 'FORGET_PASSWORD'
-export const RESET_PASSWORD = 'RESET_PASSWORD'
 
 export const UPDATE_BASIC_INFO_USER = 'UPDATE_BASIC_INFO_USER'
 export const UPDATE_ADDRESS_USER = 'UPDATE_ADDRESS_USER'

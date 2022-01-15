@@ -63,6 +63,24 @@ export function logout(){
   }
 }
 
+/** QUEN MAT KHAU */
+export function forgetPasswordAction(payload){
+  return {
+    type: constans.FORGET_PASSWORD,
+    payload
+  }
+}
+
+/** DOI MAT KHAU */
+export function resetPasswordAction(payload){
+  return {
+    type: constans.RESET_PASSWORD,
+    payload
+  }
+}
+
+
+
 
 /** CAP NHAT THANH MEMU */
 export function getMenuAction(){
@@ -130,21 +148,6 @@ export function registerAction(payload){
     }
   } 
 
-/** QUEN MAT KHAU */
-export function forgetPasswordAction(payload){
-  return {
-    type: constans.FORGET_PASSWORD,
-    payload
-  }
-}
-
-/** DOI MAT KHAU */
-export function resetPasswordAction(payload){
-  return {
-    type: constans.RESET_PASSWORD,
-    payload
-  }
-}
 
 /** LOGGED THANH CONG */
 export function logged(token, myself, wins){
