@@ -6,10 +6,11 @@ import NotificationDropdown from "components/Dropdowns/NotificationDropdown";
 import DialogAddAUser from "components/ModalDialog/DialogAddAUser";
 
 
-export default function Navbar({addAUser}) {
+export default function Navbar({addAUser, logoutAdmin}) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   // Add New A User
   const addNewAUser = data => addAUser(data)
+  const logout = () => logoutAdmin()
   return (
     <>
       <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
@@ -71,7 +72,7 @@ export default function Navbar({addAUser}) {
               </li>
             </ul>
             <ul className="flex-col md:flex-row list-none">
-              <UserDropdown />
+              <UserDropdown logout={logout} />
             </ul>
           </div>
         </div>

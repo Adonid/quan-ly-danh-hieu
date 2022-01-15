@@ -7,13 +7,13 @@ import { useToasts } from 'react-toast-notifications'
 // Redux
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
-import { addAUserAction } from "services/actions";
+import { addAUserAction, logoutAction } from "services/actions";
 // components
 import IndexNavbar from "components/Navbars/IndexNavbar";
 import HeaderStats from "components/Headers/HeaderStats.js";
 import FooterAdmin from "components/Footers/FooterAdmin.js";
 
-function Admin({ children, toaster, addAUserCreators }) {
+function Admin({ children, toaster, addAUserCreators, logoutCreators }) {
   const router = useRouter()
   // Show hide toaster
   const { addToast } = useToasts()
@@ -30,7 +30,7 @@ function Admin({ children, toaster, addAUserCreators }) {
   return (
     <>
       <div className="relative bg-blueGray-100">
-        <IndexNavbar pathName={router.pathname} addAUser={addAUserCreators} />
+        <IndexNavbar pathName={router.pathname} addAUser={addAUserCreators} logoutAdmin={logoutCreators} />
         {/* Header */}
         <HeaderStats />
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
@@ -51,7 +51,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addAUserCreators: bindActionCreators(addAUserAction, dispatch)
+    addAUserCreators: bindActionCreators(addAUserAction, dispatch),
+    logoutCreators: bindActionCreators(logoutAction, dispatch),
   }
 }
 

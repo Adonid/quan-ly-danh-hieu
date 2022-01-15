@@ -1,10 +1,15 @@
 import React, {Fragment } from "react";
 import { Popover, Transition } from '@headlessui/react'
 
-const UserDropdown = () => {
+const UserDropdown = ({logout}) => {
   // Click
   const actionClick = e => {
     e.preventDefault()
+  }
+  // Click
+  const actionLogout = e => {
+    e.preventDefault()
+    logout()
   }
   return (
     <Popover className="relative">
@@ -57,7 +62,7 @@ const UserDropdown = () => {
                 className={
                   "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-red-500"
                 }
-                onClick={actionClick}
+                onClick={actionLogout}
               >
                 Đăng xuất
               </a>

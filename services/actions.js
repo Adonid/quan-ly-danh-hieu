@@ -50,7 +50,18 @@ export function loginAction(payload){
     payload
   }
 }
-
+/** LOGOUT CLICK */
+export function logoutAction(){
+  return {
+    type: constans.LOGOUT
+  }
+}
+/** LOGOUT */
+export function logout(){
+  return {
+    type: constans.REMOVE_TOKEN
+  }
+}
 
 
 /** CAP NHAT THANH MEMU */
@@ -144,18 +155,6 @@ export function logged(token, myself, wins){
       myself,
       wins
     }
-  }
-}
-/** LOGOUT CLICK */
-export function logoutAction(){
-  return {
-    type: constans.LOGOUT
-  }
-}
-/** LOGOUT */
-export function logout(){
-  return {
-    type: constans.REMOVE_TOKEN
   }
 }
 

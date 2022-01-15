@@ -5,8 +5,9 @@ import {
 //   alertInfo,
     alertFailure,
     logged,
+    logout,
 } from '../actions'
-import { uriPage, LOGIN } from '../constans'
+import { uriPage, LOGIN, LOGOUT } from '../constans'
 import {
     loginApi,
 } from 'apis/Auth'
@@ -47,11 +48,19 @@ function* loginSaga({payload}) {
   }
 }
 
-
+// DANG XUAT
+function* logoutSaga() {
+  // Danh dau da dang nhap va tu dong chuyen qua trang dashboard
+  yield put(logout())
+  yield delay(1000)
+  // Ve trang HOME
+  yield window.location.replace(uriPage.welcome)
+}
 
 function* rootSaga() {
   yield all([
     takeLatest(LOGIN, loginSaga),
+    takeLatest(LOGOUT, logoutSaga),
   ])
 }
 

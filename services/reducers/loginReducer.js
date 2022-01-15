@@ -1,5 +1,6 @@
 import { 
   LOGGED,
+  REMOVE_TOKEN
   } from "../constans"
 import {setTokenInCookie, removeTokenInCookie} from 'general/helper/cookie'
 
@@ -20,7 +21,15 @@ function loginReducer(state = initialState, action) {
         myself: action.payload.myself,
         wins: action.payload.wins
       }
-
+    // DANG XUAT
+    case REMOVE_TOKEN:
+      // Xoa cookie
+      removeTokenInCookie()
+      return{
+        ...state,
+        myself: {},
+        wins: []
+      }
     default:
       return state
   }
