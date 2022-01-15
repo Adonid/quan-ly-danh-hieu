@@ -1,5 +1,5 @@
 import Axios from "./Axios"
-// import {fetching, get, post} from "./Update"
+import Admin from "./Admin"
 
 // THAO TAC AUTH
 
@@ -13,3 +13,6 @@ export const getDetailAUserApi = params => Axios.get('detail', params)
 
 export const deleteAUserApi = params => Axios.post('delete', params)
 export const getUsersApi = params => Axios.post('get', params)
+
+// ADMIN
+export const loginApi = params => Admin.post('login', params)

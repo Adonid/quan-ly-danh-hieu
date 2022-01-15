@@ -6,7 +6,7 @@ export const uriPage = {
     forgetpassword: '/forget-password',
     resetpassword: '/reset-password',
     register: '/register',
-    home: '/home',
+    home: '/admin/dashboard',
 }
 
 export const alertTypes = {
@@ -24,9 +24,9 @@ export const UPDATE_ACCOUNT = "UPDATE_ACCOUNT"
 export const UPDATE_ORTHER_INFO = "UPDATE_ORTHER_INFO"
 export const TOGGER_REPORT = "TOGGER_REPORT"
 export const PROMOTION_WIN = "PROMOTION_WIN"
-
 export const LOGIN = config.host
 export const LOGGED = 'LOGGED'
+
 export const LOGOUT = 'LOGOUT'
 export const GET_MENU = 'GET_MENU'
 export const REFRESH_MENU = 'REFRESH_MENU'

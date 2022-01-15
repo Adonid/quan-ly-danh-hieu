@@ -1,11 +1,25 @@
 import React from "react";
-
+// Redux
+import { connect } from "react-redux";
+import { compose } from "redux";
 // components
-
 import Navbar from "components/Navbars/AuthNavbar.js";
 import FooterSmall from "components/Footers/FooterSmall.js";
+// toast
+import { useToasts } from 'react-toast-notifications'
 
-export default function Auth({ children }) {
+function Auth({ children, toaster }) {
+    // Show hide toaster
+    const { addToast } = useToasts()
+    const index = React.useRef(0)
+    React.useEffect(() => {
+      if(index.current > 0)
+        addToast(toaster.alert, {
+          appearance: toaster.type,
+          autoDismiss: true,
+        })
+      index.current++
+    }, [toaster])
   return (
     <>
       <Navbar transparent />
@@ -24,3 +38,19 @@ export default function Auth({ children }) {
     </>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    toaster: state.common.toaster
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    
+  }
+}
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps)
+
+export default compose(withConnect)(Auth)

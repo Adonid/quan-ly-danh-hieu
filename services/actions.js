@@ -43,6 +43,13 @@ export function promotionWinAction(payload){
     payload
   }
 }
+/** DANG NHAP */
+export function loginAction(payload){
+  return{
+    type: constans.LOGIN,
+    payload
+  }
+}
 
 
 
@@ -128,22 +135,14 @@ export function resetPasswordAction(payload){
   }
 }
 
-/** LOGIN */
-export function loginAction(payload){
-  return {
-    type: constans.LOGIN,
-    payload
-  }
-}
-
 /** LOGGED THANH CONG */
-export function logged(token, myself, provinces){
+export function logged(token, myself, wins){
   return {
     type: constans.LOGGED,
     payload: {
       token,
       myself,
-      provinces
+      wins
     }
   }
 }

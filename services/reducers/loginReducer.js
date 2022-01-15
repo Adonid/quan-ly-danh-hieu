@@ -1,19 +1,25 @@
+import { 
+  LOGGED,
+  } from "../constans"
+import {setTokenInCookie, removeTokenInCookie} from 'general/helper/cookie'
+
 const initialState = {
-  count: 0,
-  error: false,
-  lastUpdate: 0,
-  light: false,
-  placeholderData: null,
+  myself: {},
+  wins: []
 }
 
 function loginReducer(state = initialState, action) {
   switch (action.type) {
 
-    // case actionTypes.FAILURE:
-    //   return {
-    //     ...state,
-    //     ...{ error: action.error },
-    //   }
+    // DANG NHAP THANH CONG
+    case LOGGED:
+      // Luu token vao cookie
+      setTokenInCookie(action.payload.token)
+      return{
+        ...state,
+        myself: action.payload.myself,
+        wins: action.payload.wins
+      }
 
     default:
       return state

@@ -1,16 +1,18 @@
 import React from "react";
 import Link from "next/link";
-
+// Redux
+import { connect } from "react-redux";
+import { bindActionCreators, compose } from "redux";
+import { loginAction } from "services/actions";
 // layout for page
-
 import Auth from "layouts/Auth.js";
 
-export default function Login() {
+function Login({loginCreators}) {
   const login = e => {
     e.preventDefault()
     const email = e.target["email"].value
     const password = e.target["password"].value
-    console.log(email, password)
+    loginCreators({email, password})
   }
   return (
     <>
@@ -106,3 +108,18 @@ export default function Login() {
 }
 
 Login.layout = Auth;
+
+const mapStateToProps = state => {
+  return {
+    // currentUser: state.common.currentUser
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loginCreators: bindActionCreators(loginAction, dispatch),
+  }
+}
+const withConnect = connect(mapStateToProps, mapDispatchToProps)
+
+export default compose(withConnect)(Login)
