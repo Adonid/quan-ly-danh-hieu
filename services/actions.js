@@ -70,6 +70,13 @@ export function forgetPasswordAction(payload){
     payload
   }
 }
+/** QUEN MAT KHAU XONG */
+export function forgetPassword(payload){
+  return {
+    type: constans.FORGET_PASSWORD_DONE,
+    payload
+  }
+}
 
 /** DOI MAT KHAU */
 export function resetPasswordAction(payload){

@@ -1,10 +1,12 @@
 import { 
   LOGGED,
-  REMOVE_TOKEN
+  REMOVE_TOKEN,
+  FORGET_PASSWORD_DONE
   } from "../constans"
 import {setTokenInCookie, removeTokenInCookie} from 'general/helper/cookie'
 
 const initialState = {
+  email: null,
   myself: {},
   wins: []
 }
@@ -27,9 +29,18 @@ function loginReducer(state = initialState, action) {
       removeTokenInCookie()
       return{
         ...state,
+        email: null,
         myself: {},
         wins: []
       }
+      
+    // TAO MA RESET PASSWORD THANH CONG
+    case FORGET_PASSWORD_DONE:
+      return{
+        ...state,
+        email: action.payload,
+      }
+
     default:
       return state
   }

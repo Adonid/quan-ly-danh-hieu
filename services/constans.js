@@ -30,6 +30,7 @@ export const LOGGED = 'LOGGED'
 export const REMOVE_TOKEN = 'REMOVE_TOKEN'
 export const LOGOUT = 'LOGOUT'
 export const FORGET_PASSWORD = 'FORGET_PASSWORD'
+export const FORGET_PASSWORD_DONE = 'FORGET_PASSWORD_DONE'
 export const RESET_PASSWORD = 'RESET_PASSWORD'
 
 export const GET_MENU = 'GET_MENU'

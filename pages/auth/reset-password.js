@@ -1,16 +1,18 @@
 import React from "react";
 import Link from "next/link";
-
+// Redux
+import { connect } from "react-redux";
+import { bindActionCreators, compose } from "redux";
+import { resetPasswordAction } from "services/actions";
 // layout for page
-
 import Auth from "layouts/Auth.js";
 
-export default function ResetPassword() {
+function ResetPassword({email, resetPasswordCreators}) {
   const resetPassword = e => {
     e.preventDefault()
     const password = e.target["password"].value
     const code_verify = e.target["code_verify"].value
-    console.log(password, code_verify)
+    resetPasswordCreators({email, password, code_verify})
   }
   return (
     <>
@@ -96,3 +98,18 @@ export default function ResetPassword() {
 }
 
 ResetPassword.layout = Auth;
+
+const mapStateToProps = state => {
+  return {
+    email: state.login.email
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    resetPasswordCreators: bindActionCreators(resetPasswordAction, dispatch),
+  }
+}
+const withConnect = connect(mapStateToProps, mapDispatchToProps)
+
+export default compose(withConnect)(ResetPassword)

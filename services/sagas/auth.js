@@ -2,15 +2,17 @@ import { all, call, delay, put, takeLatest } from 'redux-saga/effects'
 import {
     alertSuccess,
 //   alertWarning,
-//   alertInfo,
+    // alertInfo,
     alertFailure,
     logged,
     logout,
+    forgetPassword,
 } from '../actions'
-import { uriPage, LOGIN, LOGOUT, FORGET_PASSWORD } from '../constans'
+import { uriPage, LOGIN, LOGOUT, FORGET_PASSWORD, RESET_PASSWORD } from '../constans'
 import {
     loginApi,
-    forgetPasswordApi
+    forgetPasswordApi,
+    resetPasswordApi
 } from 'apis/Auth'
 
 
@@ -66,12 +68,54 @@ function* forgetPasswordSaga({payload}) {
       const {data, statusText} = delta
       // RESPONSE TRUE
       if(data && !data.error){
+        // Luu lai dia chi email
+        yield put(forgetPassword(payload.email))
         // Toi trang reset pasdword
         yield window.location.replace(uriPage.resetpassword)
       }
       // LOI REQUEST
       else{
-        yield put(alertFailure(data.error||statusText))
+        // LOI HET PHIEN DANG NHAP
+        if(statusText==="Unauthorized"){
+          yield window.location.replace(uriPage.login)
+        }
+        // CAC LOI KHAC KHONG RO NGUON GOC
+        else{
+            // Show TB loi
+            yield put(alertFailure(data.error||statusText))
+        }
+      }
+    } catch (err) {
+      yield console.log(err)
+      // Show TB loi
+      yield put(alertFailure(err.message||statusText))
+  }
+}
+// Reset password
+function* resetPasswordSaga({payload}) {
+  try {
+      // goi API resetPasswordApi
+      const delta = yield call(resetPasswordApi, payload)
+      const {data, statusText} = delta
+      // RESPONSE TRUE
+      if(data && !data.error){
+        // Thong bao dang nhap lai
+        yield put(alertSuccess("Đổi mật khẩu thành công! Vui lòng đăng nhập lại."))
+        yield delay(1000)
+        // Toi trang reset pasdword
+        yield window.location.replace(uriPage.login)
+      }
+      // LOI REQUEST
+      else{
+        // LOI HET PHIEN DANG NHAP
+        if(statusText==="Unauthorized"){
+          yield put(alertFailure(data.error||statusText))
+        }
+        // CAC LOI KHAC KHONG RO NGUON GOC
+        else{
+            // Show TB loi
+            yield put(alertFailure(data.error||statusText))
+        }
       }
     } catch (err) {
       yield console.log(err)
@@ -85,6 +129,7 @@ function* rootSaga() {
     takeLatest(LOGIN, loginSaga),
     takeLatest(LOGOUT, logoutSaga),
     takeLatest(FORGET_PASSWORD, forgetPasswordSaga),
+    takeLatest(RESET_PASSWORD, resetPasswordSaga)
   ])
 }
 
