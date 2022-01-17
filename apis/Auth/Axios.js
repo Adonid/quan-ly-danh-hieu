@@ -13,12 +13,12 @@ class BasicAxios{
         this.instance = instance
     }
     // Su dung phuong thuc GET. String uri, Object data
-    get(uri, params={}){
-        return this.instance.get(uri, {params}).catch(err => err.response)
+    async get(uri, params={}){
+        return await this.instance.get(uri, {params}).catch(err => err.response)
     }
     // Su dung phuong thuc POST. String uri, Object data
-    post(uri, data={}){
-        return this.instance.post(uri, data).catch(err => err.response)
+    async post(uri, data={}){
+        return await this.instance.post(uri, data).catch(err => err.response)
     }
 }
 

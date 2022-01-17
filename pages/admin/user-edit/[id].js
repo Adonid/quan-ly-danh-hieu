@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-// Fetch
-import fetch from "node-fetch"
 // Redux
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
@@ -12,6 +10,8 @@ import CardProfile from "components/Cards/CardProfile.js";
 import Admin from "layouts/Admin.js";
 // Validate
 import {isNumber} from "general/validate/commonValiate"
+// API
+import {getDetailAUserApi} from 'apis/Auth'
 
 function Settings({user, currentUser, updateAccountCreators, updateOrtherInfoCreators}) {
   const [userData, setUserData] = useState(user)
@@ -53,11 +53,12 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps)
 
 export default compose(withConnect)(Settings)
 
+
 // This function gets called at build time on server-side.
 // It won't be called on client-side, so you can even do
 // direct database queries. See the "Technical details" section.
-export async function getServerSideProps(context) {
-  const id = context.query.id
+export async function getServerSideProps(ctx) {
+  const id = ctx.query.id
   // Back to HOME if id undefined
   const isID = isNumber("userId", id)
   if(isID){
@@ -68,11 +69,22 @@ export async function getServerSideProps(context) {
       },
     }
   }
+  // Route truoc do de redirect ve khi SSR loi
+  const redirectBack = ctx.req?ctx.req.headers.referer:false
+  // Token neu co
+  const token = ctx.req?ctx.req.headers.cookie:false
+  // Back to login page neu token trong cookie ko con gia tri
+  if(!token||!redirectBack){
+    return {
+      redirect: {
+        destination: "/auth/login",
+        permanent: false,
+      },
+    }
+  }
   // Fetching data phia BACKEND
   try {
-    // Call an external API endpoint to get posts.
-    // You can use any data fetching library
-    const {data, statusText} = await fetch(process.env.NEXT_PUBLIC_USER + id)
+    const {data, statusText} = await getDetailAUserApi(token, id)
                         .then(res => {
                           return {data: res, statusText: res.statusText}
                         })
@@ -85,20 +97,27 @@ export async function getServerSideProps(context) {
           user: datasSSR.datas,
         },
       }
+    // Back to login-page
+    if(statusText==="Unauthorized" || statusText === "Too Many Requests")
+      return {
+        redirect: {
+          destination: "/auth/login",
+          permanent: false,
+        },
+      }
     // Back to pre-page
     else
       return {
         redirect: {
-          destination: "/",
+          destination: redirectBack,
           permanent: false,
         },
       }
   } catch (error) {
-    console.log(error)
     // Back to login-page
     return {
       redirect: {
-        destination: "/",
+        destination: "/auth/login",
         permanent: false,
       },
     }

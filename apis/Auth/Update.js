@@ -6,7 +6,7 @@ const TIME_OUT = process.env.NEXT_PUBLIC_TIME_OUT
 export async function fetching(uri, token, params=false){
     const jwt = getToken(token)
     // String url
-    const URL = params!==false?END_POINT_USER+uri+'?params='+JSON.stringify(params):END_POINT_USER+uri
+    const URL = params!==false?END_POINT_AUTH+uri+params:END_POINT_AUTH+uri
     // Default options are marked with *
     return await fetch(URL, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -23,22 +23,22 @@ export async function fetching(uri, token, params=false){
     })
 }
 
-export function get(uri, params={}){
+export async function get(uri, params={}){
     const instance = axios.create({
         baseURL: END_POINT_AUTH,
         timeout: TIME_OUT,
         responseType: 'json',
         headers: { Authorization: "Bearer " + checkTokenInCookie()}
     })
-    return instance.get(uri, {params}).catch(err => err.response)
+    return await instance.get(uri, {params}).catch(err => err.response)
 }
 
-export function post(uri, data={}){
+export async function post(uri, data={}){
     const instance = axios.create({
         baseURL: END_POINT_AUTH,
         timeout: TIME_OUT,
         responseType: 'json',
         headers: { Authorization: "Bearer " + checkTokenInCookie()}
     })
-    return instance.post(uri, data).catch(err => err.response)
+    return await instance.post(uri, data).catch(err => err.response)
 }

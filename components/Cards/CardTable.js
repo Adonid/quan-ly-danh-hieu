@@ -15,7 +15,6 @@ const selectUsers = [
 
 export default function CardTable({ color, users, wins }) {
   const [userDisplay, setUserDisplay] = useState(users)
-  console.log(userDisplay, wins);
   // Khi thay doi du lieu load trang nay
   useEffect(() => {
     setUserDisplay(users)

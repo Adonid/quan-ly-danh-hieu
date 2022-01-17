@@ -2,7 +2,8 @@ import { all, call, put, takeLatest } from 'redux-saga/effects'
 import {
     alertSuccess,
     alertInfo,
-    refreshDataUser
+    refreshDataUser,
+    alertWarning
 } from '../actions'
 import { LOGIN, ADD_USER, UPDATE_ACCOUNT, UPDATE_ORTHER_INFO, TOGGER_REPORT, PROMOTION_WIN } from '../constans'
 import {
@@ -113,6 +114,7 @@ function* toggerReportSaga({payload}) {
       // goi API toggerReportApi
       const delta = yield call(toggerReportApi, payload)
       const {data, statusText} = delta
+      console.log(data);
       // RESPONSE TRUE
       if(data && !data.error){
         // Cap nhat du lieu - CAN DUA LEN REDUCER DE CAP NHAT LAI TRANG THAI THANH THONG BAO
@@ -129,7 +131,7 @@ function* toggerReportSaga({payload}) {
         // CAC LOI KHAC KHONG RO NGUON GOC
         else{
             // Show TB loi
-            // yield put(alertWarning(data.error||statusText))
+            yield put(alertWarning(data.error||statusText))
         }
       }
     } catch (err) {

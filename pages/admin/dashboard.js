@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-// Fetch
-import fetch from "node-fetch"
 // components
 import CardTable from "components/Cards/CardTable.js";
 // layout for page
 import Admin from "layouts/Admin.js";
+// API
+import {getDashboard} from 'apis/Auth'
 
 function Dashboard({users, wins}) {
   const [currentPeople, setCurrentPeople] = useState(users)
@@ -31,12 +31,23 @@ export default Dashboard
 // This function gets called at build time on server-side.
 // It won't be called on client-side, so you can even do
 // direct database queries. See the "Technical details" section.
-export async function getStaticProps() {
+export async function getServerSideProps(ctx) {
+  // Route truoc do de redirect ve khi SSR loi
+  const redirectBack = ctx.req?ctx.req.headers.referer:false
+  // Token neu co
+  const token = ctx.req?ctx.req.headers.cookie:false
+  // Back to login page neu token trong cookie ko con gia tri
+  if(!token||!redirectBack){
+    return {
+      redirect: {
+        destination: "/auth/login",
+        permanent: false,
+      },
+    }
+  }
   // Fetching data phia BACKEND
   try {
-    // Call an external API endpoint to get posts.
-    // You can use any data fetching library
-    const {data, statusText} = await fetch(process.env.NEXT_PUBLIC_END_POINT_DASHBOARD)
+    const {data, statusText} = await getDashboard(token)
                         .then(res => {
                           return {data: res, statusText: res.statusText}
                         })
@@ -50,20 +61,27 @@ export async function getStaticProps() {
           wins: datasSSR.datas.wins,
         },
       }
+    // Back to login-page
+    if(statusText==="Unauthorized" || statusText === "Too Many Requests")
+      return {
+        redirect: {
+          destination: "/auth/login",
+          permanent: false,
+        },
+      }
     // Back to pre-page
     else
       return {
         redirect: {
-          destination: "/",
+          destination: redirectBack,
           permanent: false,
         },
       }
   } catch (error) {
-    console.log(error)
     // Back to login-page
     return {
       redirect: {
-        destination: "/",
+        destination: "/auth/login",
         permanent: false,
       },
     }
