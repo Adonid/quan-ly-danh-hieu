@@ -85,7 +85,18 @@ export function resetPasswordAction(payload){
     payload
   }
 }
-
+/** LOGGED THANH CONG */
+export function logged(token, myself, wins, notifying){
+  return {
+    type: constans.LOGGED,
+    payload: {
+      token,
+      myself,
+      wins,
+      notifying
+    }
+  }
+}
 
 
 
@@ -156,17 +167,6 @@ export function registerAction(payload){
   } 
 
 
-/** LOGGED THANH CONG */
-export function logged(token, myself, wins){
-  return {
-    type: constans.LOGGED,
-    payload: {
-      token,
-      myself,
-      wins
-    }
-  }
-}
 
 /** CAP NHAT THONG USER */
 export function updateBasicInfoAction(payload){

@@ -13,7 +13,7 @@ import IndexNavbar from "components/Navbars/IndexNavbar";
 import HeaderStats from "components/Headers/HeaderStats.js";
 import FooterAdmin from "components/Footers/FooterAdmin.js";
 
-function Admin({ children, toaster, addAUserCreators, logoutCreators }) {
+function Admin({ children, toaster, addAUserCreators, logoutCreators, notifying }) {
   const router = useRouter()
   // Show hide toaster
   const { addToast } = useToasts()
@@ -30,7 +30,7 @@ function Admin({ children, toaster, addAUserCreators, logoutCreators }) {
   return (
     <>
       <div className="relative bg-blueGray-100">
-        <IndexNavbar pathName={router.pathname} addAUser={addAUserCreators} logoutAdmin={logoutCreators} />
+        <IndexNavbar pathName={router.pathname} addAUser={addAUserCreators} logoutAdmin={logoutCreators} notifying={notifying} />
         {/* Header */}
         <HeaderStats />
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
@@ -45,7 +45,8 @@ function Admin({ children, toaster, addAUserCreators, logoutCreators }) {
 
 const mapStateToProps = state => {
   return {
-    toaster: state.common.toaster
+    toaster: state.common.toaster,
+    notifying: state.login.notifying
   }
 }
 

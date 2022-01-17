@@ -8,7 +8,8 @@ import {setTokenInCookie, removeTokenInCookie} from 'general/helper/cookie'
 const initialState = {
   email: null,
   myself: {},
-  wins: []
+  wins: [],
+  notifying: []
 }
 
 function loginReducer(state = initialState, action) {
@@ -21,7 +22,8 @@ function loginReducer(state = initialState, action) {
       return{
         ...state,
         myself: action.payload.myself,
-        wins: action.payload.wins
+        wins: action.payload.wins,
+        notifying: action.payload.notifying
       }
     // DANG XUAT
     case REMOVE_TOKEN:
@@ -31,7 +33,8 @@ function loginReducer(state = initialState, action) {
         ...state,
         email: null,
         myself: {},
-        wins: []
+        wins: [],
+        notifying: []
       }
       
     // TAO MA RESET PASSWORD THANH CONG

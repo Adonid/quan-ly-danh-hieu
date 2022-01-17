@@ -6,7 +6,7 @@ import NotificationDropdown from "components/Dropdowns/NotificationDropdown";
 import DialogAddAUser from "components/ModalDialog/DialogAddAUser";
 
 
-export default function Navbar({addAUser, logoutAdmin}) {
+export default function Navbar({addAUser, logoutAdmin, notifying}) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   // Add New A User
   const addNewAUser = data => addAUser(data)
@@ -40,7 +40,7 @@ export default function Navbar({addAUser, logoutAdmin}) {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row list-none mr-auto">
-              <NotificationDropdown />
+              <NotificationDropdown notifying={notifying} />
             </ul>
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">

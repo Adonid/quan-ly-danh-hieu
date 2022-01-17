@@ -1,16 +1,23 @@
 import React, {Fragment } from "react";
 import { Popover, Transition } from '@headlessui/react'
 
-const NotificationDropdown = () => {
+const NotificationDropdown = ({notifying}) => {
+  console.log(notifying)
   return (
     <Popover className="relative">
       <Popover.Button
         className="text-gray-500 text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       >
         <i className="text-xl far fa-bell"></i>
-        <sup className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-100 bg-red-500 last:mr-0 mr-1">
-          12
-        </sup>
+        {
+          notifying.length ?
+          <sup className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-100 bg-red-500 last:mr-0 mr-1">
+            {notifying.length}
+          </sup>
+          :
+          null
+        }
+          
         <span className="lg:hidden inline-block ml-2 text-xs uppercase font-bold">Thông báo</span>
       </Popover.Button>
 
@@ -27,343 +34,57 @@ const NotificationDropdown = () => {
           <div className="rounded-lg shadow-xl bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
             <h3 className="text-lg px-6 py-2 leading-6 font-bold text-gray-900">Thông báo</h3>
             <div className="relative grid gap-6 sm:gap-8 sm:p-8" style={{maxHeight:"455px", overflowY:"scroll"}}>
-              <table className="min-w-full divide-y divide-gray-100">
-                <tbody className="divide-y divide-gray-100">
-                  <tr>
-                    <td className="px-6 py-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 h-12 w-12">
-                          <img className="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="" />
-                        </div>
-                        <div className="pl-3">
-                          <div className="font-medium">
-                            <span className="text-sm text-blueGray-900">Nguyễn Mai Ánh Linh</span>
-                            <span className="text-xs text-blueGray-500"> đã đến hạn nhận danh hiệu </span>
-                          </div>
-                          <div className="text-sm pt-0.5">
-                            <span className="text-blueGray-700 font-medium">Tinh anh 2</span>
-                          </div>
-                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
-                            <cite className="pb-2">5 giờ trước</cite>
-                            <div>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Ẩn thông báo người dùng này"
-                              >
-                                <i className="fas fa-eye text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Trao tặng"
-                              >
-                                <i className="fas fa-angle-double-up text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
+              {
+                notifying.length?
+                <table className="min-w-full divide-y divide-gray-100">
+                  <tbody className="divide-y divide-gray-100">
+                    {
+                      notifying.map((user, key) => (
+                        <tr key={key}>
+                          <td className="px-6 py-2 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="flex-shrink-0 h-12 w-12">
+                                <img className="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="" />
+                              </div>
+                              <div className="pl-3">
+                                <div className="font-medium">
+                                  <span className="text-sm text-blueGray-900">{user.name}</span>
+                                  <span className="text-xs text-blueGray-500"> đã đến hạn nhận danh hiệu </span>
+                                </div>
+                                <div className="text-sm pt-0.5">
+                                  <span className="text-blueGray-700 font-medium">Tinh anh 2</span>
+                                </div>
+                                <footer className="flex items-center justify-start text-xs text-blueGray-500">
+                                  <cite className="pb-2">5 giờ trước</cite>
+                                  <div>
+                                    <button 
+                                      className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
+                                      type="button"
+                                      title="Ẩn thông báo người dùng này"
+                                    >
+                                      <i className="fas fa-eye text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
+                                    </button>
+                                    <button 
+                                      className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
+                                      type="button"
+                                      title="Trao tặng"
+                                    >
+                                      <i className="fas fa-angle-double-up text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
+                                    </button>
+                                  </div>
+                                </footer>
+                              </div>
                             </div>
-                          </footer>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 h-12 w-12">
-                          <img className="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="" />
-                        </div>
-                        <div className="pl-3">
-                          <div className="font-medium">
-                            <span className="text-sm text-blueGray-900">Đinh Tiến Quốc</span>
-                            <span className="text-xs text-blueGray-500"> đã đến hạn nhận danh hiệu </span>
-                          </div>
-                          <div className="text-sm pt-0.5">
-                            <span className="text-blueGray-700 font-medium">Tinh anh 3</span>
-                          </div>
-                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
-                            <cite className="pb-2">1 giờ trước</cite>
-                            <div>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Ẩn thông báo người dùng này"
-                              >
-                                <i className="fas fa-eye text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Trao tặng"
-                              >
-                                <i className="fas fa-angle-double-up text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                            </div>
-                          </footer>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 h-12 w-12">
-                          <img className="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="" />
-                        </div>
-                        <div className="pl-3">
-                          <div className="font-medium">
-                            <span className="text-sm text-blueGray-900">Lâm Chấn Huy</span>
-                            <span className="text-xs text-blueGray-500"> đã đến hạn nhận danh hiệu </span>
-                          </div>
-                          <div className="text-sm pt-0.5">
-                            <span className="text-blueGray-700 font-medium">Tinh anh 5</span>
-                          </div>
-                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
-                            <cite className="pb-2">4 giờ trước</cite>
-                            <div>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Ẩn thông báo người dùng này"
-                              >
-                                <i className="fas fa-eye text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Trao tặng"
-                              >
-                                <i className="fas fa-angle-double-up text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                            </div>
-                          </footer>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 h-12 w-12">
-                          <img className="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="" />
-                        </div>
-                        <div className="pl-3">
-                          <div className="font-medium">
-                            <span className="text-sm text-blueGray-900">Nguyễn Mai Linh</span>
-                            <span className="text-xs text-blueGray-500"> đã đến hạn nhận danh hiệu </span>
-                          </div>
-                          <div className="text-sm pt-0.5">
-                            <span className="text-blueGray-700 font-medium">Tinh anh 2</span>
-                          </div>
-                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
-                            <cite className="pb-2">7 giờ trước</cite>
-                            <div>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Ẩn thông báo người dùng này"
-                              >
-                                <i className="fas fa-eye text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Trao tặng"
-                              >
-                                <i className="fas fa-angle-double-up text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                            </div>
-                          </footer>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 h-12 w-12">
-                          <img className="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="" />
-                        </div>
-                        <div className="pl-3">
-                          <div className="font-medium">
-                            <span className="text-sm text-blueGray-900">Đinh Tiến Quốc</span>
-                            <span className="text-xs text-blueGray-500"> đã đến hạn nhận danh hiệu </span>
-                          </div>
-                          <div className="text-sm pt-0.5">
-                            <span className="text-blueGray-700 font-medium">Tinh anh 3</span>
-                          </div>
-                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
-                            <cite className="pb-2">3 giờ trước</cite>
-                            <div>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Ẩn thông báo người dùng này"
-                              >
-                                <i className="fas fa-eye text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Trao tặng"
-                              >
-                                <i className="fas fa-angle-double-up text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                            </div>
-                          </footer>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 h-12 w-12">
-                          <img className="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="" />
-                        </div>
-                        <div className="pl-3">
-                          <div className="font-medium">
-                            <span className="text-sm text-blueGray-900">Lâm Chấn Huy</span>
-                            <span className="text-xs text-blueGray-500"> đã đến hạn nhận danh hiệu </span>
-                          </div>
-                          <div className="text-sm pt-0.5">
-                            <span className="text-blueGray-700 font-medium">Tinh anh 5</span>
-                          </div>
-                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
-                            <cite className="pb-2">21 phút trước</cite>
-                            <div>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Ẩn thông báo người dùng này"
-                              >
-                                <i className="fas fa-eye text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Trao tặng"
-                              >
-                                <i className="fas fa-angle-double-up text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                            </div>
-                          </footer>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 h-12 w-12">
-                          <img className="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="" />
-                        </div>
-                        <div className="pl-3">
-                          <div className="font-medium">
-                            <span className="text-sm text-blueGray-900">Nguyễn Mai Linh</span>
-                            <span className="text-xs text-blueGray-500"> đã đến hạn nhận danh hiệu </span>
-                          </div>
-                          <div className="text-sm pt-0.5">
-                            <span className="text-blueGray-700 font-medium">Tinh anh 2</span>
-                          </div>
-                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
-                            <cite className="pb-2">6 giờ trước</cite>
-                            <div>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Ẩn thông báo người dùng này"
-                              >
-                                <i className="fas fa-eye text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Trao tặng"
-                              >
-                                <i className="fas fa-angle-double-up text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                            </div>
-                          </footer>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 h-12 w-12">
-                          <img className="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="" />
-                        </div>
-                        <div className="pl-3">
-                          <div className="font-medium">
-                            <span className="text-sm text-blueGray-900">Đinh Tiến Quốc</span>
-                            <span className="text-xs text-blueGray-500"> đã đến hạn nhận danh hiệu </span>
-                          </div>
-                          <div className="text-sm pt-0.5">
-                            <span className="text-blueGray-700 font-medium">Tinh anh 3</span>
-                          </div>
-                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
-                            <cite className="pb-2">39 giây trước</cite>
-                            <div>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Ẩn thông báo người dùng này"
-                              >
-                                <i className="fas fa-eye text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Trao tặng"
-                              >
-                                <i className="fas fa-angle-double-up text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                            </div>
-                          </footer>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 h-12 w-12">
-                          <img className="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="" />
-                        </div>
-                        <div className="pl-3">
-                          <div className="font-medium">
-                            <span className="text-sm text-blueGray-900">Lâm Chấn Huy</span>
-                            <span className="text-xs text-blueGray-500"> đã đến hạn nhận danh hiệu </span>
-                          </div>
-                          <div className="text-sm pt-0.5">
-                            <span className="text-blueGray-700 font-medium">Tinh anh 5</span>
-                          </div>
-                          <footer className="flex items-center justify-start text-xs text-blueGray-500">
-                            <cite className="pb-2">2 ngày trước</cite>
-                            <div>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Ẩn thông báo người dùng này"
-                              >
-                                <i className="fas fa-eye text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                              <button 
-                                className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
-                                type="button"
-                                title="Trao tặng"
-                              >
-                                <i className="fas fa-angle-double-up text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
-                              </button>
-                            </div>
-                          </footer>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                          </td>
+                        </tr>
+                      ))
+                    }
+                  </tbody>
+                </table>
+                :
+                <span className="text-sm font-italic text-blueGray-500">Không có thông báo</span>
+              }
+                
             </div>
           </div>
         </Popover.Panel>

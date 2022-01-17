@@ -25,7 +25,7 @@ function* loginSaga({payload}) {
       // RESPONSE TRUE
       if(data && !data.error){
         // Danh dau da dang nhap va tu dong chuyen qua trang dashboard
-        yield put(logged(data.datas.token, data.datas.myself, data.datas.wins))
+        yield put(logged(data.datas.token, data.datas.myself, data.datas.wins, data.datas.notifying))
         yield delay(1000)
         // Ve trang dashboard
         yield window.location.replace(uriPage.home)
