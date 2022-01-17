@@ -1,6 +1,6 @@
 import axios from "axios"
 import {checkTokenInCookie, getToken} from 'general/helper/cookie'
-const END_POINT_MYSELF = process.env.NEXT_PUBLIC_END_POINT_MYSELF
+const END_POINT_AUTH = process.env.NEXT_PUBLIC_END_POINT
 const TIME_OUT = process.env.NEXT_PUBLIC_TIME_OUT
 
 export async function fetching(uri, token, params=false){
@@ -25,7 +25,7 @@ export async function fetching(uri, token, params=false){
 
 export function get(uri, params={}){
     const instance = axios.create({
-        baseURL: END_POINT_MYSELF,
+        baseURL: END_POINT_AUTH,
         timeout: TIME_OUT,
         responseType: 'json',
         headers: { Authorization: "Bearer " + checkTokenInCookie()}
@@ -35,7 +35,7 @@ export function get(uri, params={}){
 
 export function post(uri, data={}){
     const instance = axios.create({
-        baseURL: END_POINT_MYSELF,
+        baseURL: END_POINT_AUTH,
         timeout: TIME_OUT,
         responseType: 'json',
         headers: { Authorization: "Bearer " + checkTokenInCookie()}
