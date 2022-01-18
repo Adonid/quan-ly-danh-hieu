@@ -180,7 +180,7 @@ export default function CardTable({ color, notification, wins, promotion, togger
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                       <i className={"fas fa-star mr-2 " + ([...wins].filter(i => i.quota > item.win.quota)[0].color||"text-blueGray-500")}></i> {[...wins].filter(i => i.quota > item.win.quota)[0].name+" "||"Đã nhận tối đa"}
-                        {[...wins].filter(i => i.quota > (item.win.quota))[0]? "- Hạng "+[...wins].filter(i => i.quota > (item.win.quota))[0].level:""}
+                        {[...wins].filter(i => i.quota > (item.win.quota))[0]?([...wins].filter(i => i.quota > (item.win.quota))[0].level? " - Hạng "+[...wins].filter(i => i.quota > (item.win.quota))[0].level:""):""}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                       <ToolTip 

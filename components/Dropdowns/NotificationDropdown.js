@@ -69,7 +69,7 @@ const NotificationDropdown = ({notifying, wins, toggerAlertUser}) => {
                                 <div className="text-sm pt-0.5">
                                   <span className="text-blueGray-700 font-medium">
                                   <i className={"fas fa-star mr-2 " + ([...wins].filter(i => i.quota > user.win.quota)[0].color||"text-blueGray-500")}></i> {[...wins].filter(i => i.quota > user.win.quota)[0].name+" "||"Đã nhận tối đa"}
-                                  {[...wins].filter(i => i.quota > (user.win.quota))[0]? "- Hạng "+[...wins].filter(i => i.quota > (user.win.quota))[0].level:""}
+                                  {[...wins].filter(i => i.quota > (user.win.quota))[0]?([...wins].filter(i => i.quota > (user.win.quota))[0].level?"- Hạng "+[...wins].filter(i => i.quota > (user.win.quota))[0].level:""):""}
                                   </span>
                                 </div>
                                 <footer className="flex items-center justify-start text-xs text-blueGray-500 mb-1">
