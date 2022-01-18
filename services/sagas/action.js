@@ -23,8 +23,8 @@ function* addNewAUserSaga({payload}) {
       const {data, statusText} = delta
       // RESPONSE TRUE
       if(data && !data.error){
-        // Cap nhat du lieu menu
-        // yield put(refreshMenu(data.datas))
+        // Cap nhat du lieu - CAN DUA LEN REDUCER DE CAP NHAT LAI TRANG THAI THANH THONG BAO
+        yield put(refreshNotifying(data.datas))
         // Show thong bao thanh cong tren DASHBOARD
         yield put(alertSuccess(data.msg))
       }
@@ -56,7 +56,9 @@ function* updateAUserSaga({payload}) {
       // RESPONSE TRUE
       if(data && !data.error){
         // Cap nhat du lieu
-        yield put(refreshDataUser(data.datas))
+        yield put(refreshDataUser(data.datas.user))
+        // Cap nhat du lieu - CAN DUA LEN REDUCER DE CAP NHAT LAI TRANG THAI THANH THONG BAO
+        yield put(refreshNotifying(data.datas.notifies))
         // Show thong bao thanh cong tren DASHBOARD
         yield put(alertSuccess(data.msg))
       }
