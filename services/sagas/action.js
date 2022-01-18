@@ -118,7 +118,7 @@ function* toggerReportSaga({payload}) {
       // RESPONSE TRUE
       if(data && !data.error){
         // Cap nhat du lieu - CAN DUA LEN REDUCER DE CAP NHAT LAI TRANG THAI THANH THONG BAO
-        yield put(refreshNotifying(payload.id))
+        yield put(refreshNotifying(data.datas))
         // Show thong bao thanh cong tren ADMIN LAYOUT
         yield put(alertInfo(data.msg))
       }
