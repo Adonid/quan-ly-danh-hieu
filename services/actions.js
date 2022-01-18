@@ -36,6 +36,13 @@ export function toggerReportAction(payload){
     payload
   }
 }
+/** TOGGER REPORT  CHO USER */
+export function refreshNotifying(payload){
+  return{
+    type: constans.REFRESH_NOTIFYING,
+    payload
+  }
+}
 /** NANG CAP DANH HIEU */
 export function promotionWinAction(payload){
   return{

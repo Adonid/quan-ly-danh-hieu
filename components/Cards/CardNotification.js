@@ -56,7 +56,7 @@ export default function CardTable({ color, notification, wins, promotion, togger
   const changeSelect = e => console.log(e)
   // Action Promotion
   const promotionLevel = data => promotion(data)
-  // Action Promotion
+  // Show/hiden
   const toggerAlert = data => {
     // To Action!
     toggerAlertUser(data)

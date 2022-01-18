@@ -3,7 +3,8 @@ import {
     alertSuccess,
     alertInfo,
     refreshDataUser,
-    alertWarning
+    alertWarning,
+    refreshNotifying
 } from '../actions'
 import { LOGIN, ADD_USER, UPDATE_ACCOUNT, UPDATE_ORTHER_INFO, TOGGER_REPORT, PROMOTION_WIN } from '../constans'
 import {
@@ -114,11 +115,10 @@ function* toggerReportSaga({payload}) {
       // goi API toggerReportApi
       const delta = yield call(toggerReportApi, payload)
       const {data, statusText} = delta
-      console.log(data);
       // RESPONSE TRUE
       if(data && !data.error){
         // Cap nhat du lieu - CAN DUA LEN REDUCER DE CAP NHAT LAI TRANG THAI THANH THONG BAO
-        // yield put(refreshDataUser(data.datas))
+        yield put(refreshNotifying(payload.id))
         // Show thong bao thanh cong tren ADMIN LAYOUT
         yield put(alertInfo(data.msg))
       }

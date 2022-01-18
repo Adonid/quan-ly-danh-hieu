@@ -1,7 +1,8 @@
 import { 
   LOGGED,
   REMOVE_TOKEN,
-  FORGET_PASSWORD_DONE
+  FORGET_PASSWORD_DONE,
+  REFRESH_NOTIFYING
   } from "../constans"
 import {setTokenInCookie, removeTokenInCookie} from 'general/helper/cookie'
 
@@ -42,6 +43,15 @@ function loginReducer(state = initialState, action) {
       return{
         ...state,
         email: action.payload,
+      }
+
+    // CAP NHAT TRANG THAI THONG BAO KHI TOGGER THONG BAO
+    case REFRESH_NOTIFYING:
+      const newNotifies = {...state}.notifying.filter(i => i.id !== action.payload)
+      console.log(newNotifies);
+      return{
+        ...state,
+        notifying: newNotifies
       }
 
     default:

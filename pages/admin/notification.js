@@ -8,7 +8,7 @@ import { toggerReportAction, promotionWinAction } from "services/actions";
 // layout for page
 import Admin from "layouts/Admin.js";
 // API
-import {getDetailAUserApi, getNotification} from 'apis/Auth'
+import {getNotification} from 'apis/Auth'
 
 function Notification({notifyUser, wins, currentUser, toggerReportCreators, promotionWinCreators}) {
   const [notifications, setNotifications] = useState(notifyUser)

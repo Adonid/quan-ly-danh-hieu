@@ -1,8 +1,23 @@
-import React, {Fragment } from "react";
+import React, {Fragment, useEffect, useState } from "react";
 import { Popover, Transition } from '@headlessui/react'
+// Components
+import ToolTip from "components/ToolTip/ToolTip";
+// Convert time
+import { outOfDateRelative, outOfDateDetail } from "general/convert/convertTime";
+// Convert link
+import { toImageUrl } from "general/convert/convertmageUrl";
 
-const NotificationDropdown = ({notifying}) => {
-  console.log(notifying)
+const NotificationDropdown = ({notifying, wins, toggerAlertUser}) => {
+  // Show/hiden
+  const [notifies, setNotifies] = useState(notifying)
+  const toggerAlert = data => {
+    // To Action!
+    toggerAlertUser(data)
+  }
+  // Cap nhat thong bao
+  useEffect(() => {
+    setNotifies(notifying)
+  }, [notifying])
   return (
     <Popover className="relative">
       <Popover.Button
@@ -10,9 +25,9 @@ const NotificationDropdown = ({notifying}) => {
       >
         <i className="text-xl far fa-bell"></i>
         {
-          notifying.length ?
-          <sup className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-100 bg-red-500 last:mr-0 mr-1">
-            {notifying.length}
+          notifies.length ?
+          <sup className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-100 bg-red-500 last:mr-0 mr-1 min-w-fit">
+            {notifies.length}
           </sup>
           :
           null
@@ -33,39 +48,56 @@ const NotificationDropdown = ({notifying}) => {
         <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
           <div className="rounded-lg shadow-xl bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
             <h3 className="text-lg px-6 py-2 leading-6 font-bold text-gray-900">Thông báo</h3>
-            <div className="relative grid gap-6 sm:gap-8 sm:p-8" style={{maxHeight:"455px", overflowY:"scroll"}}>
+            <div className={"grid gap-6 sm:gap-8 sm:p-8 "+(notifies.length?"relative":"")} style={{maxHeight:"455px", overflowY:"scroll"}}>
               {
-                notifying.length?
+                notifies.length?
                 <table className="min-w-full divide-y divide-gray-100">
                   <tbody className="divide-y divide-gray-100">
                     {
-                      notifying.map((user, key) => (
+                      notifies.map((user, key) => (
                         <tr key={key}>
                           <td className="px-6 py-2 whitespace-nowrap">
                             <div className="flex items-center">
                               <div className="flex-shrink-0 h-12 w-12">
-                                <img className="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="" />
+                                <img className="h-12 w-12 rounded-full" src={toImageUrl(user.avatar)} alt={user.name} />
                               </div>
                               <div className="pl-3">
                                 <div className="font-medium">
-                                  <span className="text-sm text-blueGray-900">{user.name}</span>
+                                  <span className="text-md text-blueGray-900">{user.name}</span>
                                   <span className="text-xs text-blueGray-500"> đã đến hạn nhận danh hiệu </span>
                                 </div>
                                 <div className="text-sm pt-0.5">
-                                  <span className="text-blueGray-700 font-medium">Tinh anh 2</span>
+                                  <span className="text-blueGray-700 font-medium">
+                                  <i className={"fas fa-star mr-2 " + ([...wins].filter(i => i.quota > user.win.quota)[0].color||"text-blueGray-500")}></i> {[...wins].filter(i => i.quota > user.win.quota)[0].name+" "||"Đã nhận tối đa"}
+                                  {[...wins].filter(i => i.quota > (user.win.quota))[0]? "- Hạng "+[...wins].filter(i => i.quota > (user.win.quota))[0].level:""}
+                                  </span>
                                 </div>
-                                <footer className="flex items-center justify-start text-xs text-blueGray-500">
-                                  <cite className="pb-2">5 giờ trước</cite>
+                                <footer className="flex items-center justify-start text-xs text-blueGray-500 mb-1">
+                                  <ToolTip 
+                                    content={
+                                        <cite className="cursor-pointer">
+                                          {outOfDateRelative(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0)}
+                                        </cite>
+                                    }
+                                    contentToolTip={
+                                      <div
+                                        className="bg-blueGray-600 border-0 mr-3 block z-50 font-normal leading-normal text-xs max-w-xs text-left no-underline break-words rounded-lg text-white text-xs opacity-75 p-3 rounded-t-lg"
+                                      >
+                                        {outOfDateDetail(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0)?"Từ "+outOfDateDetail(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0)+" đến hôm nay":"Chưa đủ thời gian nhận"}
+                                      </div>
+                                    }
+                                  />
                                   <div>
                                     <button 
-                                      className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
+                                      className="px-2 py-2 outline-none focus:outline-none ease-linear transition-all duration-150" 
                                       type="button"
-                                      title="Ẩn thông báo người dùng này"
+                                      title={user.show_report?"Ẩn thông báo người dùng này":"Hiển thị thông báo người dùng này"}
+                                      onClick={() => toggerAlert({id:user.id, show_report: !user.show_report})}
                                     >
                                       <i className="fas fa-eye text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
                                     </button>
                                     <button 
-                                      className="px-2 py-2 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150" 
+                                      className="px-2 py-2 outline-none focus:outline-none ease-linear transition-all duration-150" 
                                       type="button"
                                       title="Trao tặng"
                                     >

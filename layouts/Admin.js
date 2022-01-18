@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // Core nextjs
 import { useRouter } from 'next/router'
@@ -7,13 +7,13 @@ import { useToasts } from 'react-toast-notifications'
 // Redux
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
-import { addAUserAction, logoutAction } from "services/actions";
+import { addAUserAction, logoutAction, toggerReportAction, promotionWinAction } from "services/actions";
 // components
 import IndexNavbar from "components/Navbars/IndexNavbar";
 import HeaderStats from "components/Headers/HeaderStats.js";
 import FooterAdmin from "components/Footers/FooterAdmin.js";
 
-function Admin({ children, toaster, addAUserCreators, logoutCreators, notifying }) {
+function Admin({ children, toaster, addAUserCreators, logoutCreators, toggerReportCreators, notifying, wins }) {
   const router = useRouter()
   // Show hide toaster
   const { addToast } = useToasts()
@@ -26,11 +26,16 @@ function Admin({ children, toaster, addAUserCreators, logoutCreators, notifying 
       })
     index.current++
   }, [toaster])
+  // Cap nhat thong bao
+  const [notifies, setNotifies] = useState(notifying)
+  useEffect(() => {
+    setNotifies(notifying)
+  }, [notifying])
 
   return (
     <>
       <div className="relative bg-blueGray-100">
-        <IndexNavbar pathName={router.pathname} addAUser={addAUserCreators} logoutAdmin={logoutCreators} notifying={notifying} />
+        <IndexNavbar pathName={router.pathname} addAUser={addAUserCreators} logoutAdmin={logoutCreators} notifying={notifies} wins={wins} toggerAlertUser={toggerReportCreators}/>
         {/* Header */}
         <HeaderStats />
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
@@ -46,7 +51,8 @@ function Admin({ children, toaster, addAUserCreators, logoutCreators, notifying 
 const mapStateToProps = state => {
   return {
     toaster: state.common.toaster,
-    notifying: state.login.notifying
+    notifying: state.login.notifying,
+    wins: state.login.wins,
   }
 }
 
@@ -54,6 +60,8 @@ const mapDispatchToProps = dispatch => {
   return {
     addAUserCreators: bindActionCreators(addAUserAction, dispatch),
     logoutCreators: bindActionCreators(logoutAction, dispatch),
+    toggerReportCreators: bindActionCreators(toggerReportAction, dispatch),
+    // promotionWinCreators: bindActionCreators(promotionWinAction, dispatch),
   }
 }
 

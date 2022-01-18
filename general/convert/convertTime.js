@@ -14,7 +14,7 @@ export const outOfDateRelative = (dateWorked, toQuota) => {
     const outOfYear = dayjs().diff(dateQuota, 'year', true)
     const outOfYearRound = dayjs().diff(dateQuota, 'year', false)
     if(outOfYear>=1){
-        return "Quá hạn khoảng "+outOfYearRound+" năm"
+        return "Khoảng "+outOfYearRound+" năm trước"
     }
     if(outOfYear<0){
         return "Chưa đủ thời gian nhận"
@@ -22,12 +22,12 @@ export const outOfDateRelative = (dateWorked, toQuota) => {
     const outOfMouth = dayjs().diff(dateQuota, 'month', true)
     const outOfMouthRound = dayjs().diff(dateQuota, 'month', false)
     if(outOfMouth>=1){
-        return "Quá hạn khoảng "+outOfMouthRound+" tháng"
+        return "Khoảng "+outOfMouthRound+" tháng trước"
     }
     const outOfDay = dayjs().diff(dateQuota, 'day', true)
     const outOfDayRound = dayjs().diff(dateQuota, 'day', false)
     if(outOfDay>=1){
-        return "Quá hạn khoảng "+outOfDayRound+" ngày"
+        return "Khoảng "+outOfDayRound+" ngày trước"
     }
     const outOfHour = dayjs().diff(dateQuota, 'hour', true)
     const outOfHourRound = dayjs().diff(dateQuota, 'hour', false)

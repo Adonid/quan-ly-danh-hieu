@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 // components
 import UserDropdown from "components/Dropdowns/UserDropdown";
@@ -6,11 +6,16 @@ import NotificationDropdown from "components/Dropdowns/NotificationDropdown";
 import DialogAddAUser from "components/ModalDialog/DialogAddAUser";
 
 
-export default function Navbar({addAUser, logoutAdmin, notifying}) {
+export default function Navbar({addAUser, logoutAdmin, notifying, wins, toggerAlertUser}) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   // Add New A User
   const addNewAUser = data => addAUser(data)
   const logout = () => logoutAdmin()
+  // Cap nhat thong bao
+  const [notifies, setNotifies] = useState(notifying)
+  useEffect(() => {
+    setNotifies(notifying)
+  }, [notifying])
   return (
     <>
       <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
@@ -40,7 +45,7 @@ export default function Navbar({addAUser, logoutAdmin, notifying}) {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row list-none mr-auto">
-              <NotificationDropdown notifying={notifying} />
+              <NotificationDropdown notifying={notifies} wins={wins} toggerAlertUser={toggerAlertUser}/>
             </ul>
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">
