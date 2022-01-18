@@ -47,27 +47,9 @@ function loginReducer(state = initialState, action) {
 
     // CAP NHAT TRANG THAI THONG BAO KHI TOGGER THONG BAO
     case REFRESH_NOTIFYING:
-      let notifies = {...state}.notifying
-      // Lay user tra ve
-      const currentUser = action.payload
-      // User nay co trong store nay chua
-      const inUser = notifies.filter(item => (item.id === currentUser.id))[0]
-      // Neu co trong store nay roi thi chi viec cap nhat lai user nay
-      if(inUser){
-        notifies = notifies.map(user => {
-          if(user.id === currentUser.id)
-            return currentUser
-          return user
-        })
-      }
-      // Neu khong co trong store thi add truc tiep vao
-      else{
-        notifies.push(currentUser)
-      }      
-      const newNotifies = notifies.filter(i => (i.show_report && i.to_quota))
       return{
         ...state,
-        notifying: newNotifies
+        notifying: action.payload
       }
 
     default:

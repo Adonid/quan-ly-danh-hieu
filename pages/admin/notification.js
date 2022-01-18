@@ -10,18 +10,12 @@ import Admin from "layouts/Admin.js";
 // API
 import {getNotification} from 'apis/Auth'
 
-function Notification({notifyUser, wins, currentUser, toggerReportCreators, promotionWinCreators}) {
-  const [notifications, setNotifications] = useState(notifyUser)
-  // Thay doi USER khi co cap nhat moi tu CSR
+function Notification({wins, notifying, toggerReportCreators, promotionWinCreators}) {
+  const [notifications, setNotifications] = useState(notifying)  
+  // Cap nhat CSR khi user tren thanh thong bao thay doi
   useEffect(() => {
-     // Cap nhat cho bang notifies
-     const newNotifies = [...notifications].map(item => {
-          if(item.id === currentUser.id)
-            return currentUser
-          return item
-      }).filter(i => i.to_quota)
-      setNotifications(newNotifies)
-  }, [currentUser])
+    setNotifications(notifying)
+  }, [notifying])
 
   // Cac thao tac
   const promotionUser = data => promotionWinCreators(data)
@@ -48,7 +42,8 @@ Notification.layout = Admin;
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.common.currentUser
+    notifying: state.login.notifying,
+    wins: state.login.wins,
   }
 }
 
@@ -93,7 +88,6 @@ export async function getServerSideProps(ctx) {
       return {
         props: {
           notifyUser: datasSSR.datas.notifyUser,
-          wins: datasSSR.datas.wins,
         },
       }
     // Back to login-page

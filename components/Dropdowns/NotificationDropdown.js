@@ -16,7 +16,8 @@ const NotificationDropdown = ({notifying, wins, toggerAlertUser}) => {
   }
   // Cap nhat thong bao
   useEffect(() => {
-    setNotifies(notifying)
+    const newNotifies = [...notifying].filter(item => (item.show_report && item.to_quota))
+    setNotifies(newNotifies)
   }, [notifying])
   return (
     <Popover className="relative">
