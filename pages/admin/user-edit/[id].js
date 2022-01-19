@@ -13,15 +13,14 @@ import {isNumber} from "general/validate/commonValiate"
 // API
 import {getDetailAUserApi} from 'apis/Auth'
 
-function Settings({user, notifying, currentUser, wins, updateAccountCreators, updateOrtherInfoCreators}) {
+function Settings({user, currentUser, wins, updateAccountCreators, updateOrtherInfoCreators}) {
   const [userData, setUserData] = useState(user)
+  useEffect(() => {
+      setUserData(currentUser)
+  }, [currentUser])
   useEffect(() => {
       setUserData(user)
   }, [user])
-  useEffect(() => {
-      const newUser = [...notifying].filter(item => item.id===userData.id)[0]
-      newUser?setUserData(newUser):setUserData(currentUser)
-  }, [currentUser, notifying])
   return (
     <>
       <div className="flex flex-wrap">
@@ -41,7 +40,6 @@ Settings.layout = Admin;
 const mapStateToProps = state => {
   return {
     currentUser: state.common.currentUser,
-    notifying: state.login.notifying,
     wins: state.login.wins
   }
 }
