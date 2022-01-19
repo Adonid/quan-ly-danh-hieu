@@ -4,7 +4,7 @@ import DialogConfirm from "components/ModalDialog/DialogConfirm.js";
 import ToolTip from "components/ToolTip/ToolTip";
 // Convert link
 import { toImageUrl } from "general/convert/convertmageUrl";
-import { outOfDateRelative, outOfDateDetail } from "general/convert/convertTime";
+import { outOfDateRelative, outOfDateDetail, willReceiveDateRelative, willRecieveDateDetail } from "general/convert/convertTime";
 
 export default function CardProfile({user, wins}) {
   return (
@@ -111,8 +111,26 @@ export default function CardProfile({user, wins}) {
                   :
                     <>
                       <i className="fas fa-star mr-2 text-lg text-blueGray-500"></i>{" "}
-                      Còn <b> xy ngày</b> nữa sẽ nhận danh hiệu
-                      <cite> Tinh anh 1</cite>
+                      Còn {" "}
+                      <ToolTip
+                        className="inline-block"
+                        content={
+                          <b>
+                            {willReceiveDateRelative(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0)}
+                          </b>
+                        }
+                        contentToolTip={
+                          <div
+                            className="bg-blueGray-600 border-0 mr-3 z-50 font-normal leading-normal text-xs max-w-xs text-left no-underline break-words rounded-lg text-white text-xs opacity-75 p-3 rounded-t-lg"
+                          >
+                            {willRecieveDateDetail(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0)?"Vào ngày "+willRecieveDateDetail(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0):"Đã nhận đủ các danh hiệu"}
+                          </div>
+                        }
+                      />
+                      {" "}
+                      sẽ nhận danh hiệu
+                      {" "}
+                      <cite>{[...wins].filter(i => i.quota > (user.win.quota))[0]?([...wins].filter(i => i.quota > (user.win.quota))[0].level?[...wins].filter(i => i.quota > (user.win.quota))[0].name+" - Hạng "+[...wins].filter(i => i.quota > (user.win.quota))[0].level:""):"Đã nhận đủ các danh hiệu"}</cite>
                     </>
                 }
             </div>
