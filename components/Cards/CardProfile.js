@@ -5,7 +5,7 @@ import { toImageUrl } from "general/convert/convertmageUrl";
 import DialogConfirm from "components/ModalDialog/DialogConfirm.js";
 import ToolTip from "components/ToolTip/ToolTip";
 
-export default function CardProfile({user}) {
+export default function CardProfile({user, wins}) {
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
@@ -23,9 +23,30 @@ export default function CardProfile({user}) {
             <div className="w-full px-4 text-center mt-20">
               <div className="flex justify-center py-4 lg:pt-4 pt-8">
                 <div className="mr-4 p-3 text-center">
-                  <span className="font-bold block uppercase tracking-wide">
-                    <i className="fas fa-star mr-2 text-2xl text-blueGray-300"></i>
-                  </span>
+                  <ToolTip
+                    content={
+                      <span className="font-bold block uppercase tracking-wide mr-2 text-2xl text-blueGray-400">
+                        0{wins.filter(item => item.quota <= user.win.quota).length - 1}
+                      </span>
+                    }
+                    contentToolTip={
+                      <div
+                        className="bg-blueGray-600 border-0 mr-3 z-50 font-normal leading-normal text-xs max-w-xs text-left no-underline break-words rounded-lg text-white text-xs opacity-75 p-3 rounded-t-lg"
+                      >
+                        {
+                          wins.filter(item => item.quota <= user.win.quota).map((item, key) => (
+                            key===0 ?
+                              null
+                            :
+                              <>
+                                <span key={key}>{item.name + (item.level?" - Hạng "+item.level:"")}</span>
+                                <br/>
+                              </>
+                          ))
+                        }
+                      </div>
+                    }
+                  />
                   <span className="text-sm text-blueGray-400">DH đã nhận</span>
                 </div>
                 <div className="mr-4 p-3 text-center">

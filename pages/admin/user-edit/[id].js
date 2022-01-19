@@ -13,7 +13,7 @@ import {isNumber} from "general/validate/commonValiate"
 // API
 import {getDetailAUserApi} from 'apis/Auth'
 
-function Settings({user, currentUser, updateAccountCreators, updateOrtherInfoCreators}) {
+function Settings({user, currentUser, wins, updateAccountCreators, updateOrtherInfoCreators}) {
   const [userData, setUserData] = useState(user)
   useEffect(() => {
       setUserData(currentUser)
@@ -28,7 +28,7 @@ function Settings({user, currentUser, updateAccountCreators, updateOrtherInfoCre
           <CardSettings user={user} updateAccount={updateAccountCreators} updateOrtherinfo={updateOrtherInfoCreators} />
         </div>
         <div className="w-full lg:w-4/12 px-4">
-          <CardProfile user={userData} />
+          <CardProfile user={userData} wins={wins} />
         </div>
       </div>
     </>
@@ -39,7 +39,8 @@ Settings.layout = Admin;
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.common.currentUser
+    currentUser: state.common.currentUser,
+    wins: state.login.wins
   }
 }
 
