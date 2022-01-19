@@ -110,7 +110,7 @@ export default function CardProfile({user, wins}) {
                     </>
                   :
                     <>
-                      <i className="fas fa-star mr-2 text-lg text-blueGray-500"></i>{" "}
+                      <i className={"fas fa-star mr-2 text-lg " + ([...wins].filter(i => i.quota > user.win.quota)[0].color||"text-blueGray-500")}></i>{" "}
                       Còn {" "}
                       <ToolTip
                         className="inline-block"
