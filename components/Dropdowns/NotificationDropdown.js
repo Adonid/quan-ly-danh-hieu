@@ -95,7 +95,7 @@ const NotificationDropdown = ({notifying, wins, toggerAlertUser, promotionLevel}
                                       title={user.show_report?"Ẩn thông báo người dùng này":"Hiển thị thông báo người dùng này"}
                                       onClick={() => toggerAlert({id:user.id, show_report: !user.show_report})}
                                     >
-                                      <i className="fas fa-eye text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
+                                      <i className="far fa-eye text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
                                     </button>
                                     <button 
                                       className="px-2 py-2 outline-none focus:outline-none ease-linear transition-all duration-150" 
