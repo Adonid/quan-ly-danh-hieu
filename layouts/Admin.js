@@ -13,7 +13,7 @@ import IndexNavbar from "components/Navbars/IndexNavbar";
 import HeaderStats from "components/Headers/HeaderStats.js";
 import FooterAdmin from "components/Footers/FooterAdmin.js";
 
-function Admin({ children, toaster, addAUserCreators, logoutCreators, toggerReportCreators, notifying, wins }) {
+function Admin({ children, toaster, addAUserCreators, logoutCreators, toggerReportCreators, promotionWinCreators, notifying, wins }) {
   const router = useRouter()
   // Show hide toaster
   const { addToast } = useToasts()
@@ -35,7 +35,7 @@ function Admin({ children, toaster, addAUserCreators, logoutCreators, toggerRepo
   return (
     <>
       <div className="relative bg-blueGray-100">
-        <IndexNavbar pathName={router.pathname} addAUser={addAUserCreators} logoutAdmin={logoutCreators} notifying={notifies} wins={wins} toggerAlertUser={toggerReportCreators}/>
+        <IndexNavbar pathName={router.pathname} addAUser={addAUserCreators} logoutAdmin={logoutCreators} notifying={notifies} wins={wins} toggerAlertUser={toggerReportCreators} promotionLevel={promotionWinCreators}/>
         {/* Header */}
         <HeaderStats />
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
@@ -61,7 +61,7 @@ const mapDispatchToProps = dispatch => {
     addAUserCreators: bindActionCreators(addAUserAction, dispatch),
     logoutCreators: bindActionCreators(logoutAction, dispatch),
     toggerReportCreators: bindActionCreators(toggerReportAction, dispatch),
-    // promotionWinCreators: bindActionCreators(promotionWinAction, dispatch),
+    promotionWinCreators: bindActionCreators(promotionWinAction, dispatch),
   }
 }
 

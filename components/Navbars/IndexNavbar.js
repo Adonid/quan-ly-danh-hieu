@@ -6,7 +6,7 @@ import NotificationDropdown from "components/Dropdowns/NotificationDropdown";
 import DialogAddAUser from "components/ModalDialog/DialogAddAUser";
 
 
-export default function Navbar({addAUser, logoutAdmin, notifying, wins, toggerAlertUser}) {
+export default function Navbar({addAUser, logoutAdmin, notifying, wins, toggerAlertUser, promotionLevel}) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   // Add New A User
   const addNewAUser = data => addAUser(data)
@@ -45,7 +45,7 @@ export default function Navbar({addAUser, logoutAdmin, notifying, wins, toggerAl
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row list-none mr-auto">
-              <NotificationDropdown notifying={notifies} wins={wins} toggerAlertUser={toggerAlertUser}/>
+              <NotificationDropdown notifying={notifies} wins={wins} toggerAlertUser={toggerAlertUser} promotionLevel={promotionLevel}/>
             </ul>
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">

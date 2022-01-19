@@ -7,7 +7,7 @@ import { outOfDateRelative, outOfDateDetail } from "general/convert/convertTime"
 // Convert link
 import { toImageUrl } from "general/convert/convertmageUrl";
 
-const NotificationDropdown = ({notifying, wins, toggerAlertUser}) => {
+const NotificationDropdown = ({notifying, wins, toggerAlertUser, promotionLevel}) => {
   // Show/hiden
   const [notifies, setNotifies] = useState(notifying)
   const toggerAlert = data => {
@@ -101,6 +101,7 @@ const NotificationDropdown = ({notifying, wins, toggerAlertUser}) => {
                                       className="px-2 py-2 outline-none focus:outline-none ease-linear transition-all duration-150" 
                                       type="button"
                                       title="Trao tặng"
+                                      onClick={() => promotionLevel({id: user.id, win_id: user.win_id, birthday: user.birthday})}
                                     >
                                       <i className="fas fa-angle-double-up text-blueGray-400 hover:text-blueGray-500 text-xs"></i>
                                     </button>
