@@ -1,9 +1,10 @@
 import React from "react";
-// Link image
-import { toImageUrl } from "general/convert/convertmageUrl";
 // components
 import DialogConfirm from "components/ModalDialog/DialogConfirm.js";
 import ToolTip from "components/ToolTip/ToolTip";
+// Convert link
+import { toImageUrl } from "general/convert/convertmageUrl";
+import { outOfDateRelative, outOfDateDetail } from "general/convert/convertTime";
 
 export default function CardProfile({user, wins}) {
   return (
@@ -78,16 +79,45 @@ export default function CardProfile({user, wins}) {
             </div>
           </div>
           <div className="text-center mt-2">
-            <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+            <h3 className="text-xl font-semibold leading-normal mb-3 text-blueGray-700 mb-2">
               {user.name}
             </h3>
-            <div className="text-sm text-left leading-normal mt-0 mb-2 text-blueGray-400 font-normal">
-              <i className="fas fa-star mr-2 text-lg text-blueGray-400"></i>{" "}
-                Còn <b> xy ngày</b> nữa sẽ nhận danh hiệu
-                <cite> Tinh anh 1</cite>
+            <div className="text-sm text-left leading-normal mt-0 mb-3 text-blueGray-500 font-normal">
+                {
+                  user.to_quota?
+                    <>
+                        <i className={"fas fa-star mr-2 text-lg " + ([...wins].filter(i => i.quota > user.win.quota)[0].color||"text-blueGray-500")}></i>
+                        Đã quá hạn nhận danh hiệu
+                        {" "}
+                        <b>
+                          {[...wins].filter(i => i.quota > user.win.quota)[0].name+" "||"Đã nhận tối đa"}
+                          {[...wins].filter(i => i.quota > (user.win.quota))[0]?([...wins].filter(i => i.quota > (user.win.quota))[0].level? " - Hạng "+[...wins].filter(i => i.quota > (user.win.quota))[0].level:""):""}
+                        </b>
+                        {" "}
+                        <ToolTip
+                          className="inline-block"
+                          content={
+                            <cite>{outOfDateRelative(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0)}</cite>
+                          }
+                          contentToolTip={
+                            <div
+                              className="bg-blueGray-600 border-0 mr-3 z-50 font-normal leading-normal text-xs max-w-xs text-left no-underline break-words rounded-lg text-white text-xs opacity-75 p-3 rounded-t-lg"
+                            >
+                              {outOfDateDetail(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0)?"Từ "+outOfDateDetail(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0)+" đến hôm nay":"Chưa đủ thời gian nhận"}
+                            </div>
+                          }
+                        />
+                    </>
+                  :
+                    <>
+                      <i className="fas fa-star mr-2 text-lg text-blueGray-500"></i>{" "}
+                      Còn <b> xy ngày</b> nữa sẽ nhận danh hiệu
+                      <cite> Tinh anh 1</cite>
+                    </>
+                }
             </div>
-            <div className="text-sm text-left leading-normal mt-0 mb-2 text-blueGray-400 font-normal">
-              <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
+            <div className="text-sm text-left leading-normal mt-0 mb-2 text-blueGray-500 font-normal">
+              <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-500"></i>{" "}
               {
                 user.address?user.address+", ":"-"
               }
@@ -101,26 +131,24 @@ export default function CardProfile({user, wins}) {
                 user.province?user.province+".":"-"
               }
             </div>
-            <div className="text-sm text-left leading-normal mt-0 mb-1 text-blueGray-400 font-normal">
-              <i className="fas fa-phone-alt mr-2 text-lg text-blueGray-400"></i>{" "}
+            <div className="text-sm text-left leading-normal mt-0 mb-1 text-blueGray-500 font-normal">
+              <i className="fas fa-phone-alt mr-2 text-lg text-blueGray-500"></i>{" "}
               {user.phone?<a href={"tel:"+user.phone}>{user.phone}</a>:"--"}
             </div>
-            <div className="mb-2 text-left text-blueGray-600 mt-10">
-              <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
+            <div className="mb-2 text-left text-blueGray-500 mt-10">
+              <i className="fas fa-briefcase mr-2 text-md text-blueGray-400"></i>
               {user.position}
             </div>
-            <div className="mb-2 text-left text-blueGray-600">
-              <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
+            <div className="mb-2 text-left text-blueGray-500">
+              <i className="fas fa-university mr-2 text-md text-blueGray-400"></i>
               {user.work_unit}
             </div>
           </div>
           <div className="text-left mt-10 py-5 border-t border-blueGray-200">
-            <div className="flex flex-wrap justify-center">
-              <div className="w-full lg:w-9/12 px-4">
-                <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                  {user.description||"--"}
-                </p>
-              </div>
+           <div className="w-full lg:w-9/12 px-4">
+              <p className="mb-4 text-sm leading-relaxed text-blueGray-600">
+                {user.description||"--"}
+              </p>
             </div>
           </div>
           <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
