@@ -26,6 +26,7 @@ export const UPDATE_ORTHER_INFO = "UPDATE_ORTHER_INFO"
 export const TOGGER_REPORT = "TOGGER_REPORT"
 export const REFRESH_NOTIFYING = "REFRESH_NOTIFYING"
 export const PROMOTION_WIN = "PROMOTION_WIN"
+export const DELETE_A_USER = "DELETE_A_USER"
 export const LOGIN = config.host
 export const LOGGED = 'LOGGED'
 export const REMOVE_TOKEN = 'REMOVE_TOKEN'

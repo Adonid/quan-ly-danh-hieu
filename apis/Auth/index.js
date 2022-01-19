@@ -12,9 +12,7 @@ export const promotionWinApi = params => post('user/promotion-win', params)
 export const getDetailAUserApi = (token, id) => fetching('user/detail?id=', token, id)
 export const getDashboard = token => fetching('dashboard', token)
 export const getNotification = token => fetching('notification', token)
-
-export const deleteAUserApi = params => post('delete', params)
-export const getUsersApi = params => post('get', params)
+export const deleteAUserApi = params => post('user/delete', params)
 
 // ADMIN
 export const loginApi = params => Admin.post('login', params)

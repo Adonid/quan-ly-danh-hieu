@@ -50,6 +50,13 @@ export function promotionWinAction(payload){
     payload
   }
 }
+/** NANG CAP DANH HIEU */
+export function deleteAUserAction(payload){
+  return{
+    type: constans.DELETE_A_USER,
+    payload
+  }
+}
 /** DANG NHAP */
 export function loginAction(payload){
   return{

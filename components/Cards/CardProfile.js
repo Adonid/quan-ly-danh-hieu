@@ -6,7 +6,7 @@ import ToolTip from "components/ToolTip/ToolTip";
 import { toImageUrl } from "general/convert/convertmageUrl";
 import { outOfDateRelative, outOfDateDetail, willReceiveDateRelative, willRecieveDateDetail } from "general/convert/convertTime";
 
-export default function CardProfile({user, wins}) {
+export default function CardProfile({user, wins, deleteUser}) {
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
@@ -163,8 +163,8 @@ export default function CardProfile({user, wins}) {
             </div>
           </div>
           <div className="text-left mt-10 py-5 border-t border-blueGray-200">
-           <div className="w-full lg:w-9/12 px-4">
-              <p className="mb-4 text-sm leading-relaxed text-blueGray-600">
+           <div className="w-full px-4">
+              <p className="mb-4 text-md leading-relaxed text-blueGray-600">
                 {user.description||"--"}
               </p>
             </div>
@@ -174,9 +174,9 @@ export default function CardProfile({user, wins}) {
               <div className="w-full lg:w-9/12 px-4">
                 <DialogConfirm 
                   type="danger"
-                  action={console.log("Action!")}
+                  action={() => deleteUser({id: user.id, name: user.name})}
                   title="Xóa người dùng"
-                  des="Bạn có muốn xóa tất cả dữ liệu của người này?"
+                  des={"Bạn có muốn xóa tất cả dữ liệu của "+user.name+"?"}
                   label="Xóa người dùng này"
                   button={true}
                   colorButton="text-red-500"

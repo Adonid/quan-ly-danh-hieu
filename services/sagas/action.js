@@ -1,4 +1,4 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects'
+import { all, call, delay, put, takeLatest } from 'redux-saga/effects'
 import {
     alertSuccess,
     alertInfo,
@@ -6,13 +6,14 @@ import {
     alertWarning,
     refreshNotifying
 } from '../actions'
-import { LOGIN, ADD_USER, UPDATE_ACCOUNT, UPDATE_ORTHER_INFO, TOGGER_REPORT, PROMOTION_WIN } from '../constans'
+import { uriPage, LOGIN, ADD_USER, UPDATE_ACCOUNT, UPDATE_ORTHER_INFO, TOGGER_REPORT, PROMOTION_WIN, DELETE_A_USER } from '../constans'
 import {
   addAUserApi,
   updateAccountUserApi,
   updateAUserApi,
   toggerReportApi,
-  promotionWinApi
+  promotionWinApi,
+  deleteAUserApi
 } from 'apis/Auth'
 
 // THEM MOI USER
@@ -173,6 +174,40 @@ function* promotionWinSaga({payload}) {
     //   yield put(alertWarning(err.message||statusText))
   }
 }
+// XOA 1 NGUOI DUNG
+function* deleteAUserSaga({payload}) {
+  try {
+      // goi API deleteAUserApi
+      const delta = yield call(deleteAUserApi, payload)
+      const {data, statusText} = delta
+      // RESPONSE TRUE
+      if(data && !data.error){
+        // Cap nhat du lieu - CAN DUA LEN REDUCER DE CAP NHAT LAI TRANG THAI THANH THONG BAO
+        yield put(refreshNotifying(data.datas))
+        yield delay(1000)
+        // Ve trang dashboard
+        yield window.location.replace(uriPage.home)
+        // Show thong bao thanh cong tren DASHBOARD
+        yield put(alertInfo(data.msg))
+      }
+      // LOI REQUEST
+      else{
+        // LOI HET PHIEN DANG NHAP
+        if(statusText==="Unauthorized"){
+          yield window.location.replace(LOGIN)
+        }
+        // CAC LOI KHAC KHONG RO NGUON GOC
+        else{
+            // Show TB loi
+            yield put(alertWarning(data.error||statusText))
+        }
+      }
+    } catch (err) {
+      yield console.log(err)
+      // Show TB loi
+    //   yield put(alertWarning(err.message||statusText))
+  }
+}
 
 
 function* rootSaga() {
@@ -182,6 +217,7 @@ function* rootSaga() {
       takeLatest(UPDATE_ORTHER_INFO, updateOrtherInfoSaga),
       takeLatest(TOGGER_REPORT, toggerReportSaga),
       takeLatest(PROMOTION_WIN, promotionWinSaga),
+      takeLatest(DELETE_A_USER, deleteAUserSaga),
     ])
   }
   
