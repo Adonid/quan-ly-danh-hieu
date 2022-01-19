@@ -49,7 +49,7 @@ const NotificationDropdown = ({notifying, wins, toggerAlertUser}) => {
         <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
           <div className="rounded-lg shadow-xl bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
             <h3 className="text-lg px-6 py-2 leading-6 font-bold text-gray-900">Thông báo</h3>
-            <div className={"grid gap-6 sm:gap-8 sm:p-8 "+(notifies.length?"relative":"")} style={{maxHeight:"455px", overflowY:"scroll"}}>
+            <div className={"grid gap-6 sm:gap-8 sm:p-8 mb-3 "+(notifies.length?"relative":"")} style={{maxHeight:"455px", overflowY:"scroll"}}>
               {
                 notifies.length?
                 <table className="min-w-full divide-y divide-gray-100">
