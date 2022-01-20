@@ -49,7 +49,7 @@ const NotificationDropdown = ({notifying, wins, toggerAlertUser, promotionLevel}
         <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
           <div className="rounded-lg shadow-xl bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
             <h3 className="text-lg px-6 py-2 leading-6 font-bold text-gray-900">Thông báo</h3>
-            <div className={"grid gap-6 sm:gap-8 sm:p-8 mb-3 "+(notifies.length?"relative":"")} style={{maxHeight:"455px", overflowY:"scroll"}}>
+            <div className={"grid gap-6 sm:gap-8 sm:p-8 mb-3 "+(notifies.length?"relative":"")} style={{maxHeight:"515px", overflowY:"scroll"}}>
               {
                 notifies.length?
                 <table className="min-w-full divide-y divide-gray-100">
@@ -59,8 +59,8 @@ const NotificationDropdown = ({notifying, wins, toggerAlertUser, promotionLevel}
                         <tr key={key}>
                           <td className="px-6 py-2 whitespace-nowrap">
                             <div className="flex items-center">
-                              <div className="flex-shrink-0 h-12 w-12">
-                                <img className="h-12 w-12 rounded-full" src={toImageUrl(user.avatar)} alt={user.name} />
+                              <div className="flex-shrink-0 w-8 h-8">
+                                <img className="w-8 h-8 rounded-full" src={toImageUrl(user.avatar)} alt={user.name} />
                               </div>
                               <div className="pl-3">
                                 <div className="font-medium">

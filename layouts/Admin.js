@@ -38,7 +38,7 @@ function Admin({ children, toaster, addAUserCreators, logoutCreators, toggerRepo
         <IndexNavbar pathName={router.pathname} addAUser={addAUserCreators} logoutAdmin={logoutCreators} notifying={notifies} wins={wins} toggerAlertUser={toggerReportCreators} promotionLevel={promotionWinCreators}/>
         {/* Header */}
         <HeaderStats />
-        <div className="px-4 md:px-10 mx-auto w-full -m-24">
+        <div className="px-0 md:px-6 lg:px-10 mx-auto w-full -m-24">
           {children}
           <FooterAdmin />
         </div>
