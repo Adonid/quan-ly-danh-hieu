@@ -7,20 +7,34 @@ import { toImageUrl } from "general/convert/convertmageUrl";
 import { outOfDateRelative, outOfDateDetail, willReceiveDateRelative, willRecieveDateDetail } from "general/convert/convertTime";
 
 export default function CardProfile({user, wins, deleteUser}) {
+  // Thay doi anh nen
+  const [avatar, setAvatar] = React.useState(toImageUrl(user.avatar))
+  const onSelectFile = e => {
+    if (e.target.files && e.target.files.length > 0) {
+      if(e.target.files[0].type==="image/jpeg" || e.target.files[0].type==="image/jpg" || e.target.files[0].type==="image/png"){
+        const reader = new FileReader()
+        reader.addEventListener('load', () => {
+          // Goi api upload avatar
+          setAvatar(reader.result)
+        })
+        reader.readAsDataURL(e.target.files[0])
+      }
+    }
+  }
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
         <div className="px-6">
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-4 flex justify-center">
-            <label for="img">
-                  <img
-                    alt={user.name}
-                    src={toImageUrl(user.avatar)}
-                    className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
-                  />
-                </label>
-                <input className="absolute w-0 h-0 opacity-0" type="file" id="img" accept="image/*"></input>
+              <label htmlFor="img" title="Thay đổi ảnh avatar" className="cursor-pointer">
+                <img
+                  alt={user.name}
+                  src={avatar}
+                  className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+                />
+              </label>
+              <input className="absolute w-0 h-0 opacity-0" type="file" id="img" accept="image/png, image/jpeg, image/jpg" onChange={onSelectFile}></input>
             </div>
             <div className="w-full px-4 text-center mt-20">
               <div className="flex justify-center py-4 lg:pt-4 pt-8">
