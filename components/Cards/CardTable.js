@@ -64,7 +64,7 @@ export default function CardTable({ color, users, wins }) {
         </div>
         <div 
           className="block w-full overflow-x-auto" 
-          style={{maxHeight: "555px"}}
+          // style={{maxHeight: "5555px"}}
           ref={myRef}
           onScroll={onScroll}
         >
