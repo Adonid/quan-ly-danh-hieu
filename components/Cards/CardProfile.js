@@ -14,11 +14,14 @@ export default function CardProfile({user, wins, deleteUser}) {
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-4 flex justify-center">
               <div className="relative">
+              <label for="img">
                 <img
                   alt={user.name}
                   src={toImageUrl(user.avatar)}
                   className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                 />
+              </label>
+                <input className="absolute w-0 h-0 opacity-0" type="file" id="img" accept="image/*"></input>
               </div>
             </div>
             <div className="w-full px-4 text-center mt-20">
