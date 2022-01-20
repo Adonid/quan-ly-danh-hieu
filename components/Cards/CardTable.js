@@ -1,6 +1,4 @@
 import React, { createRef, useEffect, useState } from "react";
-// Lodash
-const _ = require('lodash/core');
 import PropTypes from "prop-types";
 import Link from "next/link";
 // components

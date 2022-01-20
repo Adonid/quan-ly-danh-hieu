@@ -1,4 +1,6 @@
 import React, { createRef, useEffect, useState } from "react";
+// Lodash
+const _ = require('lodash/core');
 import PropTypes from "prop-types";
 import { createPopper } from '@popperjs/core';
 // components
@@ -11,8 +13,6 @@ import { outOfDateRelative, outOfDateDetail } from "general/convert/convertTime"
 // Const
 const selectNotifies  = [
   {label: "Tất cả", value: 1},
-  {label: "Mới nhất", value: 2},
-  {label: "Cũ nhất", value: 3},
   {label: "Đang thông báo", value: 4},
   {label: "Đang tắt thông báo", value: 5},
 ]
@@ -53,7 +53,26 @@ export default function CardTable({ color, notification, wins, promotion, togger
     }
   }
   // Loc
-  const changeSelect = e => console.log(e)
+  const changeSelect = e => {
+    switch (e) {
+      case "1":
+        setNotifies([...notification])
+        break;
+    
+      case "4":
+        let notify_2 = notification.filter(item => item.show_report)
+        setNotifies(notify_2)
+        break;
+    
+      case "5":
+        let notify_3 = notification.filter(item => !item.show_report)
+        setNotifies(notify_3)
+        break;
+    
+      default:
+        break;
+    }
+  }
   // Action Promotion
   const promotionLevel = data => promotion(data)
   // Show/hiden
@@ -98,7 +117,7 @@ export default function CardTable({ color, notification, wins, promotion, togger
         </div>
         <div 
           className="block w-full overflow-x-auto"
-          style={{maxHeight: "555px"}}
+          // style={{maxHeight: "555px"}}
           ref={myRef}
           onScroll={onScroll}
         >
