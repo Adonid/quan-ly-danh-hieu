@@ -1,4 +1,6 @@
 import React, { createRef, useEffect, useState } from "react";
+// Lodash
+const _ = require('lodash/core');
 import PropTypes from "prop-types";
 import Link from "next/link";
 // components
@@ -8,9 +10,14 @@ import { toImageUrl } from "general/convert/convertmageUrl";
 // Const
 const selectUsers = [
   {label: "Tất cả", value: 1},
-  {label: "Chưa nhận DH nào", value: 2},
-  {label: "Đã nhận TA-2", value: 3},
-  {label: "TA-4", value: 4},
+  {label: "Chưa nhận danh hiệu nào", value: 2},
+  {label: "HC Chiến sỹ vẻ vang - Hạng 3", value: 3},
+  {label: "HC Chiến sỹ vẻ vang - Hạng 2", value: 4},
+  {label: "HC Chiến sỹ vẻ vang - Hạng 1", value: 5},
+  {label: "HC Quân kỳ Quyết thắng", value: 6},
+  {label: "Huân chương BVTQ - Hạng 3", value: 7},
+  {label: "Huân chương BVTQ - Hạng 2", value: 8},
+  {label: "Huân chương BVTQ - Hạng 1", value: 9},
 ]
 
 export default function CardTable({ color, users, wins }) {
@@ -32,7 +39,56 @@ export default function CardTable({ color, users, wins }) {
     }
   }
   // Loc
-  const changeSelect = e => console.log(e)
+  const changeSelect = e => {
+    switch (e) {
+      case "1":
+        setUserDisplay([...users])
+        break;
+    
+      case "2":
+        let newUsers = users.filter(item => item.win_id === wins[0].id)
+        setUserDisplay(newUsers)
+        break;
+    
+      case "3":
+        let newUsers_1 = users.filter(item => item.win_id === wins[1].id)
+        setUserDisplay(newUsers_1)
+        break;
+    
+      case "4":
+        let newUsers_2 = users.filter(item => item.win_id === wins[2].id)
+        setUserDisplay(newUsers_2)
+        break;
+    
+      case "5":
+        let newUsers_3 = users.filter(item => item.win_id === wins[3].id)
+        setUserDisplay(newUsers_3)
+        break;
+    
+      case "6":
+        let newUsers_4 = users.filter(item => item.win_id === wins[4].id)
+        setUserDisplay(newUsers_4)
+        break;
+    
+      case "7":
+        let newUsers_5 = users.filter(item => item.win_id === wins[5].id)
+        setUserDisplay(newUsers_5)
+        break;
+    
+      case "8":
+        let newUsers_6 = users.filter(item => item.win_id === wins[6].id)
+        setUserDisplay(newUsers_6)
+        break;
+    
+      case "9":
+        let newUsers_7 = users.filter(item => item.win_id === wins[7].id)
+        setUserDisplay(newUsers_7)
+        break;
+    
+      default:
+        break;
+    }
+  }
   
   return (
     <>
