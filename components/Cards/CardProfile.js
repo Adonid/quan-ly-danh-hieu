@@ -6,16 +6,15 @@ import ToolTip from "components/ToolTip/ToolTip";
 import { toImageUrl } from "general/convert/convertmageUrl";
 import { outOfDateRelative, outOfDateDetail, willReceiveDateRelative, willRecieveDateDetail } from "general/convert/convertTime";
 
-export default function CardProfile({user, wins, deleteUser}) {
+export default function CardProfile({user, wins, deleteUser, uploadAvatar}) {
   // Thay doi anh nen
-  const [avatar, setAvatar] = React.useState(toImageUrl(user.avatar))
   const onSelectFile = e => {
     if (e.target.files && e.target.files.length > 0) {
       if(e.target.files[0].type==="image/jpeg" || e.target.files[0].type==="image/jpg" || e.target.files[0].type==="image/png"){
         const reader = new FileReader()
         reader.addEventListener('load', () => {
           // Goi api upload avatar
-          setAvatar(reader.result)
+          uploadAvatar({id: user.id, imageBase64: reader.result, name: user.name})
         })
         reader.readAsDataURL(e.target.files[0])
       }
@@ -30,7 +29,7 @@ export default function CardProfile({user, wins, deleteUser}) {
               <label htmlFor="img" title="Thay đổi ảnh avatar" className="cursor-pointer">
                 <img
                   alt={user.name}
-                  src={avatar}
+                  src={toImageUrl(user.avatar)}
                   className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                 />
               </label>

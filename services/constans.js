@@ -23,6 +23,7 @@ export const userTypes = {
 export const ADD_USER = "ADD_USER"
 export const UPDATE_ACCOUNT = "UPDATE_ACCOUNT"
 export const UPDATE_ORTHER_INFO = "UPDATE_ORTHER_INFO"
+export const UPLOAD_AVATAR = "UPLOAD_AVATAR"
 export const TOGGER_REPORT = "TOGGER_REPORT"
 export const REFRESH_NOTIFYING = "REFRESH_NOTIFYING"
 export const PROMOTION_WIN = "PROMOTION_WIN"
@@ -49,4 +50,3 @@ export const DATA_DISTRICTS = 'DATA_DISTRICTS'
 export const DATA_COMMUNES = 'DATA_COMMUNES'
 
 export const UPLOAD_BACKGROUND = 'UPLOAD_BACKGROUND'
-export const UPLOAD_AVATAR = 'UPLOAD_AVATAR'

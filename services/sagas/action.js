@@ -6,11 +6,12 @@ import {
     alertWarning,
     refreshNotifying
 } from '../actions'
-import { uriPage, LOGIN, ADD_USER, UPDATE_ACCOUNT, UPDATE_ORTHER_INFO, TOGGER_REPORT, PROMOTION_WIN, DELETE_A_USER } from '../constans'
+import { uriPage, LOGIN, ADD_USER, UPDATE_ACCOUNT, UPDATE_ORTHER_INFO, UPLOAD_AVATAR, TOGGER_REPORT, PROMOTION_WIN, DELETE_A_USER } from '../constans'
 import {
   addAUserApi,
   updateAccountUserApi,
   updateAUserApi,
+  uploadAvatarAUserApi,
   toggerReportApi,
   promotionWinApi,
   deleteAUserApi
@@ -86,6 +87,37 @@ function* updateOrtherInfoSaga({payload}) {
   try {
       // goi API updateAUserApi
       const delta = yield call(updateAUserApi, payload)
+      const {data, statusText} = delta
+      // RESPONSE TRUE
+      if(data && !data.error){
+        // Cap nhat du lieu
+        yield put(refreshDataUser(data.datas))
+        // Show thong bao thanh cong tren ADMIN LAYOUT
+        yield put(alertSuccess(data.msg))
+      }
+      // LOI REQUEST
+      else{
+        // LOI HET PHIEN DANG NHAP
+        if(statusText==="Unauthorized"){
+          yield window.location.replace(LOGIN)
+        }
+        // CAC LOI KHAC KHONG RO NGUON GOC
+        else{
+            // Show TB loi
+            // yield put(alertWarning(data.error||statusText))
+        }
+      }
+    } catch (err) {
+      yield console.log(err)
+      // Show TB loi
+    //   yield put(alertWarning(err.message||statusText))
+  }
+}
+// UPLOAD ANH AVATAR
+function* uploadAvatarSaga({payload}) {
+  try {
+      // goi API uploadAvatarAUserApi
+      const delta = yield call(uploadAvatarAUserApi, payload)
       const {data, statusText} = delta
       // RESPONSE TRUE
       if(data && !data.error){
@@ -215,6 +247,7 @@ function* rootSaga() {
       takeLatest(ADD_USER, addNewAUserSaga),
       takeLatest(UPDATE_ACCOUNT, updateAUserSaga),
       takeLatest(UPDATE_ORTHER_INFO, updateOrtherInfoSaga),
+      takeLatest(UPLOAD_AVATAR, uploadAvatarSaga),
       takeLatest(TOGGER_REPORT, toggerReportSaga),
       takeLatest(PROMOTION_WIN, promotionWinSaga),
       takeLatest(DELETE_A_USER, deleteAUserSaga),

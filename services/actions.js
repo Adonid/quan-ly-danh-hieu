@@ -21,6 +21,13 @@ export function updateOrtherInfoAction(payload){
     payload
   }
 }
+/** SUA THONG TIN KHAC CUA TAI KHOAN */
+export function uploadAvatarAction(payload){
+  return{
+    type: constans.UPLOAD_AVATAR,
+    payload
+  }
+}
 /** LAM TUOI THONG TIN USER DANG THAO TAC TRUC TIEP */
 export function refreshDataUser(payload){
   return{
@@ -243,13 +250,6 @@ export function loadCommunes(payload){
 export function uploadBackgroundAction(payload){
   return {
     type: constans.UPLOAD_BACKGROUND,
-    payload
-  }
-}
-// CAP NHAT ANH AVATAR
-export function uploadAvatarAction(payload){
-  return {
-    type: constans.UPLOAD_AVATAR,
     payload
   }
 }

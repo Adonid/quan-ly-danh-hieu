@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // Redux
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
-import { updateAccountAction, updateOrtherInfoAction, deleteAUserAction } from "services/actions";
+import { updateAccountAction, updateOrtherInfoAction, deleteAUserAction, uploadAvatarAction } from "services/actions";
 // components
 import CardSettings from "components/Cards/CardSettings.js";
 import CardProfile from "components/Cards/CardProfile.js";
@@ -13,7 +13,7 @@ import {isNumber} from "general/validate/commonValiate"
 // API
 import {getDetailAUserApi} from 'apis/Auth'
 
-function Settings({user, currentUser, wins, updateAccountCreators, updateOrtherInfoCreators, deleteAUserCreators}) {
+function Settings({user, currentUser, wins, updateAccountCreators, updateOrtherInfoCreators, deleteAUserCreators, uploadAvatarCreators}) {
   const [userData, setUserData] = useState(user)
   useEffect(() => {
       setUserData(currentUser)
@@ -28,7 +28,7 @@ function Settings({user, currentUser, wins, updateAccountCreators, updateOrtherI
           <CardSettings user={userData} updateAccount={updateAccountCreators} updateOrtherinfo={updateOrtherInfoCreators} />
         </div>
         <div className="w-full lg:w-4/12 px-4">
-          <CardProfile user={userData} wins={wins} deleteUser={deleteAUserCreators} />
+          <CardProfile user={userData} wins={wins} deleteUser={deleteAUserCreators} uploadAvatar={uploadAvatarCreators} />
         </div>
       </div>
     </>
@@ -48,6 +48,7 @@ const mapDispatchToProps = dispatch => {
   return {
     updateAccountCreators: bindActionCreators(updateAccountAction, dispatch),
     updateOrtherInfoCreators: bindActionCreators(updateOrtherInfoAction, dispatch),
+    uploadAvatarCreators: bindActionCreators(uploadAvatarAction, dispatch),
     deleteAUserCreators: bindActionCreators(deleteAUserAction, dispatch),
   }
 }

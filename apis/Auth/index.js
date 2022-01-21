@@ -7,6 +7,7 @@ import Admin from "./Admin"
 export const addAUserApi = params => post('user/add', params)
 export const updateAccountUserApi = params => post('user/update-account', params)
 export const updateAUserApi = params => post('user/update', params)
+export const uploadAvatarAUserApi = params => post('user/upload-avatar', params)
 export const toggerReportApi = params => post('user/togger-report', params)
 export const promotionWinApi = params => post('user/promotion-win', params)
 export const getDetailAUserApi = (token, id) => fetching('user/detail?id=', token, id)
