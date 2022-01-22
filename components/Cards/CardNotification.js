@@ -1,4 +1,5 @@
 import React, { createRef, useEffect, useState } from "react";
+import Link from "next/link";
 // Lodash
 const _ = require('lodash/core');
 import PropTypes from "prop-types";
@@ -180,19 +181,23 @@ export default function CardTable({ color, notification, wins, promotion, togger
                 notifies.map((item, key) => (
                   <tr key={key}>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                      <img
-                        src={toImageUrl(item.avatar)}
-                        className="h-12 w-12 bg-white rounded-full border"
-                        alt={item.name}
-                      ></img>{" "}
-                      <span
-                        className={
-                          "ml-3 font-bold " +
-                          +(color === "light" ? "text-blueGray-600" : "text-white")
-                        }
-                      >
-                        {item.name}
-                      </span>
+                      <Link href={"/admin/user-edit/"+item.id}>
+                        <a>
+                          <img
+                            src={toImageUrl(item.avatar)}
+                            className="h-12 w-12 bg-white rounded-full border inline-block"
+                            alt={item.name}
+                          ></img>{" "}
+                          <span
+                            className={
+                              "ml-3 font-bold " +
+                              +(color === "light" ? "text-blueGray-600" : "text-white")
+                            }
+                          >
+                            {item.name}
+                          </span>
+                        </a>
+                      </Link>
                     </th>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                       <i className={"fas fa-star mr-2 " + item.win.color}></i> {item.win.name + (item.win.level?" - Hạng "+item.win.level:"")}
