@@ -4,7 +4,13 @@ import { randomBackground } from "general/helper/randomImage";
 
 import CardStats from "components/Cards/CardStats.js";
 
-export default function HeaderStats() {
+export default function HeaderStats({users}) {
+  // Tinh toan so lieu thong ke khi users thay doi
+  const statistical = React.useMemo(() => {
+    const userAmount = users.length
+    const userIsToQuota = users.filter(item => item.to_quota).length
+    return {userAmount, userIsToQuota}
+  }, [users])
   return (
     <>
       {/* Header */}
@@ -15,32 +21,32 @@ export default function HeaderStats() {
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="TRAFFIC"
-                  statTitle="350,897"
+                  statSubtitle="THÀNH VIÊN QUẢN LÝ"
+                  statTitle={statistical.userAmount}
                   statArrow="up"
                   statPercent="3.48"
                   statPercentColor="text-emerald-500"
                   statDescripiron="Since last month"
-                  statIconName="far fa-chart-bar"
+                  statIconName="fas fa-users"
                   statIconColor="bg-red-500"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="NEW USERS"
-                  statTitle="2,356"
+                  statSubtitle="ĐỦ ĐIỀU KIỆN NHẬN DH"
+                  statTitle={statistical.userIsToQuota}
                   statArrow="down"
                   statPercent="3.48"
                   statPercentColor="text-red-500"
                   statDescripiron="Since last week"
-                  statIconName="fas fa-chart-pie"
+                  statIconName="far fa-calendar-check"
                   statIconColor="bg-orange-500"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="SALES"
-                  statTitle="924"
+                  statSubtitle="QÚA HẠN NHẬN DH"
+                  statTitle={26}
                   statArrow="down"
                   statPercent="1.10"
                   statPercentColor="text-orange-500"
@@ -51,8 +57,8 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="PERFORMANCE"
-                  statTitle="49,65%"
+                  statSubtitle="LƯỢT TRAO TẶNG"
+                  statTitle={109}
                   statArrow="up"
                   statPercent="12"
                   statPercentColor="text-emerald-500"

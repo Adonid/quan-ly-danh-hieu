@@ -7,6 +7,7 @@ import {
     logged,
     logout,
     forgetPassword,
+    refreshAllUsers,
 } from '../actions'
 import { uriPage, LOGIN, LOGOUT, FORGET_PASSWORD, RESET_PASSWORD } from '../constans'
 import {
@@ -24,6 +25,8 @@ function* loginSaga({payload}) {
       const {data, statusText} = delta
       // RESPONSE TRUE
       if(data && !data.error){
+        // Dua toan bo users cho store quan ly
+        yield put(refreshAllUsers(data.datas.users))
         // Danh dau da dang nhap va tu dong chuyen qua trang dashboard
         yield put(logged(data.datas.token, data.datas.myself, data.datas.wins, data.datas.notifying))
         yield delay(1000)
