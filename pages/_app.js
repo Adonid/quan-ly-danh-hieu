@@ -19,7 +19,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "styles/tailwind.css";
 
 Router.events.on("routeChangeStart", (url) => {
-  console.log(`Loading: ${url}`);
+  // console.log(`Loading: ${url}`);
   document.body.classList.add("body-page-transition");
   ReactDOM.render(
     <PageChange path={url} />,
