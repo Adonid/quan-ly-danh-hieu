@@ -130,6 +130,12 @@ export default function CardSettings({user, updateAccount, updateOrtherinfo}) {
                   </button>
                 </div>
               </div>
+              <div className="w-full px-4 mt-4">
+                <div className="relative w-full">
+                  <i className="text-sm text-blueGray-500 fas fa-exclamation-triangle"></i>{" "}
+                  <cite className="text-xs font-normal text-blueGray-400">Việc thay đổi thông tin này đồng nghĩa với danh hiệu người dùng sẽ bị thu hồi toàn bộ và cần phải cấp lại.</cite>
+                </div>
+              </div>
             </div>
           </form>
             <hr className="mt-6 border-b-1 border-blueGray-300" />
