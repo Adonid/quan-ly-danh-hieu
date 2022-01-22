@@ -23,10 +23,7 @@ export default function HeaderStats({users}) {
                 <CardStats
                   statSubtitle="THÀNH VIÊN QUẢN LÝ"
                   statTitle={statistical.userAmount}
-                  statArrow="up"
-                  statPercent="3.48"
                   statPercentColor="text-emerald-500"
-                  statDescripiron="Since last month"
                   statIconName="fas fa-users"
                   statIconColor="bg-red-500"
                 />
@@ -35,10 +32,7 @@ export default function HeaderStats({users}) {
                 <CardStats
                   statSubtitle="ĐỦ ĐIỀU KIỆN NHẬN DH"
                   statTitle={statistical.userIsToQuota}
-                  statArrow="down"
-                  statPercent="3.48"
                   statPercentColor="text-red-500"
-                  statDescripiron="Since last week"
                   statIconName="far fa-calendar-check"
                   statIconColor="bg-orange-500"
                 />
@@ -47,10 +41,7 @@ export default function HeaderStats({users}) {
                 <CardStats
                   statSubtitle="QÚA HẠN NHẬN DH"
                   statTitle={26}
-                  statArrow="down"
-                  statPercent="1.10"
                   statPercentColor="text-orange-500"
-                  statDescripiron="Since yesterday"
                   statIconName="fas fa-users"
                   statIconColor="bg-pink-500"
                 />
@@ -59,10 +50,7 @@ export default function HeaderStats({users}) {
                 <CardStats
                   statSubtitle="LƯỢT TRAO TẶNG"
                   statTitle={109}
-                  statArrow="up"
-                  statPercent="12"
                   statPercentColor="text-emerald-500"
-                  statDescripiron="Since last month"
                   statIconName="fas fa-percent"
                   statIconColor="bg-lightBlue-500"
                 />
