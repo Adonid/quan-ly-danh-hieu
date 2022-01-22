@@ -5,13 +5,20 @@ import CardTable from "components/Cards/CardTable.js";
 import Admin from "layouts/Admin.js";
 // API
 import {getDashboard} from 'apis/Auth'
+// Redux
+import { connect } from "react-redux";
+import { compose } from "redux";
 
-function Dashboard({users, wins}) {
+function Dashboard({users, usersCSR, wins}) {
   const [currentPeople, setCurrentPeople] = useState(users)
   // Thay doi danh sach khi SSR thay doi
   useEffect(() => {
     setCurrentPeople(users)
   }, [users])
+  // Thay doi danh sach khi SSR thay doi
+  useEffect(() => {
+    usersCSR.length?setCurrentPeople(usersCSR):null
+  }, [usersCSR])
 
   return (
     <>
@@ -26,7 +33,20 @@ function Dashboard({users, wins}) {
 
 Dashboard.layout = Admin;
 
-export default Dashboard
+const mapStateToProps = state => {
+  return {
+    usersCSR: state.dashboard.users
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    
+  }
+}
+const withConnect = connect(mapStateToProps, mapDispatchToProps)
+
+export default compose(withConnect)(Dashboard)
 
 // This function gets called at build time on server-side.
 // It won't be called on client-side, so you can even do

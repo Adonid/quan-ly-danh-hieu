@@ -4,7 +4,8 @@ import {
     alertInfo,
     refreshDataUser,
     alertWarning,
-    refreshNotifying
+    refreshNotifying,
+    refreshAllUsers
 } from '../actions'
 import { uriPage, LOGIN, ADD_USER, UPDATE_ACCOUNT, UPDATE_ORTHER_INFO, UPLOAD_AVATAR, TOGGER_REPORT, PROMOTION_WIN, DELETE_A_USER } from '../constans'
 import {
@@ -25,8 +26,12 @@ function* addNewAUserSaga({payload}) {
       const {data, statusText} = delta
       // RESPONSE TRUE
       if(data && !data.error){
+        // Lay tat ca users va cap nhat lai trang dashboard
+        const allUser = data.datas
+        yield put(refreshAllUsers(allUser))
         // Cap nhat du lieu - CAN DUA LEN REDUCER DE CAP NHAT LAI TRANG THAI THANH THONG BAO
-        yield put(refreshNotifying(data.datas))
+        const notifies = allUser.filter(item => item.to_quota)
+        yield put(refreshNotifying(notifies))
         // Show thong bao thanh cong tren DASHBOARD
         yield put(alertSuccess(data.msg))
       }

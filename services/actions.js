@@ -7,6 +7,13 @@ export function addAUserAction(payload){
     payload
   }
 }
+/** CAP NHAT LAI TRANG DASHBOARD */
+export function refreshAllUsers(payload){
+  return{
+    type: constans.ALL_USERS,
+    payload
+  }
+}
 /** SUA THONG TIN TAI KHOAN */
 export function updateAccountAction(payload){
   return{

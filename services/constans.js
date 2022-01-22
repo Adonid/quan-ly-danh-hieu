@@ -35,6 +35,7 @@ export const LOGOUT = 'LOGOUT'
 export const FORGET_PASSWORD = 'FORGET_PASSWORD'
 export const FORGET_PASSWORD_DONE = 'FORGET_PASSWORD_DONE'
 export const RESET_PASSWORD = 'RESET_PASSWORD'
+export const ALL_USERS = 'ALL_USERS'
 
 export const GET_MENU = 'GET_MENU'
 export const REFRESH_MENU = 'REFRESH_MENU'
