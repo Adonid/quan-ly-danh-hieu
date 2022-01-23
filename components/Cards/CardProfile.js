@@ -53,12 +53,12 @@ export default function CardProfile({user, wins, deleteUser, uploadAvatar}) {
                           {
                             wins.filter(item => item.quota <= user.win.quota).map((item, key) => (
                               key===0 ?
-                                null
+                                <span key={key}></span>
                               :
-                                <>
-                                  <span key={key}>{item.name + (item.level?" - Hạng "+item.level:"")}</span>
+                                <span key={key}>
+                                  <span>{item.name + (item.level?" - Hạng "+item.level:"")}</span>
                                   <br/>
-                                </>
+                                </span>
                             ))
                           }
                         </div>
@@ -100,7 +100,7 @@ export default function CardProfile({user, wins, deleteUser, uploadAvatar}) {
                 {
                   user.to_quota?
                     <>
-                        <i className={"fas fa-star mr-2 text-lg " + ([...wins].filter(i => i.quota > user.win.quota)[0].color||"text-blueGray-500")}></i>
+                        <i className={"fas fa-star mr-2 text-lg " + ([...wins].filter(i => i.quota >= user.win.quota)[0].color||"text-blueGray-500")}></i>
                         Đã quá hạn nhận danh hiệu
                         {" "}
                         <b>
@@ -124,27 +124,34 @@ export default function CardProfile({user, wins, deleteUser, uploadAvatar}) {
                     </>
                   :
                     <>
-                      <i className={"fas fa-star mr-2 text-lg " + ([...wins].filter(i => i.quota > user.win.quota)[0].color||"text-blueGray-500")}></i>{" "}
-                      Còn {" "}
-                      <ToolTip
-                        className="inline-block"
-                        content={
-                          <b>
-                            {willReceiveDateRelative(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0)}
-                          </b>
-                        }
-                        contentToolTip={
-                          <div
-                            className="bg-blueGray-600 border-0 mr-3 z-50 font-normal leading-normal text-xs max-w-xs text-left no-underline break-words rounded-lg text-white text-xs opacity-75 p-3 rounded-t-lg"
-                          >
-                            {willRecieveDateDetail(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0)?"Vào ngày "+willRecieveDateDetail(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0):"Đã nhận đủ các danh hiệu"}
-                          </div>
-                        }
-                      />
-                      {" "}
-                      sẽ nhận danh hiệu
-                      {" "}
-                      <cite>{[...wins].filter(i => i.quota > (user.win.quota))[0]?([...wins].filter(i => i.quota > (user.win.quota))[0].level?[...wins].filter(i => i.quota > (user.win.quota))[0].name+" - Hạng "+[...wins].filter(i => i.quota > (user.win.quota))[0].level:""):"Đã nhận đủ các danh hiệu"}</cite>
+                      <i className={"fas fa-star mr-2 text-lg " + ([...wins].filter(i => i.quota >= user.win.quota)[0].color||"text-blueGray-500")}></i>{" "}
+                      {
+                        [...wins].pop().quota === user.win.quota?
+                          <cite>Đã nhận tối đa các danh hiệu</cite>
+                        :
+                         <>
+                          Còn {" "}
+                          <ToolTip
+                            className="inline-block"
+                            content={
+                              <b>
+                                {willReceiveDateRelative(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0)}
+                              </b>
+                            }
+                            contentToolTip={
+                              <div
+                                className="bg-blueGray-600 border-0 mr-3 z-50 font-normal leading-normal text-xs max-w-xs text-left no-underline break-words rounded-lg text-white text-xs opacity-75 p-3 rounded-t-lg"
+                              >
+                                {willRecieveDateDetail(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0)?"Vào ngày "+willRecieveDateDetail(user.birthday, [...wins].filter(i => i.quota > (user.win.quota))[0]?[...wins].filter(i => i.quota > (user.win.quota))[0].quota:0):"Đã nhận đủ các danh hiệu"}
+                              </div>
+                            }
+                          />
+                          {" "}
+                          sẽ nhận danh hiệu
+                          {" "}
+                          <cite>{[...wins].filter(i => i.quota > (user.win.quota))[0]?([...wins].filter(i => i.quota > (user.win.quota))[0].level?[...wins].filter(i => i.quota > (user.win.quota))[0].name+" - Hạng "+[...wins].filter(i => i.quota > (user.win.quota))[0].level:""):"Đã nhận đủ các danh hiệu"}</cite>
+                         </>
+                      }
                     </>
                 }
             </div>
