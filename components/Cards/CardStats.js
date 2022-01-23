@@ -38,27 +38,15 @@ export default function CardStats({
 }
 
 CardStats.defaultProps = {
-  statSubtitle: "Traffic",
-  statTitle: "350,897",
-  statArrow: "up",
-  statPercent: "3.48",
-  statPercentColor: "text-emerald-500",
-  statDescripiron: "Since last month",
+  statSubtitle: "Thành viên",
+  statTitle: "122",
   statIconName: "far fa-chart-bar",
   statIconColor: "bg-red-500",
 };
 
 CardStats.propTypes = {
   statSubtitle: PropTypes.string,
-  statTitle: PropTypes.string,
-  statArrow: PropTypes.oneOf(["up", "down"]),
-  statPercent: PropTypes.string,
-  // can be any of the text color utilities
-  // from tailwindcss
-  statPercentColor: PropTypes.string,
-  statDescripiron: PropTypes.string,
+  statTitle: PropTypes.number,
   statIconName: PropTypes.string,
-  // can be any of the background color utilities
-  // from tailwindcss
   statIconColor: PropTypes.string,
 };
