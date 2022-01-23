@@ -5,6 +5,7 @@ import Link from "next/link";
 import BasicSelect from "components/Selects/BasicSelect";
 // Convert link
 import { toImageUrl } from "general/convert/convertmageUrl";
+import { slugName } from "general/helper/slug";
 // Const
 const selectUsers = [
   {label: "Tất cả", value: 1},
@@ -173,7 +174,7 @@ export default function CardTable({ color, users, wins }) {
                 userDisplay.map((item, key) => (
                   <tr key={key}>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                      <Link href={"/admin/user-edit/"+item.id}>
+                      <Link href={"/admin/"+slugName(item.name)+"/"+item.id}>
                         <a>
                           <img
                             src={toImageUrl(item.avatar)}

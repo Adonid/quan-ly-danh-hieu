@@ -49,7 +49,7 @@ export default function Navbar({addAUser, logoutAdmin, notifying, wins, toggerAl
             </ul>
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">
-                <Link href="/admin/dashboard">
+                <Link href="/admin/dashboard" as="/admin/home">
                   <a
                     className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                     href="#"
@@ -61,7 +61,7 @@ export default function Navbar({addAUser, logoutAdmin, notifying, wins, toggerAl
                 </Link>
               </li>
               <li className="flex items-center">
-                <Link href="/admin/notification">
+                <Link href="/admin/notification" as="/admin/thong-bao-nhan-danh-hieu">
                   <a
                     className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                     href="#"
