@@ -12,10 +12,7 @@ const selectUsers = [
   {label: "HC Chiến sỹ vẻ vang - Hạng 3", value: 3},
   {label: "HC Chiến sỹ vẻ vang - Hạng 2", value: 4},
   {label: "HC Chiến sỹ vẻ vang - Hạng 1", value: 5},
-  {label: "HC Quân kỳ Quyết thắng", value: 6},
-  {label: "Huân chương BVTQ - Hạng 3", value: 7},
-  {label: "Huân chương BVTQ - Hạng 2", value: 8},
-  {label: "Huân chương BVTQ - Hạng 1", value: 9},
+  {label: "HC Quân kỳ Quyết thắng", value: 6}
 ]
 
 export default function CardTable({ color, users, wins }) {
@@ -66,21 +63,6 @@ export default function CardTable({ color, users, wins }) {
       case "6":
         let newUsers_4 = users.filter(item => item.win_id === wins[4].id)
         setUserDisplay(newUsers_4)
-        break;
-    
-      case "7":
-        let newUsers_5 = users.filter(item => item.win_id === wins[5].id)
-        setUserDisplay(newUsers_5)
-        break;
-    
-      case "8":
-        let newUsers_6 = users.filter(item => item.win_id === wins[6].id)
-        setUserDisplay(newUsers_6)
-        break;
-    
-      case "9":
-        let newUsers_7 = users.filter(item => item.win_id === wins[7].id)
-        setUserDisplay(newUsers_7)
         break;
     
       default:
