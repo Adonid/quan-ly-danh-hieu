@@ -42,7 +42,7 @@ function Admin({ children, toaster, users, addAUserCreators, logoutCreators, tog
       <div className="relative bg-blueGray-100">
         <IndexNavbar pathName={router.pathname} addAUser={addAUserCreators} logoutAdmin={logoutCreators} notifying={notifies} wins={wins} toggerAlertUser={toggerReportCreators} promotionLevel={promotionWinCreators}/>
         {/* Header */}
-        <HeaderStats users={usersInApp} />
+        <HeaderStats users={usersInApp} wins={wins} />
         <div className="px-0 md:px-6 lg:px-10 mx-auto w-full -m-24">
           {children}
           <FooterAdmin />

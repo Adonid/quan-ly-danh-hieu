@@ -4,12 +4,18 @@ import { randomBackground } from "general/helper/randomImage";
 
 import CardStats from "components/Cards/CardStats.js";
 
-export default function HeaderStats({users}) {
+export default function HeaderStats({users, wins}) {
   // Tinh toan so lieu thong ke khi users thay doi
   const statistical = React.useMemo(() => {
     const userAmount = users.length
     const userIsToQuota = users.filter(item => item.to_quota).length
-    return {userAmount, userIsToQuota}
+    const userNotToQuota = users.filter(item => !item.to_quota).length
+    let totalWins = 0
+    users.forEach(user => {
+      const wined = wins.filter(win => win.quota <= user.win.quota).length
+      totalWins = totalWins + wined - 1
+    })
+    return {userAmount, userIsToQuota, userNotToQuota, totalWins}
   }, [users])
   return (
     <>
@@ -39,8 +45,8 @@ export default function HeaderStats({users}) {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="QÚA HẠN NHẬN DH"
-                  statTitle={26}
+                  statSubtitle="CHỜ TỚI HẠN NHẬN DH"
+                  statTitle={statistical.userNotToQuota}
                   statPercentColor="text-orange-500"
                   statIconName="fas fa-users"
                   statIconColor="bg-pink-500"
@@ -48,8 +54,8 @@ export default function HeaderStats({users}) {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="LƯỢT TRAO TẶNG"
-                  statTitle={109}
+                  statSubtitle="TỔNG LƯỢT TRAO TẶNG DH"
+                  statTitle={statistical.totalWins}
                   statPercentColor="text-emerald-500"
                   statIconName="fas fa-percent"
                   statIconColor="bg-lightBlue-500"
