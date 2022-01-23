@@ -6,7 +6,7 @@ export const uriPage = {
     forgetpassword: '/auth/forget-password',
     resetpassword: '/auth/reset-password',
     register: '/auth/register',
-    home: '/admin/dashboard',
+    home: '/admin/home',
     welcome: '/',
 }
 
